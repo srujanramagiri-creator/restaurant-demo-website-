@@ -10,6 +10,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","name":"Your Restaurant","servesCuisine":["Biryani","Indo-Chinese"],"address":{"@type":"PostalAddress","addressLocality":"Hanamkonda","addressRegion":"Telangana","addressCountry":"IN"}}</script>
 <title>Your Restaurant – Biryani, rice and noodles in Hanamkonda</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://rthjenyuywrdqgxhhjey.supabase.co" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500;1,6..72,600&display=swap" rel="stylesheet">
 <style>
@@ -1003,6 +1004,19 @@ body[data-v=home] .foot{display:block}
 .ft-mark text{font-family:'DM Serif Display',Georgia,serif}
 @media (min-width:640px){.ft-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:900px){.ft-cta{grid-template-columns:1fr auto;align-items:end}.ft-grid{grid-template-columns:1.3fr .8fr .8fr 1.3fr;gap:40px}}
+
+/* ===== table QR ===== */
+.tnote a{color:var(--orange-d);font-weight:600;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.qrbase{display:grid;gap:12px}
+.qrbase label{display:grid;gap:6px;font-weight:500}
+.qrbase input{width:100%}
+.qrgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:14px;margin-bottom:10px}
+.qrcard{display:grid;justify-items:center;gap:10px;padding:16px 12px 14px;border-radius:24px;background:linear-gradient(180deg,rgba(255,250,242,.96),rgba(253,238,218,.92));box-shadow:0 12px 24px -18px rgba(201,90,12,.6),inset 0 0 0 1.5px var(--line)}
+.qrcard .qrimg{width:100%;max-width:152px;aspect-ratio:1;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 0 0 1.5px var(--line)}
+.qrcard .qrimg svg{display:block;width:100%;height:100%}
+.qrcard>b{font:600 24px/1 var(--serif);letter-spacing:.2px}
+.qrcard .abtns{justify-content:center;gap:6px}
+.qrcard .mini{height:34px;padding:0 13px;font-size:13px}
 </style>
 </head>
 <body>
@@ -1398,7 +1412,7 @@ body[data-v=home] .foot{display:block}
     <section id="aDash" hidden>
       <div class="atop"><h1 class="atitle">Admin</h1><div class="abtns"><a class="mini" href="#menu">View menu</a><button class="mini" id="lockBtn" type="button">Lock</button></div></div>
       <div class="atabs" id="aTabs" role="group" aria-label="Admin sections">
-        <button class="chip" data-tab="items">Items</button><button class="chip" data-tab="coupons">Coupons</button><button class="chip" data-tab="orders">Orders &amp; bookings<span class="nb" id="nbadge" hidden></span></button><button class="chip" data-tab="shop">Shop</button><button class="chip" data-tab="settings">Settings</button>
+        <button class="chip" data-tab="items">Items</button><button class="chip" data-tab="coupons">Coupons</button><button class="chip" data-tab="orders">Orders &amp; bookings<span class="nb" id="nbadge" hidden></span></button><button class="chip" data-tab="shop">Shop</button><button class="chip" data-tab="qr">Table QR</button><button class="chip" data-tab="settings">Settings</button>
       </div>
       <div id="aBody"></div>
     </section>
@@ -1422,6 +1436,12 @@ body[data-v=home] .foot{display:block}
 <div id="toast" role="status" aria-live="polite"></div>
 <div id="shopBar" class="shopbar" role="status" hidden></div>
 
+<script>
+/* QR encoder: qrcode-generator 2.0.4 by Kazuhiko Arase, MIT licence. Draws the table codes in Admin > Table QR. */
+// Copyright (c) 2009 Kazuhiko Arase
+// Licensed under the MIT license:
+var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],f={},c=function(t,r){o=function(t){for(var r=new Array(t),e=0;e<t;e+=1){r[e]=new Array(t);for(var n=0;n<t;n+=1)r[e][n]=null}return r}(i=4*e+17),l(0,0),l(i-7,0),l(0,i-7),s(),h(),d(t,r),e>=7&&v(t),null==a&&(a=p(e,n,u)),w(a,r)},l=function(t,r){for(var e=-1;e<=7;e+=1)if(!(t+e<=-1||i<=t+e))for(var n=-1;n<=7;n+=1)r+n<=-1||i<=r+n||(o[t+e][r+n]=0<=e&&e<=6&&(0==n||6==n)||0<=n&&n<=6&&(0==e||6==e)||2<=e&&e<=4&&2<=n&&n<=4)},h=function(){for(var t=8;t<i-8;t+=1)null==o[t][6]&&(o[t][6]=t%2==0);for(var r=8;r<i-8;r+=1)null==o[6][r]&&(o[6][r]=r%2==0)},s=function(){for(var t=B.getPatternPosition(e),r=0;r<t.length;r+=1)for(var n=0;n<t.length;n+=1){var i=t[r],a=t[n];if(null==o[i][a])for(var u=-2;u<=2;u+=1)for(var f=-2;f<=2;f+=1)o[i+u][a+f]=-2==u||2==u||-2==f||2==f||0==u&&0==f}},v=function(t){for(var r=B.getBCHTypeNumber(e),n=0;n<18;n+=1){var a=!t&&1==(r>>n&1);o[Math.floor(n/3)][n%3+i-8-3]=a}for(n=0;n<18;n+=1){a=!t&&1==(r>>n&1);o[n%3+i-8-3][Math.floor(n/3)]=a}},d=function(t,r){for(var e=n<<3|r,a=B.getBCHTypeInfo(e),u=0;u<15;u+=1){var f=!t&&1==(a>>u&1);u<6?o[u][8]=f:u<8?o[u+1][8]=f:o[i-15+u][8]=f}for(u=0;u<15;u+=1){f=!t&&1==(a>>u&1);u<8?o[8][i-u-1]=f:u<9?o[8][15-u-1+1]=f:o[8][15-u-1]=f}o[i-8][8]=!t},w=function(t,r){for(var e=-1,n=i-1,a=7,u=0,f=B.getMaskFunction(r),c=i-1;c>0;c-=2)for(6==c&&(c-=1);;){for(var g=0;g<2;g+=1)if(null==o[n][c-g]){var l=!1;u<t.length&&(l=1==(t[u]>>>a&1)),f(n,c-g)&&(l=!l),o[n][c-g]=l,-1==(a-=1)&&(u+=1,a=7)}if((n+=e)<0||i<=n){n-=e,e=-e;break}}},p=function(t,r,e){for(var n=A.getRSBlocks(t,r),o=b(),i=0;i<e.length;i+=1){var a=e[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var u=0;for(i=0;i<n.length;i+=1)u+=n[i].dataCount;if(o.getLengthInBits()>8*u)throw"code length overflow. ("+o.getLengthInBits()+">"+8*u+")";for(o.getLengthInBits()+4<=8*u&&o.put(0,4);o.getLengthInBits()%8!=0;)o.putBit(!1);for(;!(o.getLengthInBits()>=8*u||(o.put(236,8),o.getLengthInBits()>=8*u));)o.put(17,8);return function(t,r){for(var e=0,n=0,o=0,i=new Array(r.length),a=new Array(r.length),u=0;u<r.length;u+=1){var f=r[u].dataCount,c=r[u].totalCount-f;n=Math.max(n,f),o=Math.max(o,c),i[u]=new Array(f);for(var g=0;g<i[u].length;g+=1)i[u][g]=255&t.getBuffer()[g+e];e+=f;var l=B.getErrorCorrectPolynomial(c),h=k(i[u],l.getLength()-1).mod(l);for(a[u]=new Array(l.getLength()-1),g=0;g<a[u].length;g+=1){var s=g+h.getLength()-a[u].length;a[u][g]=s>=0?h.getAt(s):0}}var v=0;for(g=0;g<r.length;g+=1)v+=r[g].totalCount;var d=new Array(v),w=0;for(g=0;g<n;g+=1)for(u=0;u<r.length;u+=1)g<i[u].length&&(d[w]=i[u][g],w+=1);for(g=0;g<o;g+=1)for(u=0;u<r.length;u+=1)g<a[u].length&&(d[w]=a[u][g],w+=1);return d}(o,n)};f.addData=function(t,r){var e=null;switch(r=r||"Byte"){case"Numeric":e=M(t);break;case"Alphanumeric":e=x(t);break;case"Byte":e=m(t);break;case"Kanji":e=L(t);break;default:throw"mode:"+r}u.push(e),a=null},f.isDark=function(t,r){if(t<0||i<=t||r<0||i<=r)throw t+","+r;return o[t][r]},f.getModuleCount=function(){return i},f.make=function(){if(e<1){for(var t=1;t<40;t++){for(var r=A.getRSBlocks(t,n),o=b(),i=0;i<u.length;i++){var a=u[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var g=0;for(i=0;i<r.length;i++)g+=r[i].dataCount;if(o.getLengthInBits()<=8*g)break}e=t}c(!1,function(){for(var t=0,r=0,e=0;e<8;e+=1){c(!0,e);var n=B.getLostPoint(f);(0==e||t>n)&&(t=n,r=e)}return r}())},f.createTableTag=function(t,r){t=t||2;var e="";e+='<table style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: "+(r=void 0===r?4*t:r)+"px;",e+='">',e+="<tbody>";for(var n=0;n<f.getModuleCount();n+=1){e+="<tr>";for(var o=0;o<f.getModuleCount();o+=1)e+='<td style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: 0px;",e+=" width: "+t+"px;",e+=" height: "+t+"px;",e+=" background-color: ",e+=f.isDark(n,o)?"#000000":"#ffffff",e+=";",e+='"/>';e+="</tr>"}return e+="</tbody>",e+="</table>"},f.createSvgTag=function(t,r,e,n){var o={};"object"==typeof arguments[0]&&(t=(o=arguments[0]).cellSize,r=o.margin,e=o.alt,n=o.title),t=t||2,r=void 0===r?4*t:r,(e="string"==typeof e?{text:e}:e||{}).text=e.text||null,e.id=e.text?e.id||"qrcode-description":null,(n="string"==typeof n?{text:n}:n||{}).text=n.text||null,n.id=n.text?n.id||"qrcode-title":null;var i,a,u,c,g=f.getModuleCount()*t+2*r,l="";for(c="l"+t+",0 0,"+t+" -"+t+",0 0,-"+t+"z ",l+='<svg version="1.1" xmlns="http://www.w3.org/2000/svg"',l+=o.scalable?"":' width="'+g+'px" height="'+g+'px"',l+=' viewBox="0 0 '+g+" "+g+'" ',l+=' preserveAspectRatio="xMinYMin meet"',l+=n.text||e.text?' role="img" aria-labelledby="'+y([n.id,e.id].join(" ").trim())+'"':"",l+=">",l+=n.text?'<title id="'+y(n.id)+'">'+y(n.text)+"</title>":"",l+=e.text?'<description id="'+y(e.id)+'">'+y(e.text)+"</description>":"",l+='<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>',l+='<path d="',a=0;a<f.getModuleCount();a+=1)for(u=a*t+r,i=0;i<f.getModuleCount();i+=1)f.isDark(a,i)&&(l+="M"+(i*t+r)+","+u+c);return l+='" stroke="transparent" fill="black"/>',l+="</svg>"},f.createDataURL=function(t,r){t=t||2,r=void 0===r?4*t:r;var e=f.getModuleCount()*t+2*r,n=r,o=e-r;return I(e,e,function(r,e){if(n<=r&&r<o&&n<=e&&e<o){var i=Math.floor((r-n)/t),a=Math.floor((e-n)/t);return f.isDark(a,i)?0:1}return 1})},f.createImgTag=function(t,r,e){t=t||2,r=void 0===r?4*t:r;var n=f.getModuleCount()*t+2*r,o="";return o+="<img",o+=' src="',o+=f.createDataURL(t,r),o+='"',o+=' width="',o+=n,o+='"',o+=' height="',o+=n,o+='"',e&&(o+=' alt="',o+=y(e),o+='"'),o+="/>"};var y=function(t){for(var r="",e=0;e<t.length;e+=1){var n=t.charAt(e);switch(n){case"<":r+="&lt;";break;case">":r+="&gt;";break;case"&":r+="&amp;";break;case'"':r+="&quot;";break;default:r+=n}}return r};return f.createASCII=function(t,r){if((t=t||1)<2)return function(t){t=void 0===t?2:t;var r,e,n,o,i,a=1*f.getModuleCount()+2*t,u=t,c=a-t,g={"██":"█","█ ":"▀"," █":"▄","  ":" "},l={"██":"▀","█ ":"▀"," █":" ","  ":" "},h="";for(r=0;r<a;r+=2){for(n=Math.floor((r-u)/1),o=Math.floor((r+1-u)/1),e=0;e<a;e+=1)i="█",u<=e&&e<c&&u<=r&&r<c&&f.isDark(n,Math.floor((e-u)/1))&&(i=" "),u<=e&&e<c&&u<=r+1&&r+1<c&&f.isDark(o,Math.floor((e-u)/1))?i+=" ":i+="█",h+=t<1&&r+1>=c?l[i]:g[i];h+="\n"}return a%2&&t>0?h.substring(0,h.length-a-1)+Array(a+1).join("▀"):h.substring(0,h.length-1)}(r);t-=1,r=void 0===r?2*t:r;var e,n,o,i,a=f.getModuleCount()*t+2*r,u=r,c=a-r,g=Array(t+1).join("██"),l=Array(t+1).join("  "),h="",s="";for(e=0;e<a;e+=1){for(o=Math.floor((e-u)/t),s="",n=0;n<a;n+=1)i=1,u<=n&&n<c&&u<=e&&e<c&&f.isDark(o,Math.floor((n-u)/t))&&(i=0),s+=i?g:l;for(o=0;o<t;o+=1)h+=s+"\n"}return h.substring(0,h.length-1)},f.renderTo2dContext=function(t,r){r=r||2;for(var e=f.getModuleCount(),n=0;n<e;n++)for(var o=0;o<e;o++)t.fillStyle=f.isDark(n,o)?"black":"white",t.fillRect(o*r,n*r,r,r)},f};t.stringToBytes=(t.stringToBytesFuncs={default:function(t){for(var r=[],e=0;e<t.length;e+=1){var n=t.charCodeAt(e);r.push(255&n)}return r}}).default,t.createStringToBytes=function(t,r){var e=function(){for(var e=S(t),n=function(){var t=e.read();if(-1==t)throw"eof";return t},o=0,i={};;){var a=e.read();if(-1==a)break;var u=n(),f=n()<<8|n();i[String.fromCharCode(a<<8|u)]=f,o+=1}if(o!=r)throw o+" != "+r;return i}(),n="?".charCodeAt(0);return function(t){for(var r=[],o=0;o<t.length;o+=1){var i=t.charCodeAt(o);if(i<128)r.push(i);else{var a=e[t.charAt(o)];"number"==typeof a?(255&a)==a?r.push(a):(r.push(a>>>8),r.push(255&a)):r.push(n)}}return r}};var r,e,n,o,i,a=1,u=2,f=4,c=8,g={L:1,M:0,Q:3,H:2},l=0,h=1,s=2,v=3,d=4,w=5,p=6,y=7,B=(r=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],e=1335,n=7973,i=function(t){for(var r=0;0!=t;)r+=1,t>>>=1;return r},(o={}).getBCHTypeInfo=function(t){for(var r=t<<10;i(r)-i(e)>=0;)r^=e<<i(r)-i(e);return 21522^(t<<10|r)},o.getBCHTypeNumber=function(t){for(var r=t<<12;i(r)-i(n)>=0;)r^=n<<i(r)-i(n);return t<<12|r},o.getPatternPosition=function(t){return r[t-1]},o.getMaskFunction=function(t){switch(t){case l:return function(t,r){return(t+r)%2==0};case h:return function(t,r){return t%2==0};case s:return function(t,r){return r%3==0};case v:return function(t,r){return(t+r)%3==0};case d:return function(t,r){return(Math.floor(t/2)+Math.floor(r/3))%2==0};case w:return function(t,r){return t*r%2+t*r%3==0};case p:return function(t,r){return(t*r%2+t*r%3)%2==0};case y:return function(t,r){return(t*r%3+(t+r)%2)%2==0};default:throw"bad maskPattern:"+t}},o.getErrorCorrectPolynomial=function(t){for(var r=k([1],0),e=0;e<t;e+=1)r=r.multiply(k([1,C.gexp(e)],0));return r},o.getLengthInBits=function(t,r){if(1<=r&&r<10)switch(t){case a:return 10;case u:return 9;case f:case c:return 8;default:throw"mode:"+t}else if(r<27)switch(t){case a:return 12;case u:return 11;case f:return 16;case c:return 10;default:throw"mode:"+t}else{if(!(r<41))throw"type:"+r;switch(t){case a:return 14;case u:return 13;case f:return 16;case c:return 12;default:throw"mode:"+t}}},o.getLostPoint=function(t){for(var r=t.getModuleCount(),e=0,n=0;n<r;n+=1)for(var o=0;o<r;o+=1){for(var i=0,a=t.isDark(n,o),u=-1;u<=1;u+=1)if(!(n+u<0||r<=n+u))for(var f=-1;f<=1;f+=1)o+f<0||r<=o+f||0==u&&0==f||a==t.isDark(n+u,o+f)&&(i+=1);i>5&&(e+=3+i-5)}for(n=0;n<r-1;n+=1)for(o=0;o<r-1;o+=1){var c=0;t.isDark(n,o)&&(c+=1),t.isDark(n+1,o)&&(c+=1),t.isDark(n,o+1)&&(c+=1),t.isDark(n+1,o+1)&&(c+=1),0!=c&&4!=c||(e+=3)}for(n=0;n<r;n+=1)for(o=0;o<r-6;o+=1)t.isDark(n,o)&&!t.isDark(n,o+1)&&t.isDark(n,o+2)&&t.isDark(n,o+3)&&t.isDark(n,o+4)&&!t.isDark(n,o+5)&&t.isDark(n,o+6)&&(e+=40);for(o=0;o<r;o+=1)for(n=0;n<r-6;n+=1)t.isDark(n,o)&&!t.isDark(n+1,o)&&t.isDark(n+2,o)&&t.isDark(n+3,o)&&t.isDark(n+4,o)&&!t.isDark(n+5,o)&&t.isDark(n+6,o)&&(e+=40);var g=0;for(o=0;o<r;o+=1)for(n=0;n<r;n+=1)t.isDark(n,o)&&(g+=1);return e+=Math.abs(100*g/r/r-50)/5*10},o),C=function(){for(var t=new Array(256),r=new Array(256),e=0;e<8;e+=1)t[e]=1<<e;for(e=8;e<256;e+=1)t[e]=t[e-4]^t[e-5]^t[e-6]^t[e-8];for(e=0;e<255;e+=1)r[t[e]]=e;var n={glog:function(t){if(t<1)throw"glog("+t+")";return r[t]},gexp:function(r){for(;r<0;)r+=255;for(;r>=256;)r-=255;return t[r]}};return n}();function k(t,r){if(void 0===t.length)throw t.length+"/"+r;var e=function(){for(var e=0;e<t.length&&0==t[e];)e+=1;for(var n=new Array(t.length-e+r),o=0;o<t.length-e;o+=1)n[o]=t[o+e];return n}(),n={getAt:function(t){return e[t]},getLength:function(){return e.length},multiply:function(t){for(var r=new Array(n.getLength()+t.getLength()-1),e=0;e<n.getLength();e+=1)for(var o=0;o<t.getLength();o+=1)r[e+o]^=C.gexp(C.glog(n.getAt(e))+C.glog(t.getAt(o)));return k(r,0)},mod:function(t){if(n.getLength()-t.getLength()<0)return n;for(var r=C.glog(n.getAt(0))-C.glog(t.getAt(0)),e=new Array(n.getLength()),o=0;o<n.getLength();o+=1)e[o]=n.getAt(o);for(o=0;o<t.getLength();o+=1)e[o]^=C.gexp(C.glog(t.getAt(o))+r);return k(e,0).mod(t)}};return n}var A=function(){var t=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12,7,37,13],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],r=function(t,r){var e={};return e.totalCount=t,e.dataCount=r,e},e={};return e.getRSBlocks=function(e,n){var o=function(r,e){switch(e){case g.L:return t[4*(r-1)+0];case g.M:return t[4*(r-1)+1];case g.Q:return t[4*(r-1)+2];case g.H:return t[4*(r-1)+3];default:return}}(e,n);if(void 0===o)throw"bad rs block @ typeNumber:"+e+"/errorCorrectionLevel:"+n;for(var i=o.length/3,a=[],u=0;u<i;u+=1)for(var f=o[3*u+0],c=o[3*u+1],l=o[3*u+2],h=0;h<f;h+=1)a.push(r(c,l));return a},e}(),b=function(){var t=[],r=0,e={getBuffer:function(){return t},getAt:function(r){var e=Math.floor(r/8);return 1==(t[e]>>>7-r%8&1)},put:function(t,r){for(var n=0;n<r;n+=1)e.putBit(1==(t>>>r-n-1&1))},getLengthInBits:function(){return r},putBit:function(e){var n=Math.floor(r/8);t.length<=n&&t.push(0),e&&(t[n]|=128>>>r%8),r+=1}};return e},M=function(t){var r=a,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+2<r.length;)t.put(o(r.substring(n,n+3)),10),n+=3;n<r.length&&(r.length-n==1?t.put(o(r.substring(n,n+1)),4):r.length-n==2&&t.put(o(r.substring(n,n+2)),7))}},o=function(t){for(var r=0,e=0;e<t.length;e+=1)r=10*r+i(t.charAt(e));return r},i=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);throw"illegal char :"+t};return n},x=function(t){var r=u,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+1<r.length;)t.put(45*o(r.charAt(n))+o(r.charAt(n+1)),11),n+=2;n<r.length&&t.put(o(r.charAt(n)),6)}},o=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);if("A"<=t&&t<="Z")return t.charCodeAt(0)-"A".charCodeAt(0)+10;switch(t){case" ":return 36;case"$":return 37;case"%":return 38;case"*":return 39;case"+":return 40;case"-":return 41;case".":return 42;case"/":return 43;case":":return 44;default:throw"illegal char :"+t}};return n},m=function(r){var e=f,n=t.stringToBytes(r),o={getMode:function(){return e},getLength:function(t){return n.length},write:function(t){for(var r=0;r<n.length;r+=1)t.put(n[r],8)}};return o},L=function(r){var e=c,n=t.stringToBytesFuncs.SJIS;if(!n)throw"sjis not supported.";!function(){var t=n("友");if(2!=t.length||38726!=(t[0]<<8|t[1]))throw"sjis not supported."}();var o=n(r),i={getMode:function(){return e},getLength:function(t){return~~(o.length/2)},write:function(t){for(var r=o,e=0;e+1<r.length;){var n=(255&r[e])<<8|255&r[e+1];if(33088<=n&&n<=40956)n-=33088;else{if(!(57408<=n&&n<=60351))throw"illegal char at "+(e+1)+"/"+n;n-=49472}n=192*(n>>>8&255)+(255&n),t.put(n,13),e+=2}if(e<r.length)throw"illegal char at "+(e+1)}};return i},D=function(){var t=[],r={writeByte:function(r){t.push(255&r)},writeShort:function(t){r.writeByte(t),r.writeByte(t>>>8)},writeBytes:function(t,e,n){e=e||0,n=n||t.length;for(var o=0;o<n;o+=1)r.writeByte(t[o+e])},writeString:function(t){for(var e=0;e<t.length;e+=1)r.writeByte(t.charCodeAt(e))},toByteArray:function(){return t},toString:function(){var r="";r+="[";for(var e=0;e<t.length;e+=1)e>0&&(r+=","),r+=t[e];return r+="]"}};return r},S=function(t){var r=t,e=0,n=0,o=0,i={read:function(){for(;o<8;){if(e>=r.length){if(0==o)return-1;throw"unexpected end of file./"+o}var t=r.charAt(e);if(e+=1,"="==t)return o=0,-1;t.match(/^\s$/)||(n=n<<6|a(t.charCodeAt(0)),o+=6)}var i=n>>>o-8&255;return o-=8,i}},a=function(t){if(65<=t&&t<=90)return t-65;if(97<=t&&t<=122)return t-97+26;if(48<=t&&t<=57)return t-48+52;if(43==t)return 62;if(47==t)return 63;throw"c:"+t};return i},I=function(t,r,e){for(var n=function(t,r){var e=t,n=r,o=new Array(t*r),i={setPixel:function(t,r,n){o[r*e+t]=n},write:function(t){t.writeString("GIF87a"),t.writeShort(e),t.writeShort(n),t.writeByte(128),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(255),t.writeByte(255),t.writeByte(255),t.writeString(","),t.writeShort(0),t.writeShort(0),t.writeShort(e),t.writeShort(n),t.writeByte(0);var r=a(2);t.writeByte(2);for(var o=0;r.length-o>255;)t.writeByte(255),t.writeBytes(r,o,255),o+=255;t.writeByte(r.length-o),t.writeBytes(r,o,r.length-o),t.writeByte(0),t.writeString(";")}},a=function(t){for(var r=1<<t,e=1+(1<<t),n=t+1,i=u(),a=0;a<r;a+=1)i.add(String.fromCharCode(a));i.add(String.fromCharCode(r)),i.add(String.fromCharCode(e));var f,c,g,l=D(),h=(f=l,c=0,g=0,{write:function(t,r){if(t>>>r!=0)throw"length over";for(;c+r>=8;)f.writeByte(255&(t<<c|g)),r-=8-c,t>>>=8-c,g=0,c=0;g|=t<<c,c+=r},flush:function(){c>0&&f.writeByte(g)}});h.write(r,n);var s=0,v=String.fromCharCode(o[s]);for(s+=1;s<o.length;){var d=String.fromCharCode(o[s]);s+=1,i.contains(v+d)?v+=d:(h.write(i.indexOf(v),n),i.size()<4095&&(i.size()==1<<n&&(n+=1),i.add(v+d)),v=d)}return h.write(i.indexOf(v),n),h.write(e,n),h.flush(),l.toByteArray()},u=function(){var t={},r=0,e={add:function(n){if(e.contains(n))throw"dup key:"+n;t[n]=r,r+=1},size:function(){return r},indexOf:function(r){return t[r]},contains:function(r){return void 0!==t[r]}};return e};return i}(t,r),o=0;o<r;o+=1)for(var i=0;i<t;i+=1)n.setPixel(i,o,e(i,o));var a=D();n.write(a);for(var u=function(){var t=0,r=0,e=0,n="",o={},i=function(t){n+=String.fromCharCode(a(63&t))},a=function(t){if(t<0);else{if(t<26)return 65+t;if(t<52)return t-26+97;if(t<62)return t-52+48;if(62==t)return 43;if(63==t)return 47}throw"n:"+t};return o.writeByte=function(n){for(t=t<<8|255&n,r+=8,e+=1;r>=6;)i(t>>>r-6),r-=6},o.flush=function(){if(r>0&&(i(t<<6-r),t=0,r=0),e%3!=0)for(var o=3-e%3,a=0;a<o;a+=1)n+="="},o.toString=function(){return n},o}(),f=a.toByteArray(),c=0;c<f.length;c+=1)u.writeByte(f[c]);return u.flush(),"data:image/gif;base64,"+u};return t}();qrcode.stringToBytesFuncs["UTF-8"]=function(t){return function(t){for(var r=[],e=0;e<t.length;e++){var n=t.charCodeAt(e);n<128?r.push(n):n<2048?r.push(192|n>>6,128|63&n):n<55296||n>=57344?r.push(224|n>>12,128|n>>6&63,128|63&n):(e++,n=65536+((1023&n)<<10|1023&t.charCodeAt(e)),r.push(240|n>>18,128|n>>12&63,128|n>>6&63,128|63&n))}return r}(t)},function(t){"function"==typeof define&&define.amd?define([],t):"object"==typeof exports&&(module.exports=t())}(function(){return qrcode});
+</script>
 <script>
 const BRAND_DEFAULT='Your Restaurant';
 let NAME=BRAND_DEFAULT; /* set from SET.name below */
@@ -1448,12 +1468,56 @@ const DEF_MENU=[
 const DEF_CATS=['Fried Rice','Noodles','Starters','Biryani'];
 const DEF_COUPONS=[{c:'WELCOME10',t:'pct',v:10,on:1},{c:'BIRYANI50',t:'flat',v:50,on:1}];
 const okList=(x,d)=>Array.isArray(x)&&x.length?x:clone(d);
-let MENU=okList(LS.get('menu'),DEF_MENU), CATS=okList(LS.get('cats'),DEF_CATS), COUPONS=Array.isArray(LS.get('coupons'))?LS.get('coupons'):clone(DEF_COUPONS);
-let orders=LS.get('orders',[]), ACCTS=LS.get('accts',[]), me=LS.get('me',null);
+/* ---- Supabase: shared menu, orders, bookings and accounts ----
+   The key below is the public "anon" key, so it is safe in the browser. What it can do is limited by the
+   Row Level Security rules and functions in saffron-supabase-v1.sql. Never put the service_role key here. */
+const SB={url:'https://rthjenyuywrdqgxhhjey.supabase.co',key:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0aGplbnl1eXdyZHFneGhoamV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ3MzMxNTUsImV4cCI6MjExMDMwOTE1NX0.8f7aYVqHtpkL5RnWgY08QVOIyEE138iY81im3ZBve4Q'};
+async function api(path,body){
+  const ctl=new AbortController(), t=setTimeout(()=>ctl.abort(),15000), h={apikey:SB.key,Authorization:'Bearer '+SB.key,Accept:'application/json'};
+  if(body!==undefined)h['Content-Type']='application/json';
+  try{
+    const r=await fetch(SB.url+'/rest/v1/'+path,{method:body!==undefined?'POST':'GET',headers:h,body:body!==undefined?JSON.stringify(body):undefined,signal:ctl.signal});
+    const txt=await r.text(); let j=null; try{j=txt?JSON.parse(txt):null}catch{}
+    if(!r.ok){const e=new Error((j&&j.message)||('HTTP '+r.status));e.status=r.status;e.code=j&&j.code;throw e}
+    return j;
+  }catch(e){ if(!e.status){e.net=1} throw e }
+  finally{clearTimeout(t)}
+}
+const rpc=(fn,args)=>api('rpc/'+fn,args||{});
+/* server messages -> friendly text */
+function say(e){
+  if(e&&e.net)return 'Can’t reach the server. Check your connection and try again.';
+  const p=String((e&&e.message)||'').split(':'), k=p.shift();
+  switch(k){
+    case 'closed': return p.join(':')||'Orders are closed right now';
+    case 'unavailable': return (p.join(':')||'That item')+' isn’t available right now';
+    case 'sold_out': return 'Only '+p[p.length-1]+' left of '+p.slice(0,-1).join(':');
+    case 'bad_coupon': return 'That coupon is no longer valid.';
+    case 'bad_customer': return 'Check your name and mobile number.';
+    case 'bad_table': return 'Pick a table first.';
+    case 'taken': return 'Someone just booked that table for this time. Pick another.';
+    case 'too_soon': return 'That time is too soon. Pick a later slot.';
+    case 'too_many': return 'This number already has 3 upcoming bookings.';
+    case 'bad_slot': return 'That date or time can’t be booked.';
+    case 'bad_phone': return 'Enter a valid 10-digit phone number.';
+    case 'unauthorized': return 'Staff session ended. Unlock again.';
+    default: return 'Something went wrong. Please try again.';
+  }
+}
+const sigOf=x=>JSON.stringify(x);
+const fromRow=r=>({id:r.id,c:r.category,v:r.veg,k:r.kind||undefined,n:r.name,d:r.descr,p:r.price,a:r.available,stock:r.stock,img:r.img||undefined});
+/* the menu, categories, coupons and settings are cached here so the page opens instantly and still shows something offline */
+const cachedMenu=LS.get('menu');
+let MENU=Array.isArray(cachedMenu)?cachedMenu:[], CATS=Array.isArray(LS.get('cats'))?LS.get('cats'):[], COUPONS=Array.isArray(LS.get('coupons'))?LS.get('coupons'):[];
+let LOAD=Array.isArray(cachedMenu)?'ok':'wait';   /* wait = first load in progress, ok, err = could not reach the server */
+let orders=[], myOrd=[], bookings=[], ACCT=LS.get('acct',null), ADM=null, lastSig='';
 let SET=Object.assign({gst:5,incl:0,pack:10,paused:0,hours:0,open:'11:00',close:'23:00',snd:1},SITE_DEFAULTS,LS.get('settings',{}));
 NAME=(String(SET.name||'').trim()||BRAND_DEFAULT);
+SET.snd=LS.get('snd',1); /* the order chime is a per-device choice */
 const notes={};
-const saveData=()=>[LS.set('menu',MENU),LS.set('cats',CATS),LS.set('coupons',COUPONS)].every(Boolean);
+/* local cache only; the server is the source of truth */
+const cacheAll=()=>{if(!LS.set('menu',MENU))LS.set('menu',MENU.map(m=>Object.assign({},m,{img:undefined})));LS.set('cats',CATS);if(!ADM)LS.set('coupons',COUPONS);LS.set('settings',SET)};
+const saveData=()=>{cacheAll();return true};
 const get=id=>MENU.find(m=>m.id==id);
 const filters=()=>['All','Veg','Non-Veg',...CATS.filter(c=>MENU.some(m=>m.c===c))];
 const cart={}; let cat='All';
@@ -1497,8 +1561,7 @@ const waLink=x=>{const n=x.cust.name.split(' ')[0],c=x.token.slice(0,3)+' '+x.to
     :x.status==='Served'?`Hi ${n}, thank you for ordering from ${NAME}! We hope you enjoy it.`
     :`Hi ${n}, we’ve received your order at ${NAME} and we’re preparing it. Pickup code: ${c}. Total ${inr(x.total)}.`;
   return 'https://wa.me/91'+x.cust.phone+'?text='+encodeURIComponent(t)};
-const genToken=()=>{const used=new Set(orders.map(o=>o.token));let t;do{t=String(100000+crypto.getRandomValues(new Uint32Array(1))[0]%900000)}while(used.has(t));return t};
-function logOrder(cust){const token=mode==='dine'?null:genToken();orders.unshift({id:Date.now(),token,cust,uid:me,at:new Date().toISOString(),dn:mode==='dine',table,status:'New',total:total(),bill:calc(),lines:Object.keys(cart).map(i=>({id:+i,note:(notes[i]||'').trim()||undefined,n:get(i).n,q:cart[i],p:get(i).p}))});orders.length=Math.min(orders.length,200);LS.set('orders',orders);Object.keys(cart).forEach(i=>{const m=get(i);if(m&&m.stock!=null){m.stock=Math.max(0,m.stock-cart[i]);if(!m.stock)m.a=0}});saveData();return token}
+
 let mode='takeaway',table=null;
 const lbl=r=>r==='takeaway'&&mode==='dine'?'Order':LABEL[r];
 
@@ -1517,7 +1580,7 @@ function route(){
   document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id===id)); document.body.dataset.v=id;
   document.title=NAME+' – '+(id==='home'?'Biryani, rice and noodles in Hanamkonda':LABEL[id]);
   const t=$('#'+id+' .top'); if(t)t.innerHTML=header(id);
-  if(id==='menu')renderMenu(); if(id==='takeaway')renderTake(); if(id==='seat')renderSeat(); if(id==='book')renderBook(); if(id==='thanks')renderThanks(); if(id==='admin')renderAdmin(); if(id!=='admin')unlocked=false; if(id==='account')renderAccount(); if(id==='home'){acctBtn();homeEnter()}
+  if(id==='menu')renderMenu(); if(id==='takeaway')renderTake(); if(id==='seat')renderSeat(); if(id==='book')renderBook(); if(id==='thanks')renderThanks(); if(id==='admin')renderAdmin(); if(id!=='admin')lockAdmin(); if(id==='account')renderAccount(); if(id==='home'){acctBtn();homeEnter()}
   if(id==='menu')stagger('#items'); if(id==='takeaway')stagger('#cartList'); shopBar();
   window.scrollTo(0,0);
 }
@@ -1546,10 +1609,10 @@ function renderMenu(){
     return `<article class="icard${m.a?'':' na'}"><div class="img">${pic(m)}</div><div class="info"><h3>${n}</h3><p>${esc(m.d)}</p><span class="price">${inr(m.p)}</span>${m.stock>0&&m.stock<=5?`<small class="low">Only ${m.stock} left</small>`:''}</div><div class="act">`+
     (!m.a?`<button class="atc" type="button" disabled>Not available</button>`
     :q?`<span class="step"><button data-m="${m.id}" data-d="-1" aria-label="Remove one ${n}">−</button><span aria-live="polite">${q}</span><button data-m="${m.id}" data-d="1" aria-label="Add one ${n}">+</button></span>`
-      :`<button class="atc" data-m="${m.id}" data-d="1">Add to Cart</button>`)+`</div></article>`}).join(''):'<p class="tnote">No items here yet.</p>';
+      :`<button class="atc" data-m="${m.id}" data-d="1">Add to Cart</button>`)+`</div></article>`}).join(''):`<p class="tnote">${LOAD==='ok'?'No items here yet.':LOAD==='err'?'Couldn’t load the menu. Check your connection and refresh the page.':'Loading the menu…'}</p>`;
   const n=count(); $('#mbadge').textContent=n; $('#mbadge').hidden=!n; $('#cbn').textContent=n; $('#cartbar').classList.toggle('show',n>0);
   $('#mback').href=mode==='dine'?'#seat':'#';
-  const tn=$('#tnote'); tn.hidden=mode!=='dine'; tn.textContent=`Ordering for Table T${table}`;
+  const tn=$('#tnote'); tn.hidden=mode!=='dine'; tn.innerHTML=`Ordering for Table T${+table} · <a href="#seat">Change table</a>`;
 }
 $('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-c]');if(b){cat=b.dataset.c;renderMenu()}});
 function bump(e){const b=e.target.closest('[data-m]');if(!b)return;document.querySelectorAll('.enter').forEach(x=>x.classList.remove('enter'));const i=b.dataset.m, m=get(i); if(!m||(+b.dataset.d>0&&!m.a))return;
@@ -1595,8 +1658,9 @@ $('#couponForm').addEventListener('submit',e=>{
   if(findCode(c)){coupon=c;$('#couponIn').value='';renderTake()}else $('#cmsg').textContent='That code isn’t valid.';
 });
 
-/* place order: one tap from the cart */
-$('#placeBtn').addEventListener('click',()=>{
+/* place order: one tap from the cart. The server recomputes prices, stock, coupon and tax. */
+$('#placeBtn').addEventListener('click',async()=>{
+  const btn=$('#placeBtn'); if(btn.disabled)return;
   pruneCart(); if(!count()){renderTake();return}
   {const sh=shopState();if(!sh.open){toast(sh.msg);return}}
   let cust=null;
@@ -1606,10 +1670,20 @@ $('#placeBtn').addEventListener('click',()=>{
     if(!ph){er('Enter a valid 10-digit mobile number.');$('#cPhone').focus();return}
     er(''); cust={name:nm,phone:ph}; LS.set('cust',cust);
   }
-  const dn=mode==='dine';
-  lastOrder={dn,table,time:dn?'':'in 20 minutes',lines:Object.keys(cart).map(i=>[+i,cart[i]])};
-  lastOrder.token=logOrder(cust); lastOrder.cust=cust; Object.keys(cart).forEach(k=>delete cart[k]); Object.keys(notes).forEach(k=>delete notes[k]); coupon=null;
-  location.hash='thanks';
+  const dn=mode==='dine', lab=btn.textContent; btn.disabled=true; btn.textContent='Placing order…';
+  try{
+    const r=await rpc('place_order',{p_dine:dn,p_table:dn?table:null,p_cust:cust,p_token:ACCT?ACCT.token:null,
+      p_lines:Object.keys(cart).map(i=>({id:+i,q:cart[i],note:(notes[i]||'').trim()})),p_coupon:coupon});
+    lastOrder={dn,table,time:dn?'':'in 20 minutes',lines:r.lines.map(l=>[l.id,l.q]),token:r.token,cust};
+    Object.keys(cart).forEach(k=>delete cart[k]); Object.keys(notes).forEach(k=>delete notes[k]); coupon=null;
+    loadRemote(); if(ACCT)loadMine().then(acctRefresh);
+    location.hash='thanks';
+  }catch(x){
+    const m=String((x&&x.message)||'');
+    toast(say(x));
+    if(m.startsWith('bad_coupon')){coupon=null;renderTake()}
+    if(/^(sold_out|unavailable|bad_coupon|closed)/.test(m))loadRemote();
+  }finally{btn.disabled=false;btn.textContent=lab}
 });
 
 /* order confirmation */
@@ -1629,9 +1703,16 @@ function renderThanks(){
 const SLOTS={Lunch:['12:00','12:30','13:00','13:30','14:00','14:30'],Dinner:['19:00','19:30','20:00','20:30','21:00','21:30']};
 const BOOK_DAYS=21, LEAD_MIN=30, STAY_MIN=90;
 let bk={date:null,time:null,table:null}, lastBooking=null;
-/* Tables already booked around a slot. Saved in this browser for now: swap for a backend lookup so every guest sees the same availability. */
-const bookings=LS.get('bookings',[]);
-const takenTables=(date,time)=>!date||!time?[]:bookings.filter(b=>Math.abs(slotAt(date,time)-slotAt(b.date,b.time))<STAY_MIN*6e4).map(b=>b.table);
+/* Tables already booked around a slot come from the server, so every guest sees the same availability. */
+const takenTables=()=>bk.taken||[];
+let tkSeq=0;
+async function loadTaken(){
+  const s=++tkSeq;
+  if(!bk.date||!bk.time){bk.taken=[];renderBookTables();return}
+  try{const r=await rpc('booked_tables',{p_date:bk.date,p_time:bk.time}); if(s!==tkSeq)return; bk.taken=Array.isArray(r)?r:[]}
+  catch{if(s!==tkSeq)return; bk.taken=[]}
+  renderBookTables();
+}
 const pad2=n=>String(n).padStart(2,'0');
 const ymd=d=>`${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
 const fmtTime=t=>{const[h,m]=t.split(':').map(Number);return `${h%12||12}:${pad2(m)} ${h<12?'am':'pm'}`};
@@ -1643,7 +1724,7 @@ const dayLabel=(day,o)=>new Date(day+'T00:00').toLocaleDateString('en-IN',o);
 function renderBook(){
   const base=new Date(); base.setHours(0,0,0,0);
   const days=Array.from({length:BOOK_DAYS},(_,i)=>{const d=new Date(base);d.setDate(d.getDate()+i);return ymd(d)});
-  bk={date:days.find(dayOpen)||days[1],time:null,table:null};
+  bk={date:days.find(dayOpen)||days[1],time:null,table:null,taken:[]};
   $('#bookForm').reset(); $('#bErr').textContent='';
   $('#bForm').hidden=false; $('#bDone').hidden=true;
   $('#bDates').innerHTML=days.map((day,i)=>`<button class="dchip" type="button" data-d="${day}" aria-pressed="${day===bk.date}" ${dayOpen(day)?'':'disabled'} aria-label="${dayLabel(day,{weekday:'long',day:'numeric',month:'long'})}"><small>${i?dayLabel(day,{weekday:'short'}):'Today'}</small><b>${+day.slice(8)}</b><small>${dayLabel(day,{month:'short'})}</small></button>`).join('');
@@ -1672,13 +1753,13 @@ $('#bDates').addEventListener('click',e=>{
   const b=e.target.closest('[data-d]'); if(!b||b.disabled)return;
   bk.date=b.dataset.d; if(bk.time&&!slotOpen(bk.date,bk.time))bk.time=null;
   $('#bDates').querySelectorAll('[data-d]').forEach(x=>x.setAttribute('aria-pressed',x===b));
-  renderTimes(); renderBookTables(); renderSum();
+  bk.taken=[]; renderTimes(); renderBookTables(); renderSum(); loadTaken();
 });
 $('#bTimes').addEventListener('click',e=>{
   const b=e.target.closest('[data-t]'); if(!b||b.disabled)return;
   bk.time=b.dataset.t; $('#bErr').textContent='';
   $('#bTimes').querySelectorAll('[data-t]').forEach(x=>x.setAttribute('aria-pressed',x===b));
-  renderBookTables(); renderSum();
+  bk.taken=[]; renderBookTables(); renderSum(); loadTaken();
 });
 function pickTable(e){
   const el=e.target.closest('[data-t]'); if(!el||el.disabled||el.getAttribute('aria-disabled')==='true')return;
@@ -1687,9 +1768,8 @@ function pickTable(e){
 $('#bPlan').addEventListener('click',pickTable); $('#bPills').addEventListener('click',pickTable);
 $('#bPlan').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pickTable(e)}});
 
-/* Integration point: swap this stub for a real request (Supabase insert, WhatsApp message, email).
-   Resolve to confirm the booking; throw to show the "try again" message. */
-async function sendBooking(b){ return b; }
+/* Saves the booking on the server. The server re-checks the slot and the table, and throws if it was just taken. */
+async function sendBooking(b){ return rpc('create_booking',{p_name:b.name,p_phone:b.phone,p_note:b.note,p_date:b.date,p_time:b.time,p_table:b.table}); }
 
 $('#bookForm').addEventListener('submit',async e=>{
   e.preventDefault(); const f=e.currentTarget, err=m=>{$('#bErr').textContent=m};
@@ -1700,8 +1780,8 @@ $('#bookForm').addEventListener('submit',async e=>{
   if(!/^\+?\d{10,13}$/.test(phone.replace(/[\s-]/g,''))){err('Enter a valid 10-digit phone number.');f.elements.phone.focus();return}
   err(''); const btn=$('#bBtn'); btn.disabled=true; btn.textContent='Booking…';
   const booking={name,phone,note,date:bk.date,time:bk.time,table:bk.table};
-  try{ await sendBooking(booking); bookings.push(booking); LS.set('bookings',bookings); lastBooking=booking; showBooked(booking) }
-  catch{ err('We couldn’t book that just now. Please try again.') }
+  try{ const r=await sendBooking(booking); lastBooking=r; showBooked(r) }
+  catch(x){ err(say(x)); if(String((x&&x.message)||'').startsWith('taken'))loadTaken() }
   finally{ btn.disabled=false; btn.textContent='Confirm Booking' }
 });
 function showBooked(b){
@@ -1762,18 +1842,30 @@ function renderSeat(){
 }
 $('#seat').addEventListener('click',e=>{const el=e.target.closest('[data-t]');if(el){table=+el.dataset.t;sync()}});
 $('#plan').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const g=e.target.closest('.tb');if(g){e.preventDefault();table=+g.dataset.t;sync()}}});
-$('#startBtn').addEventListener('click',()=>{if(table){mode='dine';location.hash='menu'}});
-document.querySelectorAll('#home .op-choices a').forEach(a=>a.addEventListener('click',()=>{mode='takeaway'}));
+$('#startBtn').addEventListener('click',()=>{if(table){mode='dine';qrStrip();location.hash='menu'}});
+/* ---- Table QR landing: a code on the table opens  …?table=10 . We pick that table and go straight to the menu. ---- */
+function qrStrip(){ if(/[?&](table|t)=/.test(location.search)){try{history.replaceState(null,'',location.pathname+location.hash)}catch{}} }
+function qrInit(){
+  let raw=null; try{const p=new URLSearchParams(location.search); raw=p.get('table'); if(raw==null)raw=p.get('t')}catch{}
+  if(raw==null)return;
+  const n=parseInt(String(raw).replace(/^t/i,''),10), h=location.hash.slice(1);
+  if(!TB.some(t=>t[0]===n)){qrStrip(); try{history.replaceState(null,'',location.pathname+'#seat')}catch{} vShown=location.hash; setTimeout(()=>toast('That table code isn’t valid. Please pick your table.'),1700); return}
+  mode='dine'; table=n;
+  if(!h||h==='home'){try{history.replaceState(null,'',location.pathname+location.search+'#menu')}catch{} vShown=location.hash}
+  setTimeout(()=>toast(`Welcome! You’re at Table T${n}.`),1800);
+}
+
+document.querySelectorAll('#home .op-choices a').forEach(a=>a.addEventListener('click',()=>{mode='takeaway';qrStrip()}));
 /* ============ ADMIN PANEL ============ */
 let unlocked=false, tab='items', q='', oq='', editing=null, draftImg=null;
-const PIN=()=>String(LS.get('pin','1234')), ST=['New','Preparing','Ready','Served'];
+const ST=['New','Preparing','Ready','Served'];
 const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),2400)};
-const persist=()=>{if(!saveData())toast('Storage is full. Use smaller photos or remove some items.')};
+const persist=()=>cacheAll();
 const when=iso=>new Date(iso).toLocaleString('en-IN',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'});
 function renderAdmin(){$('#aLogin').hidden=unlocked;$('#aDash').hidden=!unlocked;if(unlocked)adminBody();else setTimeout(()=>$('#pin').focus(),0)}
 function adminBody(){
   document.querySelectorAll('#aTabs [data-tab]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.tab===tab));
-  $('#aBody').innerHTML=({items:tItems,coupons:tCoupons,orders:tOrders,shop:tShop,settings:tSettings})[tab]();
+  $('#aBody').innerHTML=({items:tItems,coupons:tCoupons,orders:tOrders,shop:tShop,qr:tQR,settings:tSettings})[tab]();
   {const n=orders.filter(x=>x.status==='New').length,nb=$('#nbadge');nb.textContent=n;nb.hidden=!n}
 }
 const refresh=()=>tab==='items'&&$('#aList')?$('#aList').innerHTML=itemRows():adminBody();
@@ -1795,12 +1887,83 @@ function tOrders(){
   const b=bookings.map((x,i)=>({x,i})).sort((a,c)=>(a.x.date+a.x.time).localeCompare(c.x.date+c.x.time)).map(({x,i})=>`<article class="arow"><div class="ainfo"><b>${dayLabel(x.date,{weekday:'short',day:'numeric',month:'short'})}, ${fmtTime(x.time)}, Table T${x.table}</b><small>${esc(x.name)}, ${esc(x.phone)}${x.note?'. “'+esc(x.note)+'”':''}</small></div><button class="mini del" data-act="bdel" data-i="${i}">Cancel booking</button></article>`).join('')||'<p class="aempty">No table bookings yet.</p>';
   return `<div class="atop"><h2 class="ah">Orders</h2><span class="abtns"><button class="mini" data-act="snd">Sound ${SET.snd?'on':'off'}</button>${orders.some(x=>x.status==='Served')?'<button class="mini" data-act="clr">Clear served</button>':''}</span></div><input id="tq" type="search" inputmode="numeric" placeholder="Find an order by pickup code or phone" value="${esc(oq)}" aria-label="Find an order by pickup code or phone" style="margin-bottom:12px"><div id="oList">${o}</div><h2 class="ah">Table bookings</h2>${b}`;
 }
+/* ---- Table QR codes ----
+   Each table gets a code that opens this site as  <your address>?table=10 . The page reads it (see qrInit) and drops the guest
+   on the menu with that table already chosen. The address is saved on this device only; leave it empty to use this page's own address. */
+function qrBase(){
+  const v=String(LS.get('qrbase','')||'').trim(); if(v)return v;
+  return /^https?:$/.test(location.protocol)?location.origin+location.pathname:'';
+}
+function qrUrl(n){const b=qrBase().replace(/#.*$/,'').replace(/[?&]+$/,''); return b?`${b}${b.includes('?')?'&':'?'}table=${n}`:''}
+function qrSvg(text,px){
+  const q=qrcode(0,'M'); q.addData(text,'Byte'); q.make();
+  const n=q.getModuleCount(), m=4, s=n+m*2; let d='';
+  for(let r=0;r<n;r++){for(let c=0;c<n;){if(q.isDark(r,c)){const a=c;while(c<n&&q.isDark(r,c))c++;d+=`M${a+m} ${r+m}h${c-a}v1h${a-c}z`}else c++}}
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${s} ${s}"${px?` width="${px}" height="${px}"`:''} shape-rendering="crispEdges" role="img" aria-label="QR code"><rect width="${s}" height="${s}" fill="#fff"/><path d="${d}" fill="#2A1206"/></svg>`;
+}
+function tQR(){
+  const base=qrBase(), ok=!!base&&typeof qrcode==='function';
+  const head=`<div class="acard qrbase"><h2 class="ah">Table QR codes</h2><p class="sub2">Print one code per table and keep it there. When a guest scans it, the menu opens with their table already selected, so they can order straight from their seat.</p><label>Website address the codes open<input id="qrBase" type="url" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://yourrestaurant.com/" value="${esc(base)}"></label><p class="sub2">Use your live website link, then print. If you change it later, print the codes again.</p>${ok?'<div class="abtns"><button class="mini" data-act="qrall" type="button">Print all tables</button></div>':''}</div>`;
+  if(!ok)return head+`<p class="aempty">${typeof qrcode==='function'?'Enter your website address above to create the codes.':'The QR maker didn’t load. Refresh the page and try again.'}</p>`;
+  return head+'<div class="qrgrid">'+TB.map(([n])=>`<article class="qrcard"><div class="qrimg">${qrSvg(qrUrl(n))}</div><b>Table T${n}</b><div class="abtns"><button class="mini" data-act="qrdl" data-t="${n}" type="button">Download</button><button class="mini" data-act="qrone" data-t="${n}" type="button">Print</button><a class="mini" href="${esc(qrUrl(n))}" target="_blank" rel="noopener" aria-label="Test the code for table ${n} (opens in a new tab)">Test</a></div></article>`).join('')+'</div>';
+}
+/* one PNG per table: the code with "Table T10" under it, ready to print or send to a printer */
+async function qrDownload(n){
+  const url=qrUrl(n); if(!url)return;
+  const W=1000,H=1190,img=new Image(),bu=URL.createObjectURL(new Blob([qrSvg(url,W)],{type:'image/svg+xml'}));
+  await new Promise((ok,no)=>{img.onload=ok;img.onerror=no;img.src=bu});
+  const c=document.createElement('canvas'); c.width=W; c.height=H; const x=c.getContext('2d');
+  x.fillStyle='#fff'; x.fillRect(0,0,W,H); x.imageSmoothingEnabled=false; x.drawImage(img,0,0,W,W); URL.revokeObjectURL(bu);
+  x.textAlign='center'; x.fillStyle='#5A2A10'; x.font='700 96px Georgia,serif'; x.fillText('Table T'+n,W/2,W+92);
+  x.fillStyle='#8A5A3A'; x.font='500 40px Arial,sans-serif'; x.fillText('Scan to see the menu and order',W/2,W+155);
+  const blob=await new Promise(r=>c.toBlob(r,'image/png')), a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download=`table-T${n}-qr.png`; document.body.append(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),1500);
+}
+/* printable table cards: two per row on A4 */
+function printQR(nums){
+  if(!nums.length||!nums.every(n=>qrUrl(n))){toast('Add your website address first');return}
+  const fr=document.createElement('iframe');fr.style.cssText='position:fixed;right:0;bottom:0;width:0;height:0;border:0';fr.setAttribute('aria-hidden','true');document.body.append(fr);
+  const d=fr.contentDocument;
+  d.open();d.write(`<!doctype html><title>Table QR codes</title><style>@page{size:A4;margin:10mm}*{box-sizing:border-box}body{margin:0;font-family:Georgia,'Times New Roman',serif;color:#5A2A10;-webkit-print-color-adjust:exact;print-color-adjust:exact}.sheet{display:grid;grid-template-columns:1fr 1fr;gap:8mm}.c{break-inside:avoid;border:1.2mm solid #EE7D1A;border-radius:7mm;padding:7mm 6mm 7mm;text-align:center;background:#FFF8EE}.nm{font-size:5mm;letter-spacing:.5mm;text-transform:uppercase;color:#8A5A3A}.t{font-size:15mm;font-weight:700;line-height:1.1;margin:2mm 0 4mm}.q{width:56mm;height:56mm;margin:0 auto;background:#fff;border-radius:4mm;overflow:hidden}.q svg{display:block;width:100%;height:100%}.h{margin:4mm 0 0;font-size:5mm;line-height:1.35}</style><div class="sheet">`+
+    nums.map(n=>`<section class="c"><div class="nm">${esc(NAME)}</div><div class="t">Table T${n}</div><div class="q">${qrSvg(qrUrl(n))}</div><p class="h">Scan to see the menu<br>and order from your table</p></section>`).join('')+'</div>');
+  d.close();
+  const w=fr.contentWindow;w.onafterprint=()=>fr.remove();setTimeout(()=>{try{w.focus();w.print()}catch{}},300);setTimeout(()=>fr.remove(),60000);
+}
 const tSettings=()=>`<form class="acard" id="pinForm" novalidate><h2 class="ah">Staff PIN</h2><label>New PIN (4 to 8 digits)<input name="pin" type="password" inputmode="numeric" autocomplete="new-password"></label><p class="err" id="pinErr" role="alert"></p><button class="go sm" type="submit">Save PIN</button></form><div class="acard"><h2 class="ah">Backup</h2><p class="sub2">Save your menu, categories and coupons to a file, or load a saved one back in.</p><div class="abtns"><button class="mini" data-act="export">Export backup</button><label class="mini">Import backup<input type="file" id="impFile" accept="application/json" hidden></label><button class="mini del" data-act="reset">Reset menu to defaults</button></div></div>`;
 
-/* login */
-$('#loginForm').addEventListener('submit',e=>{e.preventDefault();
-  if($('#pin').value===PIN()){unlocked=true;primeAudio();$('#pin').value='';$('#lErr').textContent='';renderAdmin()}else $('#lErr').textContent='That PIN isn’t right. Try again.'});
-$('#lockBtn').addEventListener('click',()=>{unlocked=false;renderAdmin()});
+/* login: the PIN is checked on the server, which hands back a session for this visit only */
+function lockAdmin(){
+  if(ADM){rpc('admin_logout',{p_tok:ADM}).catch(()=>{})}
+  ADM=null; unlocked=false; orders=[]; bookings=[]; COUPONS=COUPONS.filter(c=>c.on);
+}
+/* wraps every staff call with the session token; if the session has ended, back to the login screen */
+async function adm(fn,args){
+  try{return await rpc(fn,Object.assign({p_tok:ADM},args||{}))}
+  catch(e){ if(/^unauthorized/.test(String(e&&e.message))){ADM=null;unlocked=false;if(location.hash==='#admin')renderAdmin()} throw e }
+}
+async function refreshAdmin(initial){
+  const r=await adm('admin_state'), prev=new Set(orders.map(o=>o.id));
+  orders=r.orders||[]; bookings=r.bookings||[]; COUPONS=r.coupons||[];
+  if(!initial){const fresh=orders.filter(o=>!prev.has(o.id)&&o.status==='New'); if(fresh.length&&unlocked)alertNew(fresh[0])}
+}
+let admSig='';
+async function adminPoll(){
+  if(!ADM||document.hidden)return;
+  try{await refreshAdmin(false)}catch{return}
+  const nb=orders.filter(x=>x.status==='New').length, el=$('#nbadge'); if(el){el.textContent=nb;el.hidden=!nb}
+  const sg=sigOf([orders.map(o=>[o.id,o.status]),bookings.map(b=>b.id)]);
+  if(sg!==admSig){admSig=sg; if(unlocked&&tab==='orders'&&!(document.activeElement&&document.activeElement.id==='tq'))adminBody()}
+}
+$('#loginForm').addEventListener('submit',async e=>{e.preventDefault();
+  const btn=e.target.querySelector('button'); btn.disabled=true;
+  try{
+    const r=await rpc('admin_login',{p_pin:$('#pin').value});
+    if(r.ok){ADM=r.token;unlocked=true;primeAudio();$('#pin').value='';$('#lErr').textContent='';try{await refreshAdmin(true)}catch{} renderAdmin()}
+    else $('#lErr').textContent=r.error==='locked'?'Too many tries. Please wait 15 minutes.':r.error==='not_setup'?'Staff login isn’t set up yet. Run the SQL file in Supabase first.':'That PIN isn’t right. Try again.';
+  }catch(x){$('#lErr').textContent=say(x)}
+  finally{btn.disabled=false}
+});
+$('#lockBtn').addEventListener('click',()=>{lockAdmin();renderAdmin()});
 $('#aTabs').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(b){tab=b.dataset.tab;adminBody()}});
 
 /* item editor */
@@ -1820,70 +1983,105 @@ $('#dFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)
 $('#dNoPic').addEventListener('click',()=>{draftImg=null;paintPic()});
 $('#dCancel').addEventListener('click',()=>$('#dlg').close());
 $('#itemForm').addEventListener('change',e=>{if(e.target.name==='c'||e.target.name==='v')paintPic()});
-$('#itemForm').addEventListener('submit',e=>{
+$('#itemForm').addEventListener('submit',async e=>{
   e.preventDefault(); const f=e.target.elements, err=m=>{$('#dErr').textContent=m};
   const n=f.n.value.trim(), c=f.c.value.trim(), p=Math.round(+f.p.value);
   if(!n)return err('Enter an item name.'); if(!c)return err('Enter a category.'); if(f.p.value===''||!(p>=0))return err('Enter a price of ₹0 or more.');
-  const it=editing||{id:Math.max(0,...MENU.map(m=>+m.id))+1};
   const sk=f.s.value===''?null:Math.max(0,Math.round(+f.s.value));
-  Object.assign(it,{n,d:f.d.value.trim(),p,c,v:+f.v.value,a:(f.a.checked&&sk!==0)?1:0,img:draftImg||null,stock:sk});
-  if(!editing)MENU.push(it); if(!CATS.includes(c))CATS.push(c);
-  persist(); $('#dlg').close(); toast(editing?`${n} saved`:`${n} added`); refresh();
+  const body={n,d:f.d.value.trim(),p,c,v:+f.v.value,a:(f.a.checked&&sk!==0)?1:0,img:draftImg||null,stock:sk};
+  if(editing)body.id=editing.id;
+  const btn=e.submitter||e.target.querySelector('[type=submit]'); btn.disabled=true;
+  try{
+    const r=await adm('admin_save_item',{p_item:body});
+    if(editing)Object.assign(editing,r); else MENU.push(r);
+    if(!CATS.includes(r.c))CATS.push(r.c);
+    persist(); $('#dlg').close(); toast(editing?`${n} saved`:`${n} added`); refresh();
+  }catch(x){err(say(x))}
+  finally{btn.disabled=false}
 });
 
 /* clicks inside the dashboard */
-$('#aBody').addEventListener('click',e=>{
+$('#aBody').addEventListener('click',async e=>{
   const b=e.target.closest('[data-act]'); if(!b)return; const a=b.dataset.act, id=b.dataset.id, i=+b.dataset.i;
-  if(a==='add')openItem(); else if(a==='edit')openItem(id);
-  else if(a==='avail'){const m=get(id);m.a=m.a?0:1;persist();refresh();toast(`${m.n} is now ${m.a?'available':'not available'}`);const nb=$(`#aList [data-act=avail][data-id="${id}"]`);if(nb)nb.focus()}
-  else if(a==='del'){const m=get(id);if(confirm(`Delete “${m.n}”? This can’t be undone.`)){MENU.splice(MENU.indexOf(m),1);delete cart[id];persist();refresh();toast(`${m.n} deleted`)}}
-  else if(a==='cpon'){COUPONS[i].on=COUPONS[i].on?0:1;persist();adminBody()}
-  else if(a==='cpdel'){if(confirm(`Delete coupon ${COUPONS[i].c}?`)){COUPONS.splice(i,1);persist();adminBody()}}
-  else if(a==='ost'){orders[i].status=ST[(ST.indexOf(orders[i].status)+1)%ST.length];LS.set('orders',orders);adminBody();const od=orders[i];if(od.status==='Ready'&&od.cust)toast('Ready. Tap WhatsApp to tell '+od.cust.name.split(' ')[0])}
-  else if(a==='print')printTicket(orders[i]);
-  else if(a==='snd'){SET.snd=SET.snd?0:1;LS.set('settings',SET);if(SET.snd){primeAudio();chime()}adminBody()}
-  else if(a==='pause'){SET.paused=SET.paused?0:1;LS.set('settings',SET);adminBody();toast(SET.paused?'Online orders paused':'Taking orders again')}
-  else if(a==='clr'){orders=orders.filter(x=>x.status!=='Served');LS.set('orders',orders);adminBody()}
-  else if(a==='bdel'){if(confirm('Cancel this booking? The table becomes free again.')){bookings.splice(i,1);LS.set('bookings',bookings);adminBody();toast('Booking cancelled')}}
-  else if(a==='export'){const l=document.createElement('a');l.href=URL.createObjectURL(new Blob([JSON.stringify({menu:MENU,cats:CATS,coupons:COUPONS,settings:SET},null,1)],{type:'application/json'}));l.download='restaurant-backup.json';document.body.append(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(l.href),1000)}
-  else if(a==='reset'&&confirm('Reset the menu, categories and coupons to the original set? Your edits and photos will be lost.')){MENU=clone(DEF_MENU);CATS=clone(DEF_CATS);COUPONS=clone(DEF_COUPONS);Object.keys(cart).forEach(k=>delete cart[k]);persist();adminBody();toast('Menu reset to defaults')}
+  try{
+    if(a==='add')openItem(); else if(a==='edit')openItem(id);
+    else if(a==='qrone')printQR([+b.dataset.t]); else if(a==='qrall')printQR(TB.map(t=>t[0])); else if(a==='qrdl')await qrDownload(+b.dataset.t);
+    else if(a==='avail'){const m=get(id);const r=await adm('admin_save_item',{p_item:{id:m.id,a:m.a?0:1}});Object.assign(m,r);persist();refresh();toast(`${m.n} is now ${m.a?'available':'not available'}`);const nb=$(`#aList [data-act=avail][data-id="${id}"]`);if(nb)nb.focus()}
+    else if(a==='del'){const m=get(id);if(confirm(`Delete “${m.n}”? This can’t be undone.`)){await adm('admin_delete_item',{p_id:m.id});MENU.splice(MENU.indexOf(m),1);delete cart[id];persist();refresh();toast(`${m.n} deleted`)}}
+    else if(a==='cpon'){const next=COUPONS.map((c,k)=>k===i?Object.assign({},c,{on:c.on?0:1}):c);await adm('admin_save_coupons',{p_coupons:next});COUPONS=next;adminBody()}
+    else if(a==='cpdel'){if(confirm(`Delete coupon ${COUPONS[i].c}?`)){const next=COUPONS.filter((c,k)=>k!==i);await adm('admin_save_coupons',{p_coupons:next});COUPONS=next;adminBody()}}
+    else if(a==='ost'){const o=orders[i],nx=ST[(ST.indexOf(o.status)+1)%ST.length];const r=await adm('admin_set_status',{p_id:o.id,p_status:nx});orders[i]=r;adminBody();if(r.status==='Ready'&&r.cust)toast('Ready. Tap WhatsApp to tell '+r.cust.name.split(' ')[0])}
+    else if(a==='print')printTicket(orders[i]);
+    else if(a==='snd'){SET.snd=SET.snd?0:1;LS.set('snd',SET.snd);if(SET.snd){primeAudio();chime()}adminBody()}
+    else if(a==='pause'){const r=await adm('admin_save_settings',{p_settings:{paused:SET.paused?0:1}});Object.assign(SET,r.settings);cacheAll();adminBody();shopBar();toast(SET.paused?'Online orders paused':'Taking orders again')}
+    else if(a==='clr'){await adm('admin_clear_served');orders=orders.filter(x=>x.status!=='Served');adminBody()}
+    else if(a==='bdel'){if(confirm('Cancel this booking? The table becomes free again.')){await adm('admin_cancel_booking',{p_id:bookings[i].id});bookings.splice(i,1);adminBody();toast('Booking cancelled')}}
+    else if(a==='export'){const l=document.createElement('a');l.href=URL.createObjectURL(new Blob([JSON.stringify({menu:MENU,cats:CATS,coupons:COUPONS,settings:SET},null,1)],{type:'application/json'}));l.download='restaurant-backup.json';document.body.append(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(l.href),1000)}
+    else if(a==='reset'&&confirm('Reset the menu, categories and coupons to the original set? Your edits and photos will be lost.')){await adm('admin_replace_menu',{p_menu:clone(DEF_MENU),p_cats:clone(DEF_CATS),p_coupons:clone(DEF_COUPONS)});MENU=clone(DEF_MENU);CATS=clone(DEF_CATS);COUPONS=clone(DEF_COUPONS);Object.keys(cart).forEach(k=>delete cart[k]);persist();adminBody();toast('Menu reset to defaults')}
+  }catch(x){toast(say(x))}
 });
 $('#aBody').addEventListener('input',e=>{if(e.target.id==='aq'){q=e.target.value;$('#aList').innerHTML=itemRows()}else if(e.target.id==='tq'){oq=e.target.value;$('#oList').innerHTML=orderRows()}});
 $('#aBody').addEventListener('change',e=>{
+  if(e.target.id!=='qrBase')return;
+  let v=e.target.value.trim();
+  if(!v){LS.set('qrbase','');adminBody();toast('Using this page’s own address');return}
+  if(!/^https?:\/\//i.test(v))v='https://'+v;
+  try{const u=new URL(v); if(!u.hostname.includes('.')&&u.hostname!=='localhost')throw 0; v=u.origin+u.pathname+u.search}catch{toast('That doesn’t look like a web address');return}
+  LS.set('qrbase',v); adminBody(); toast('Codes updated. Print them again if they are already on tables');
+});
+$('#aBody').addEventListener('change',async e=>{
   const t=e.target;
   if(t.dataset.price){const m=get(t.dataset.price), v=Math.round(+t.value);
     if(t.value===''||!(v>=0)){t.value=m.p;toast('Enter a price of ₹0 or more');return}
-    m.p=v;persist();toast(`${m.n} is now ${inr(v)}`)}
-  else if(t.id==='impFile'&&t.files[0])t.files[0].text().then(x=>{const j=JSON.parse(x);
-    if(!Array.isArray(j.menu)||!j.menu.every(m=>m&&m.id!=null&&m.n&&Number.isFinite(+m.p)))throw 0;
-    MENU=j.menu;CATS=Array.isArray(j.cats)?j.cats:[...new Set(MENU.map(m=>m.c))];if(Array.isArray(j.coupons))COUPONS=j.coupons;if(j.settings&&typeof j.settings==='object'){Object.assign(SET,j.settings);LS.set('settings',SET)}
-    persist();adminBody();toast('Backup loaded')}).catch(()=>toast('That file isn’t a valid backup'));
-});
-$('#aBody').addEventListener('submit',e=>{
-  e.preventDefault(); const f=e.target.elements;
-  if(e.target.id==='cpForm'){
-    const c=f.c.value.trim().toUpperCase().replace(/\s+/g,''), t=f.t.value, v=Math.round(+f.v.value), err=m=>{$('#cpErr').textContent=m};
-    if(!c)return err('Enter a coupon code.'); if(COUPONS.some(x=>x.c===c))return err('That code already exists.');
-    if(!(v>=1)||(t==='pct'&&v>100))return err(t==='pct'?'Percent off must be between 1 and 100.':'Enter an amount of ₹1 or more.');
-    COUPONS.push({c,t,v,on:1});persist();adminBody();toast(`${c} added`);
-  }else if(e.target.id==='pinForm'){
-    const v=f.pin.value.trim(); if(!/^\d{4,8}$/.test(v))return $('#pinErr').textContent='Use 4 to 8 digits.';
-    LS.set('pin',v);f.pin.value='';$('#pinErr').textContent='';toast('PIN updated');
+    try{const r=await adm('admin_save_item',{p_item:{id:m.id,p:v}});Object.assign(m,r);persist();toast(`${m.n} is now ${inr(v)}`)}
+    catch(x){t.value=m.p;toast(say(x))}}
+  else if(t.id==='impFile'&&t.files[0]){
+    const file=t.files[0]; t.value='';
+    try{
+      const j=JSON.parse(await file.text());
+      if(!Array.isArray(j.menu)||!j.menu.every(m=>m&&m.id!=null&&m.n&&Number.isFinite(+m.p)&&Number.isFinite(+m.id)))throw 0;
+      const menu=j.menu.map(m=>({id:+m.id,c:String(m.c||'Other'),v:+m.v?1:0,k:m.k||null,n:String(m.n),d:String(m.d||''),p:Math.round(+m.p),a:+m.a?1:0,
+        stock:m.stock==null?null:Math.max(0,Math.round(+m.stock)),img:typeof m.img==='string'&&/^(data:image\/|https:\/\/)/.test(m.img)?m.img:null}));
+      const cats=Array.isArray(j.cats)?j.cats.map(String):[...new Set(menu.map(m=>m.c))];
+      const cps=Array.isArray(j.coupons)?j.coupons.map(c=>({c:String(c.c),t:c.t==='flat'?'flat':'pct',v:Math.round(+c.v),on:+c.on?1:0})):null;
+      await adm('admin_replace_menu',{p_menu:menu,p_cats:cats,p_coupons:cps});
+      if(j.settings&&typeof j.settings==='object'){const r=await adm('admin_save_settings',{p_settings:j.settings});Object.assign(SET,r.settings)}
+      await refreshAdmin(true); await loadRemote(); adminBody(); toast('Backup loaded');
+    }catch(x){toast(x&&(x.status||x.net)?say(x):'That file isn’t a valid backup')}
   }
 });
-/* another tab on this device edited the menu: pick it up */
-addEventListener('storage',e=>{if(e.key&&e.key.startsWith('saffron.')){MENU=okList(LS.get('menu'),DEF_MENU);CATS=okList(LS.get('cats'),DEF_CATS);COUPONS=LS.get('coupons',COUPONS);{const nb=orders.length;orders=LS.get('orders',orders);if(unlocked&&orders.length>nb)alertNew(orders[0]);if(unlocked&&tab==='orders')adminBody()}ACCTS=LS.get('accts',ACCTS);SET=Object.assign(SET,LS.get('settings',{}));shopBar();pruneCart();route2();if(location.hash==='#account')renderAccount()}});
+$('#aBody').addEventListener('submit',async e=>{
+  e.preventDefault(); const f=e.target.elements, fid=e.target.id;
+  try{
+    if(fid==='cpForm'){
+      const c=f.c.value.trim().toUpperCase().replace(/\s+/g,''), t=f.t.value, v=Math.round(+f.v.value), err=m=>{$('#cpErr').textContent=m};
+      if(!c)return err('Enter a coupon code.'); if(COUPONS.some(x=>x.c===c))return err('That code already exists.');
+      if(!/^[A-Z0-9]{1,16}$/.test(c))return err('Use letters and numbers only.');
+      if(!(v>=1)||(t==='pct'&&v>100))return err(t==='pct'?'Percent off must be between 1 and 100.':'Enter an amount of ₹1 or more.');
+      const next=[...COUPONS,{c,t,v,on:1}]; await adm('admin_save_coupons',{p_coupons:next}); COUPONS=next; adminBody(); toast(`${c} added`);
+    }else if(fid==='pinForm'){
+      const v=f.pin.value.trim(); if(!/^\d{4,8}$/.test(v))return $('#pinErr').textContent='Use 4 to 8 digits.';
+      await adm('admin_set_pin',{p_pin:v}); f.pin.value='';$('#pinErr').textContent='';toast('PIN updated');
+    }else if(fid==='hrForm'){
+      const r=await adm('admin_save_settings',{p_settings:{hours:f.h.checked?1:0,open:f.o.value||'11:00',close:f.c.value||'23:00'}});
+      Object.assign(SET,r.settings);cacheAll();shopBar();toast('Opening hours saved');
+    }else if(fid==='taxForm'){
+      const g=+f.g.value,k=+f.k.value;
+      if(!(g>=0&&g<=28)||!(k>=0))return $('#taxErr').textContent='GST must be 0 to 28 and packaging 0 or more.';
+      const r=await adm('admin_save_settings',{p_settings:{gst:g,pack:Math.round(k),incl:f.i.checked?1:0}});
+      Object.assign(SET,r.settings);cacheAll();$('#taxErr').textContent='';toast('Tax and charges saved');
+    }
+  }catch(x){toast(say(x))}
+});
 
 /* ============ CUSTOMER ACCOUNT ============
    Prototype: accounts live in this browser. Swap for Supabase Auth (phone OTP) and an orders table
    filtered by the signed-in user to make it work across devices. */
 let acMode='up';
-const acct=()=>ACCTS.find(a=>a.phone===me);
-const myOrders=()=>{const a=acct();return a?orders.filter(x=>x.uid===a.phone||(x.cust&&x.cust.phone===a.phone)):[]};
+const acct=()=>ACCT;
+const myOrders=()=>myOrd;
 const current=()=>myOrders().find(x=>x.status!=='Served');
-const hashPin=async(ph,pin)=>{const s='saffron:'+ph+':'+pin;
-  if(window.crypto&&crypto.subtle&&window.TextEncoder){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
-  let h=5381;for(const c of s)h=((h*33)^c.charCodeAt(0))>>>0;return 'x'+h};
+
 function acctBtn(){
   const a=acct(), b=$('#acctBtn'); let i=b.querySelector('.ini');
   if(!i){i=document.createElement('b');i.className='ini';b.prepend(i)}
@@ -1906,17 +2104,17 @@ function renderAccount(){
     el.innerHTML=`<div class="atop"><div style="text-align:left"><h2 class="ah" style="margin:0">Hi, ${esc(a.name.split(' ')[0])}</h2><small class="sub2">+91 ${fmtPh(a.phone)}</small></div><button class="mini" data-ac="out">Sign out</button></div>
     <section class="acard${cur?' cur':''}" style="margin-top:14px"><h2 class="ah">Current order</h2>${cur?`<div class="ainfo"><b>${codeChip(cur)}${cur.dn?'Table T'+cur.table:'Take away'}, ${inr(cur.total)}</b><small>${when(cur.at)}. ${lineText(cur)}</small></div><ol class="steps" aria-label="Order status: ${cur.status}">${ST.map((s,i)=>`<li class="${i<k?'done':i===k?'cur':''}"><i></i>${s}</li>`).join('')}</ol><p class="sub2" role="status">${say}</p>`:'<p class="sub2">No order in progress. <a href="#menu" style="color:#C95A0C">Browse the menu</a></p>'}</section>
     <section class="acard"><h2 class="ah">Your coupons</h2>${cps.length?cps.map(c=>`<article class="arow"><div class="ainfo"><b>${esc(c.c)}</b><small>${c.t==='pct'?c.v+'% off your order':'₹'+c.v+' off your order'}</small></div><button class="mini" data-ac="copy" data-c="${esc(c.c)}">Copy</button><button class="mini" data-ac="use" data-c="${esc(c.c)}">Apply</button></article>`).join(''):'<p class="sub2">No coupons right now. Check back soon.</p>'}</section>
-    <section class="acard"><h2 class="ah">Past orders</h2>${past.length?past.map(x=>`<article class="arow"><div class="ainfo"><b>${codeChip(x)}${x.dn?'Table T'+x.table:'Take away'}, ${inr(x.total)}</b><small>${when(x.at)}. ${lineText(x)}</small></div><button class="mini" data-ac="again" data-i="${orders.indexOf(x)}">Order again</button></article>`).join(''):'<p class="sub2">Your finished orders will show up here.</p>'}</section>`;
+    <section class="acard"><h2 class="ah">Past orders</h2>${past.length?past.map(x=>`<article class="arow"><div class="ainfo"><b>${codeChip(x)}${x.dn?'Table T'+x.table:'Take away'}, ${inr(x.total)}</b><small>${when(x.at)}. ${lineText(x)}</small></div><button class="mini" data-ac="again" data-i="${myOrd.indexOf(x)}">Order again</button></article>`).join(''):'<p class="sub2">Your finished orders will show up here.</p>'}</section>`;
   }
   acctBtn();
 }
 $('#acBody').addEventListener('click',e=>{
   const b=e.target.closest('[data-ac]'); if(!b)return; const a=b.dataset.ac;
   if(a==='up'||a==='in'){acMode=a;renderAccount()}
-  else if(a==='out'){me=null;LS.set('me',null);renderAccount();toast('Signed out')}
+  else if(a==='out'){const t=ACCT&&ACCT.token;ACCT=null;myOrd=[];LS.set('acct',null);if(t)rpc('account_logout',{p_token:t}).catch(()=>{});renderAccount();toast('Signed out')}
   else if(a==='copy'){(navigator.clipboard?navigator.clipboard.writeText(b.dataset.c):Promise.reject()).then(()=>toast(b.dataset.c+' copied'),()=>toast('Code: '+b.dataset.c))}
   else if(a==='use'){coupon=b.dataset.c;if(count()){location.hash='takeaway'}else{toast(coupon+' will apply when you check out');location.hash='menu'}}
-  else if(a==='again'){const o=orders[+b.dataset.i];let n=0;
+  else if(a==='again'){const o=myOrd[+b.dataset.i];let n=0;
     o.lines.forEach(l=>{const m=(l.id!=null&&get(l.id))||MENU.find(m=>m.n===l.n);if(m&&m.a){cart[m.id]=(cart[m.id]||0)+l.q;n++}});
     if(!n){toast('Those items aren’t available right now');return}
     toast(n<o.lines.length?'Added the items that are available':'Items added to your cart');location.hash='takeaway'}
@@ -1927,12 +2125,55 @@ $('#acBody').addEventListener('submit',async e=>{
   if(acMode==='up'&&!nm)return er('Enter your name.');
   if(!ph)return er('Enter a valid 10-digit mobile number.');
   if(!/^\d{4}$/.test(pin))return er('Your PIN must be 4 digits.');
-  const h=await hashPin(ph,pin), ex=ACCTS.find(a=>a.phone===ph);
-  if(acMode==='up'){if(ex)return er('That number already has an account. Try signing in.');ACCTS.push({phone:ph,name:nm,h,at:new Date().toISOString()});LS.set('accts',ACCTS)}
-  else if(!ex||ex.h!==h)return er('That number and PIN don’t match.');
-  me=ph;LS.set('me',me);const a=acct();LS.set('cust',{name:a.name,phone:ph});renderAccount();
-  toast((acMode==='up'?'Welcome, ':'Welcome back, ')+a.name.split(' ')[0]);
+  const btn=e.target.querySelector('[type=submit]'); btn.disabled=true;
+  try{
+    const r=await rpc(acMode==='up'?'account_signup':'account_login',acMode==='up'?{p_phone:ph,p_name:nm,p_pin:pin}:{p_phone:ph,p_pin:pin});
+    if(!r.ok){er({exists:'That number already has an account. Try signing in.',bad_login:'That number and PIN don’t match.',locked:'Too many tries. Please wait 15 minutes.',
+      bad_name:'Enter your name.',bad_phone:'Enter a valid 10-digit mobile number.',bad_pin:'Your PIN must be 4 digits.'}[r.error]||'Something went wrong. Please try again.');return}
+    ACCT={phone:r.phone,name:r.name,token:r.token};LS.set('acct',ACCT);LS.set('cust',{name:r.name,phone:ph});
+    await loadMine(); renderAccount();
+    toast((acMode==='up'?'Welcome, ':'Welcome back, ')+r.name.split(' ')[0]);
+  }catch(x){er(say(x))}
+  finally{btn.disabled=false}
 });
+
+/* ---- keeping the page in step with the server ---- */
+async function loadMine(){
+  if(!ACCT){const ch=myOrd.length>0;myOrd=[];return ch}
+  try{
+    const r=await rpc('my_orders',{p_token:ACCT.token});
+    if(!r.ok){ACCT=null;LS.set('acct',null);myOrd=[];toast('Please sign in again');return true}
+    const ch=sigOf(r.orders)!==sigOf(myOrd); myOrd=r.orders||[]; return ch;
+  }catch{return false}
+}
+const acctRefresh=()=>{acctBtn();if(location.hash==='#account')renderAccount()};
+/* after any change on the server: re-draw whatever page is open (but never while someone is typing in it) */
+function refreshViews(){
+  NAME=(String(SET.name||'').trim()||BRAND_DEFAULT); pruneCart();
+  const id=location.hash.slice(1), y=scrollY, ae=document.activeElement, typing=sel=>ae&&ae.closest&&ae.closest(sel);
+  if(id==='menu')renderMenu(); else if(id==='takeaway'&&!typing('#cartList'))renderTake();
+  else if(id==='admin'&&unlocked&&tab==='items'&&!typing('#aBody'))refresh();
+  if(!ROUTES.includes(id))renderSite();
+  document.title=NAME+' – '+(ROUTES.includes(id)?LABEL[id]:'Biryani, rice and noodles in Hanamkonda');
+  shopBar(); navFill(); acctBtn(); scrollTo(0,y);
+}
+async function loadRemote(){
+  try{
+    const [m,s,c]=await Promise.all([
+      api('menu_items?select=id,category,veg,kind,name,descr,price,available,stock,img&order=id.asc'),
+      api('shop?select=settings,cats&id=eq.1'),
+      api('coupons?select=code,kind,val')]);
+    if(!Array.isArray(s)||!s.length)throw Object.assign(new Error('not_setup'),{status:404});
+    const sig=sigOf([m,s,c,ADM?1:0]), snd=SET.snd;
+    MENU=m.map(fromRow); CATS=Array.isArray(s[0].cats)?s[0].cats:[...new Set(MENU.map(x=>x.c))];
+    if(!ADM)COUPONS=c.map(x=>({c:x.code,t:x.kind,v:x.val,on:1}));
+    SET=Object.assign({gst:5,incl:0,pack:10,paused:0,hours:0,open:'11:00',close:'23:00'},SITE_DEFAULTS,s[0].settings||{}); SET.snd=snd;
+    const first=LOAD!=='ok'; LOAD='ok';
+    if(sig!==lastSig||first){lastSig=sig;cacheAll();refreshViews()}
+  }catch(x){
+    if(LOAD!=='ok'){LOAD='err';refreshViews()}
+  }
+}
 
 /* ============ SHOP CONTROLS, ALERTS, TICKETS ============ */
 const mins=t=>{const[a,b]=String(t).split(':');return(+a)*60+(+b)};
@@ -1947,13 +2188,6 @@ setInterval(shopBar,30000);
 const tShop=()=>`<div class="acard"><h2 class="ah">Online orders</h2><div class="arow" style="margin:0;padding:0;box-shadow:none;background:none"><div class="ainfo"><b>${SET.paused?'Paused':'Taking orders'}</b><small>${SET.paused?'Customers can browse but cannot place orders.':'Customers can place orders.'}</small></div><button class="sw" role="switch" aria-checked="${!SET.paused}" data-act="pause">${SET.paused?'Paused':'Open'}</button></div></div>
 <form class="acard" id="hrForm" novalidate><h2 class="ah">Opening hours</h2><label class="chk"><input type="checkbox" name="h" ${SET.hours?'checked':''}> Only take orders during these hours</label><div class="row"><label>Opens<input type="time" name="o" value="${SET.open}"></label><label>Closes<input type="time" name="c" value="${SET.close}"></label></div><button class="go sm" type="submit">Save hours</button></form>
 <form class="acard" id="taxForm" novalidate><h2 class="ah">Tax and charges</h2><div class="row"><label>GST (%)<input name="g" type="number" min="0" max="28" step="0.5" value="${SET.gst}"></label><label>Packaging per take-away order (₹)<input name="k" type="number" min="0" step="1" value="${SET.pack}"></label></div><label class="chk"><input type="checkbox" name="i" ${SET.incl?'checked':''}> Menu prices already include GST</label><p class="err" id="taxErr" role="alert"></p><button class="go sm" type="submit">Save</button><p class="sub2">Confirm the right GST rate and billing rules for your restaurant with your accountant.</p></form>`;
-$('#aBody').addEventListener('submit',e=>{
-  const f=e.target.elements;
-  if(e.target.id==='hrForm'){SET.hours=f.h.checked?1:0;SET.open=f.o.value||'11:00';SET.close=f.c.value||'23:00';LS.set('settings',SET);toast('Opening hours saved')}
-  else if(e.target.id==='taxForm'){const g=+f.g.value,k=+f.k.value;
-    if(!(g>=0&&g<=28)||!(k>=0))return $('#taxErr').textContent='GST must be 0 to 28 and packaging 0 or more.';
-    SET.gst=g;SET.pack=Math.round(k);SET.incl=f.i.checked?1:0;LS.set('settings',SET);$('#taxErr').textContent='';toast('Tax and charges saved')}
-});
 /* new-order chime: the browser needs one tap first, so the audio starts when staff unlock */
 let actx=null, ft=null;
 function primeAudio(){try{actx=actx||new(window.AudioContext||window.webkitAudioContext)();actx.resume()}catch{}}
@@ -1981,7 +2215,7 @@ function homeEnter(){
   renderSite();navFill();navToggle(false);welcome.classList.remove('seen');
   if(io&&!vReduce.matches){io.disconnect();io.observe(welcome)}else welcome.classList.add('seen');
 }
-document.querySelectorAll('.hero-cta a,.about-cta a,#heroTag,#navLinks a').forEach(a=>a.addEventListener('click',()=>{mode='takeaway'}));
+document.querySelectorAll('.hero-cta a,.about-cta a,#heroTag,#navLinks a').forEach(a=>a.addEventListener('click',()=>{mode='takeaway';qrStrip()}));
 /* about: reveal once when it scrolls into view */
 const about=$('#about');
 if(about){
@@ -2084,9 +2318,17 @@ setInterval(()=>{const s=$('#viSt');if(s&&document.body.dataset.v==='home'){cons
 document.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(!a||document.body.dataset.v!=='home')return;e.preventDefault();
   const k=a.dataset.go;if(k==='top')goTo(null,true);else{const el=document.getElementById(k);if(el)goTo(el)}});
 $('#skipLink').addEventListener('click',e=>{e.preventDefault();const t=document.body.dataset.v==='home'?$('#hero'):document.querySelector('.view.on');if(t){t.tabIndex=-1;t.focus()}});
-document.querySelectorAll('.foot a,.visit a').forEach(a=>a.addEventListener('click',()=>{mode='takeaway'}));
+document.querySelectorAll('.foot a,.visit a').forEach(a=>a.addEventListener('click',()=>{mode='takeaway';qrStrip()}));
 
+qrInit();
 route();
+/* ---- go live: fetch the shared data, then keep it fresh ---- */
+loadRemote();
+if(ACCT)loadMine().then(acctRefresh);
+setInterval(()=>{if(!document.hidden)loadRemote()},45000);
+setInterval(async()=>{if(!document.hidden&&ACCT&&await loadMine())acctRefresh()},15000);
+setInterval(adminPoll,6000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){loadRemote();if(ACCT)loadMine().then(acctRefresh);adminPoll()}});
 </script>
 </body>
 </html>
