@@ -1042,6 +1042,99 @@ body{padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inse
 .dz-qa{display:grid;gap:8px;margin-top:10px}.dz-qa button{display:flex;align-items:center;justify-content:center;gap:8px;height:44px;border-radius:12px;border:1.5px solid var(--orange);background:#FFF8EE;color:var(--brown);font:600 13.5px var(--sans);cursor:pointer}.dz-qa button:first-child{background:linear-gradient(180deg,#F58C21,#C95A0C);color:#fff}.dz-qa button:hover{filter:brightness(.97)}
 @media(max-width:1100px){.dz-k{grid-template-columns:repeat(2,1fr)}.dz-3{grid-template-columns:1fr 1fr}.dz-3>:first-child{grid-column:1/-1}}
 @media(max-width:640px){.dz-k,.dz-3{grid-template-columns:1fr}.dz-o{grid-template-columns:1fr auto}.dz-o .dz-t{grid-column:1/-1;order:3}.dz-o time{display:none}.dz-big{font-size:28px}}
+/* ===== table billing: dashboard cards + bill sheet ===== */
+.dz-2{grid-template-columns:2fr 1fr}
+.dz-tbl{margin-bottom:14px}
+.dz-tbl h3 .dz-cnt{margin-left:auto;font:500 13px var(--sans);color:var(--brown-2)}
+.tcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(212px,1fr));gap:12px;margin:12px 0 14px}
+.tc{position:relative;display:flex;flex-direction:column;gap:5px;text-align:left;min-width:0;padding:13px 16px 14px;border-radius:18px;border:1.5px solid var(--line);background:linear-gradient(180deg,#FFFDF9,#FDF0DF);color:var(--brown);font:inherit;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s}
+.tc:hover{transform:translateY(-2px);border-color:var(--orange);box-shadow:0 14px 24px -16px rgba(201,90,12,.7)}
+.tc:focus-visible{outline:3px solid var(--orange-d);outline-offset:2px}
+.tc-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 8px;min-height:28px}
+.tc-no{display:grid;place-items:center;min-width:40px;height:28px;padding:0 9px;border-radius:9px;background:var(--brown);color:#fff;font:700 14px var(--sans);letter-spacing:.02em}
+.tc-l{margin-top:4px;font:600 11px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--brown-2)}
+.tc-amt{font:700 28px/1.05 var(--sans);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tc-m{display:flex;align-items:center;gap:7px;white-space:nowrap;font:500 13px var(--sans);color:var(--brown-2)}
+.tc-m svg{width:15px;height:15px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.tc-dots{display:flex;gap:4px;margin-left:auto}.tc-dots i{width:9px;height:9px;border-radius:50%}
+.tc-i{display:grid;gap:1px;font:500 12.5px var(--sans);color:var(--brown-2)}
+.tc.req{border:2px solid var(--orange);background:linear-gradient(165deg,#FFF4E1,#FBDDB2);box-shadow:0 0 0 4px rgba(238,125,26,.16),0 16px 28px -18px rgba(201,90,12,.8)}
+.tc.req .tc-no{background:#B04A07}
+.tc-tag{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 11px 0 9px;border-radius:999px;background:#B04A07;color:#fff;font:700 12px var(--sans);white-space:nowrap}
+.tc-tag i{width:7px;height:7px;border-radius:50%;background:#fff}
+.tc-ago{font-weight:700;color:#9A3F05}
+.dz-tbs.wide{grid-template-columns:repeat(auto-fill,minmax(64px,1fr));margin-top:0}
+.dz-tbs.wide .dz-tb{aspect-ratio:auto;height:52px}
+.dz-tbl .dz-nb{margin:12px 0 0;font-size:13px;color:var(--brown-2)}
+.bd-setup{border:2px dashed var(--orange)}
+.mini.hot{background:linear-gradient(180deg,#F58C21,#B04A07);border-color:#B04A07;color:#fff}
+.rqtag{color:#9A3F05}
+@media(prefers-reduced-motion:no-preference){.tc-tag i{animation:tcpulse 1.6s ease-out infinite}#billDlg[open]{animation:dlgin .35s cubic-bezier(.2,.8,.2,1)}#billDlg[open]::backdrop{animation:fadein2 .35s both}}
+@keyframes tcpulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.85)}100%{box-shadow:0 0 0 7px rgba(255,255,255,0)}}
+@media(prefers-reduced-motion:reduce){.tc{transition:none}.tc:hover{transform:none}}
+@media(max-width:900px){.dz-2{grid-template-columns:1fr}}
+@media(max-width:560px){.tc.req{grid-column:1/-1}.tcs{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}.tc{padding:12px 13px}.tc-amt{font-size:25px}.tc-tag{font-size:11.5px;padding:0 9px 0 8px}}
+
+#billDlg{margin:auto;border:0;padding:0;border-radius:26px;width:min(560px,calc(100vw - 16px));max-height:min(94vh,94dvh);background:#FFF8EE;color:var(--brown);box-shadow:0 30px 60px -20px rgba(90,42,16,.6);overflow:hidden}
+#billDlg[open]{display:flex;flex-direction:column}
+#billDlg::backdrop{background:rgba(90,42,16,.45)}
+.bd-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:18px 20px 12px 22px;border-bottom:1.5px dashed var(--line)}
+.bd-eyebrow{font:600 11.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--brown-2)}
+#billDlg h2{font-family:var(--script);font-weight:400;font-size:48px;line-height:1.05;margin:2px 0 0}
+.bd-meta{margin-top:2px;font-size:14px;color:var(--brown-2)}
+.bd-x{flex:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:#fff;color:var(--brown);display:grid;place-items:center;cursor:pointer}
+.bd-x svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.bd-x:hover{background:var(--cream-2)}
+.bd-x:focus-visible,.bd-pm input:focus-visible+span,#billDlg .mini:focus-visible,#billDlg .go:focus-visible,.bd-link:focus-visible,.bd-phone input:focus-visible{outline:3px solid var(--orange-d);outline-offset:2px}
+.bd-scroll{overflow:auto;overscroll-behavior:contain;padding:16px 22px 18px;display:grid;gap:18px;align-content:start;-webkit-overflow-scrolling:touch}
+.bd-ask{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;background:#FBDDB2;border:1.5px solid var(--orange);font-weight:600;font-size:14px}
+.bd-ask i{width:9px;height:9px;border-radius:50%;background:#B04A07;flex:none}
+.bd-h{font:700 12px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--brown-2);margin:0 0 8px}
+.bd-rounds{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.bd-rounds li{padding:10px 12px;border-radius:14px;background:rgba(251,226,193,.5)}
+.bd-rh{display:flex;align-items:center;gap:10px}
+.bd-rh b{font-weight:700;font-size:14.5px}.bd-rh time{font-size:13px;color:var(--brown-2)}
+.bd-rounds p{margin:4px 0 0;font-size:13.5px;color:var(--brown-2);line-height:1.4}
+.bst{margin-left:auto;padding:3px 11px;border-radius:999px;font:700 12px var(--sans)}
+.bst.New{background:#DCE8FB;color:#1F55AE}.bst.Preparing{background:#FBE0B0;color:#8F4C05}.bst.Ready{background:#D6EFD9;color:#1D6B2F}.bst.Served{background:#ECE6DF;color:#5E4D40}
+.bd-bill{padding:6px 16px 14px;border-radius:16px;background:#fff;border:1px solid rgba(238,125,26,.22);box-shadow:0 12px 22px -18px rgba(90,42,16,.6)}
+.bd-line{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px dotted rgba(138,90,58,.4)}
+.bd-n{font-weight:600;font-size:15.5px;min-width:0;overflow-wrap:anywhere}
+.bd-n em{font-style:normal;color:var(--orange-d);margin-left:4px;font-weight:700}
+.bd-n small{display:block;font-weight:400;font-size:12.5px;color:var(--brown-2)}
+.bd-a,.bd-sum b,.bd-tot strong{font-variant-numeric:tabular-nums;white-space:nowrap}
+.bd-a{font-weight:600}
+.bd-sum{display:flex;justify-content:space-between;gap:12px;padding:7px 0 0;font-size:14.5px;color:var(--brown-2)}.bd-sum b{font-weight:600;color:var(--brown)}
+.bd-sum:first-of-type{padding-top:12px}
+.bd-tot{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:10px;padding-top:12px;border-top:2px solid var(--brown)}
+.bd-tot span{font:700 13px var(--sans);letter-spacing:.1em;text-transform:uppercase}.bd-tot strong{font:700 32px/1 var(--sans);letter-spacing:-.02em}
+.bd-share{display:grid;gap:8px}
+.bd-row{display:flex;gap:8px;align-items:stretch}
+.bd-phone{flex:1;min-width:0;display:flex;align-items:center;gap:8px;height:46px;padding:0 14px;border-radius:14px;border:1.5px solid var(--line);background:#fff}
+.bd-phone:focus-within{border-color:var(--orange)}
+.bd-phone span{font-weight:600;color:var(--brown-2)}
+.bd-phone input{flex:1;min-width:0;height:100%;border:0;background:none;font:500 16px var(--sans);color:var(--brown);outline-offset:6px}
+.bd-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#billDlg .mini{justify-content:center;height:46px;font-weight:600;gap:8px}
+#billDlg .mini svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.bd-err{margin:0;font-size:13px;color:#A33A0A;min-height:0}.bd-err:empty{display:none}
+.bd-note{margin:0;font-size:13.5px;color:var(--brown-2)}
+.bd-pay{border:0;padding:0;margin:0;min-width:0}
+.bd-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.bd-pms{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.bd-pm{position:relative}
+.bd-pm input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.bd-pm span{display:flex;align-items:center;justify-content:center;gap:8px;height:48px;border-radius:14px;border:1.5px solid var(--orange);background:linear-gradient(180deg,#FFF9F0,#FCE9D2);font:600 15px var(--sans);transition:background .15s,color .15s}
+.bd-pm svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.bd-pm input:checked+span{background:var(--brown);border-color:var(--brown);color:#fff}
+.bd-foot{display:grid;gap:10px;padding:12px 22px calc(16px + env(safe-area-inset-bottom,0px));border-top:1.5px dashed var(--line);background:#FFF8EE}
+.bd-foot .go{width:100%;height:54px}
+#bdGo{display:grid;gap:8px}
+.bd-hint{margin:0;text-align:center;font-size:13px;color:var(--brown-2)}
+.bd-link{justify-self:center;background:none;border:0;padding:6px 10px;font:500 13px var(--sans);color:var(--brown-2);text-decoration:underline;cursor:pointer}
+.bd-paid{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:#D6EFD9;color:#1D6B2F;font:700 13px var(--sans)}
+@media(max-width:480px){.bd-row .mini{width:46px;padding:0}.bd-row .mini span{display:none}#billDlg h2{font-size:42px}.bd-head{padding:14px 14px 10px 18px}.bd-scroll{padding:14px 16px 16px}.bd-foot{padding:12px 16px calc(14px + env(safe-area-inset-bottom,0px))}.bd-tot strong{font-size:28px}}
+
 /* ===== admin ===== */
 #admin.on{display:block;padding:84px 0 70px}
 .awrap{width:min(880px,94vw);margin:0 auto}
@@ -1073,6 +1166,73 @@ body{padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inse
 .cadd{grid-template-columns:2fr 2fr 1fr auto;align-items:end;margin-bottom:6px}
 #dlg{border:0;padding:24px;border-radius:28px;width:min(520px,94vw);max-height:92vh;background:#FFF8EE;color:var(--brown);box-shadow:0 30px 60px -20px rgba(90,42,16,.6)}
 #dlg::backdrop{background:rgba(90,42,16,.45)}
+/* ===== item options sheet: size, spice level, add-ons ===== */
+/* ===== post-order feedback ===== */
+.fb-stars{display:flex;gap:6px;justify-content:center}
+.fb-s{position:relative;width:54px;height:54px;display:grid;place-items:center;cursor:pointer}
+.fb-s input{position:absolute;opacity:0;width:1px;height:1px}
+.fb-i,.fb-q svg{display:block;width:44px;height:44px}
+.fb-i svg{width:100%;height:100%}
+.fb-i svg,.fb-q svg{fill:none;stroke:#C9590C;stroke-width:1.6;stroke-linejoin:round;transition:fill .15s,transform .15s}
+.fb-s[data-on] .fb-i svg{fill:#F5A623}
+.fb-s:hover .fb-i svg{transform:scale(1.08)}
+.fb-s:has(input:focus-visible){outline:3px solid var(--orange-d);outline-offset:2px;border-radius:14px}
+.fb-s .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.fb-l{min-height:22px;margin:6px 0 0;text-align:center;font-weight:600;color:var(--orange-d)}
+.fb-c{display:grid;gap:8px;font-weight:500}
+.fb-c small{font-weight:400;color:var(--brown-2)}
+.fb-c textarea{width:100%;border-radius:16px;border:1.5px solid var(--line);background:#fff;padding:12px 14px;font:400 16px var(--sans);color:var(--brown);resize:vertical;min-height:84px}
+.fb-c textarea:focus-visible{outline:3px solid var(--orange-d);outline-offset:1px}
+.fb-gl{display:grid;place-items:center;text-decoration:none;margin-bottom:10px}
+.fb-gl.alt{background:#fff;color:var(--brown);border:1.5px solid var(--orange);box-shadow:none}
+.fb-quick{display:flex;gap:4px;margin:8px 0 6px}
+.fb-q{width:48px;height:48px;border:0;background:none;padding:2px;cursor:pointer;border-radius:12px}
+.fb-q:hover svg,.fb-q:focus-visible svg{fill:#F5A623}
+.fb-q:focus-visible{outline:3px solid var(--orange-d);outline-offset:1px}
+.rated{font-weight:600;font-size:14px;color:var(--orange-d);white-space:nowrap}
+
+#optSheet,#fbDlg{border:0;padding:0;margin:auto auto 0;width:min(560px,100vw);max-width:100vw;max-height:min(90vh,740px);border-radius:28px 28px 0 0;background:#FFF8EE;color:var(--brown);box-shadow:0 -24px 60px -20px rgba(90,42,16,.55);overflow:hidden}
+#optSheet[open],#fbDlg[open]{display:flex;flex-direction:column}
+#optSheet::backdrop,#fbDlg::backdrop{background:rgba(90,42,16,.45)}
+@media (min-width:700px){#optSheet,#fbDlg{margin:auto;border-radius:28px;width:min(520px,94vw)}}
+.os-h{display:flex;align-items:center;gap:14px;padding:20px 20px 14px}
+.os-img{width:68px;height:68px;flex:none;border-radius:18px;overflow:hidden;background:var(--cream-2)}
+.os-img svg,.os-img img{display:block;width:100%;height:100%;object-fit:cover}
+.os-t{min-width:0;flex:1}
+.os-t h2{margin:0;font:600 clamp(22px,5.4vw,27px)/1.1 var(--serif);display:flex;align-items:center;gap:8px}
+.os-t p{margin:4px 0 0;font-size:14px;color:var(--brown-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.os-x{flex:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:#fff;color:var(--brown);display:grid;place-items:center;cursor:pointer}
+.os-x svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.os-x:hover{background:var(--cream-2)}
+.os-b{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding:2px 20px 8px}
+.os-g{border:0;margin:0 0 18px;padding:0;min-width:0}
+.os-g legend{padding:0;margin-bottom:10px;font:600 12.5px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--brown-2)}
+.os-g legend small{font-weight:500;letter-spacing:0;text-transform:none;margin-left:6px}
+.os-row{display:flex;flex-wrap:wrap;gap:10px}
+.os-p{flex:1 1 0;min-width:92px;min-height:52px;display:grid;gap:1px;place-content:center;padding:8px 14px;border-radius:18px;border:2px solid var(--orange);background:linear-gradient(180deg,#FFFAF2,#FCE6CB);color:var(--brown);font:500 16px var(--sans);cursor:pointer;transition:transform .2s,background .2s,color .2s}
+.os-p b{font-weight:600;font-size:16px}.os-p small{font-size:13px;color:var(--brown-2)}
+.os-p:hover:not(:disabled){transform:translateY(-1px)}
+.os-p[aria-checked=true],.os-p[aria-pressed=true]{background:linear-gradient(180deg,#F58C21,#C95A0C);color:#fff}
+.os-p[aria-checked=true] small,.os-p[aria-pressed=true] small{color:#FFE7C9}
+.os-p:disabled{opacity:.45;border-style:dashed;cursor:not-allowed}
+.os-p:focus-visible,.os-x:focus-visible,.os-add:has(input:focus-visible){outline:3px solid var(--orange-d);outline-offset:2px}
+.os-add{display:flex;align-items:center;gap:12px;min-height:54px;padding:6px 2px;border-bottom:1px solid var(--line);cursor:pointer}
+.os-add:last-child{border-bottom:0}
+.os-add input{width:22px;height:22px;accent-color:var(--orange-d);flex:none}
+.os-add span{flex:1;font-weight:500}
+.os-add b{font-weight:600;color:var(--orange-d)}
+.os-f{padding:14px 20px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:#FFF8EE}
+.os-err{min-height:0;margin:0 0 8px;font-size:14px;color:#B3261E;font-weight:500}
+.os-err:empty{display:none}
+.os-go{width:100%}
+.szc{display:inline-block;margin-left:8px;padding:2px 10px;border-radius:999px;background:var(--cream-2);color:var(--brown);font:600 .55em var(--sans);letter-spacing:.02em;vertical-align:middle}
+.inc{display:block;margin-top:4px;font-size:13px;font-weight:600;color:var(--orange-d)}
+@media (prefers-reduced-motion:no-preference){
+  #optSheet[open],#fbDlg[open]{animation:ossup .32s cubic-bezier(.2,.8,.2,1)}
+  #optSheet[open]::backdrop,#fbDlg[open]::backdrop{animation:fadein2 .3s both}
+  @keyframes ossup{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+}
+
 #dlg h2{font-family:var(--script);font-weight:400;font-size:44px;line-height:1}
 .ph{display:flex;gap:14px;align-items:center}.ph>div:last-child{display:grid;gap:8px;justify-items:start}
 input[type=radio],input[type=checkbox]{width:auto;padding:0;accent-color:var(--orange-d)}
@@ -1779,10 +1939,14 @@ body[data-v=home] .foot{display:block}
     <fieldset class="diet"><legend>Badges</legend><label><input type="checkbox" name="bs"> Bestseller</label><label><input type="checkbox" name="cp"> Chef&rsquo;s pick</label></fieldset>
     <label>Stock left (leave empty for unlimited)<input name="s" type="number" min="0" step="1" inputmode="numeric"></label>
     <label class="chk"><input type="checkbox" name="a"> Available to order</label>
+    <p class="tnote2" style="text-align:left;margin:0">Sizes: add one item per size, named like <b>Chicken Biryani – Half</b> and <b>Chicken Biryani – Full</b> (same category). Add-ons: put items in a category called <b>Add-ons</b>; type a category name in their description (e.g. Biryani) to show them only there.</p>
     <p class="err" id="dErr" role="alert"></p>
     <div class="dbtn"><button type="button" class="ghost" id="dCancel">Cancel</button><button class="go" type="submit">Save item</button></div>
   </form>
 </dialog>
+<dialog id="optSheet" aria-labelledby="osT"></dialog>
+<dialog id="fbDlg" aria-labelledby="fbT"></dialog>
+<dialog id="billDlg" aria-labelledby="bdT"></dialog>
 <div id="toast" role="status" aria-live="polite"></div>
 <div id="shopBar" class="shopbar" role="status" hidden></div>
 
@@ -1797,7 +1961,8 @@ const BRAND_DEFAULT='Your Restaurant';
 let NAME=BRAND_DEFAULT; /* set from SET.name below */
 /* Contact details for the Visit card and footer. Fill these in before handing over; anything left empty is simply hidden.
    name: restaurant name shown in logo, footer, page title and messages (blank = generic demo). ph / wa: 10-digit numbers. ig / fb: handle or full link. maps: Google Maps share link. fssai: 14-digit licence no. credit: 0 hides the studio credit. */
-const SITE_DEFAULTS={name:'',ph:'9876543210',wa:'',em:'',addr:'Beside Kakatiya University, Warangal, Telangana – 506009',maps:'',ig:'',fb:'',fssai:'',credit:1};
+/* review: your Google review link (Google Business Profile > Ask for reviews > copy link) or just the Place ID. Leave empty to hide the Google button. */
+const SITE_DEFAULTS={name:'',ph:'9876543210',wa:'',em:'',addr:'Beside Kakatiya University, Warangal, Telangana – 506009',maps:'',review:'',ig:'',fb:'',fssai:'',credit:1};
 /* ---- data layer: menu, categories, coupons, orders live in this browser (localStorage).
    Integration point: swap LS.get/LS.set for Supabase reads/writes to share one menu across devices. ---- */
 const LS={get(k,d){try{const v=localStorage.getItem('saffron.'+k);return v?JSON.parse(v):d}catch{return d}},
@@ -1853,6 +2018,11 @@ function say(e){
     case 'bad_phone': return 'Enter a valid 10-digit phone number.';
     case 'unauthorized': return 'Staff session ended. Unlock again.';
     case 'gal_not_saved': case 'set_not_saved': return 'The server didn’t keep that change. Ask your developer to let admin_save_settings store the “ph”, “wa” and “gal” settings.';
+    case 'not_served': return 'You can rate an order once it’s served.';
+    case 'bad_order': return 'We couldn’t find that order.';
+    case 'bad_rating': return 'Pick a star rating first.';
+    case 'already_billed': return 'This table was just closed on another device.';
+    case 'bad_bill': case 'bad_method': return 'That bill couldn’t be saved. Reload the page and try again.';
     default: return 'Something went wrong. Please try again.';
   }
 }
@@ -1875,7 +2045,64 @@ const get=id=>MENU.find(m=>m.id==id);
 const isBS=m=>(SET.bs||[]).some(x=>x==m.id), isCP=m=>(SET.cp||[]).some(x=>x==m.id);
 const CHIP={__bs:'★ Bestsellers',__cp:'Chef’s picks'};
 const MQ={q:'',veg:0};   /* menu search text and veg-only switch */
-const filters=()=>['All',...(MENU.some(isBS)?['__bs']:[]),...(MENU.some(isCP)?['__cp']:[]),...CATS.filter(c=>MENU.some(m=>m.c===c))];
+const filters=()=>['All',...(MENU.some(isBS)?['__bs']:[]),...(MENU.some(isCP)?['__cp']:[]),...CATS.filter(c=>!isAddonCat(c)&&MENU.some(m=>m.c===c))];
+/* ---- item options: sizes, spice level, add-ons ----
+   Nothing here changes the server. Every size and every add-on is a real menu row, so place_order still prices,
+   stock-checks and validates each one. Sizes: items named "Chicken Biryani – Half" / "– Full" (same category) are shown as one dish.
+   Add-ons: items in a category called "Add-ons". An add-on's description can name the categories it applies to; empty = all. */
+const SZ=/^(.+?)\s*(?:[-–—:|]\s*|\(\s*)(half|full|quarter|qtr|regular|small|medium|large|mini|family|jumbo|single|double)\s*\)?\s*$/i;
+const sizeOf=m=>{const r=SZ.exec(String(m.n||'').trim());return r?{base:r[1].trim(),size:r[2][0].toUpperCase()+r[2].slice(1).toLowerCase()}:null};
+const isAddonCat=c=>/^(add[\s-]?ons?|extras?|toppings?)$/i.test(String(c||'').trim());
+const isAddon=m=>isAddonCat(m.c);
+const gKey=m=>{const s=sizeOf(m);return s?m.c+'|'+s.base.toLowerCase():null};
+const groupOf=m=>{const k=gKey(m);if(!k||isAddon(m))return null;const g=MENU.filter(x=>!isAddon(x)&&gKey(x)===k);return g.length>1?g.sort((a,b)=>a.p-b.p):null};
+const addonsFor=m=>MENU.filter(a=>isAddon(a)&&a.a&&!(a.stock!=null&&a.stock<=0)&&(!String(a.d||'').trim()||String(a.d).toLowerCase().includes(String(m.c).toLowerCase())));
+const noSpice=m=>/\b(desserts?|sweets?|drinks?|beverages?|juices?|shakes?|ice[\s-]?creams?|breads?|salads?)\b/i.test(m.c);
+/* menu entries: a sized dish becomes one card that carries its sizes in .grp */
+function entries(list){
+  const seen=new Set(),out=[];
+  list.forEach(m=>{const g=groupOf(m);if(!g){out.push(m);return}const k=gKey(m);if(seen.has(k))return;seen.add(k);
+    out.push({...g[0],grp:g,n:sizeOf(g[0]).base,a:g.some(x=>x.a),img:(g.find(x=>x.img)||g[0]).img})});
+  return out;
+}
+const cartName=m=>{const r=get(m.id),z=r&&!isAddon(r)&&groupOf(r)&&sizeOf(r);return z?`${esc(z.base)}<span class="szc">${esc(z.size)}</span>`:m.n};
+const OS={};
+const OSX='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+function openSheet(id,opener){
+  const m=get(id); if(!m)return;
+  const g=groupOf(m), rep=g?g[0]:m, base=g?sizeOf(rep).base:m.n, ads=addonsFor(rep), sp=!noSpice(rep);
+  const ok=x=>x.a&&!(x.stock!=null&&x.stock<=0);
+  Object.assign(OS,{g,rep,base,sel:(g?(g.find(ok)||g[0]):m).id,sp:null,add:new Set(),opener:opener||null});
+  const sizes=g?`<fieldset class="os-g"><legend>Size</legend><div class="os-row" role="radiogroup" aria-label="Size">${g.map(x=>{const z=sizeOf(x);return `<button type="button" class="os-p" role="radio" aria-checked="false" data-sz="${x.id}"${ok(x)?'':' disabled'}><b>${esc(z.size)}</b><small>${ok(x)?inr(x.p):'Sold out'}</small></button>`}).join('')}</div></fieldset>`:'';
+  const spice=sp?`<fieldset class="os-g"><legend>Spice level<small>optional</small></legend><div class="os-row">${['Mild','Medium','Spicy'].map(x=>`<button type="button" class="os-p" aria-pressed="false" data-sp="${x}"><b>${x}</b></button>`).join('')}</div></fieldset>`:'';
+  const add=ads.length?`<fieldset class="os-g"><legend>Add-ons<small>optional</small></legend>${ads.map(a=>`<label class="os-add"><input type="checkbox" data-ad="${a.id}"><span>${esc(a.n)}</span><b>+${inr(a.p)}</b></label>`).join('')}</fieldset>`:'';
+  $('#optSheet').innerHTML=`<div class="os-h"><div class="os-img">${pic(rep)}</div><div class="os-t"><h2 id="osT"><span class="vm ${rep.v?'veg':'nv'}" role="img" aria-label="${rep.v?'Vegetarian':'Non-vegetarian'}"></span>${esc(base)}</h2>${rep.d?`<p>${esc(rep.d)}</p>`:''}</div><button class="os-x" type="button" data-osx aria-label="Close">${OSX}</button></div><div class="os-b">${sizes}${spice}${add}</div><div class="os-f"><p class="os-err" id="osErr" role="alert"></p><button class="atc os-go" id="osGo" type="button"></button></div>`;
+  osPaint(); const d=$('#optSheet'); if(!d.open)d.showModal();
+  (d.querySelector('[aria-checked=true]')||$('#osGo')).focus();
+}
+function osPaint(){
+  const d=$('#optSheet'), m=get(OS.sel);
+  d.querySelectorAll('[data-sz]').forEach(b=>b.setAttribute('aria-checked',String(b.dataset.sz==OS.sel)));
+  d.querySelectorAll('[data-sp]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.sp===OS.sp)));
+  let t=m?m.p:0; OS.add.forEach(i=>{const a=get(i);if(a)t+=a.p});
+  $('#osGo').textContent=`Add to cart · ${inr(t)}`; $('#osErr').textContent='';
+}
+function osConfirm(){
+  const m=get(OS.sel), err=t=>{$('#osErr').textContent=t};
+  if(!m||!m.a){err('That item isn’t available right now.');return}
+  const full=x=>x.stock!=null&&(cart[x.id]||0)>=x.stock;
+  if(full(m)){err(`Only ${m.stock} left`);return}
+  cart[m.id]=(cart[m.id]||0)+1;
+  OS.add.forEach(i=>{const a=get(i);if(a&&a.a&&!full(a))cart[a.id]=(cart[a.id]||0)+1});
+  if(OS.sp){const old=(notes[m.id]||'').replace(/^Spice: (Mild|Medium|Spicy)(, )?/,'');notes[m.id]=('Spice: '+OS.sp+(old?', '+old:'')).slice(0,60)}
+  const z=sizeOf(m), nm=OS.base+(OS.g&&z?` (${z.size})`:'');
+  $('#optSheet').close(); const y=scrollY; route2(); scrollTo(0,y); toast(`${nm} added to cart`);
+}
+function grpCard(m){
+  const g=m.grp, n=esc(m.n), inC=g.reduce((a,x)=>a+(cart[x.id]||0),0);
+  const tg=(g.some(isBS)?'<span class="tg bs">★ Bestseller</span>':'')+(g.some(isCP)?'<span class="tg cp"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#i-star"/></svg>Chef’s pick</span>':'');
+  return `<article class="icard${m.a?'':' na'}"><div class="img">${pic(m)}</div><div class="info">${tg?`<div class="tags">${tg}</div>`:''}<h3><span class="vm ${m.v?'veg':'nv'}" role="img" aria-label="${m.v?'Vegetarian':'Non-vegetarian'}"></span>${n}</h3><p>${esc(m.d)}</p><span class="price">From ${inr(g[0].p)}</span>${inC?`<small class="inc">${inC} in cart</small>`:''}</div><div class="act">${m.a?`<button class="atc" type="button" data-opt="${g[0].id}" aria-label="Choose size for ${n}">Choose size</button>`:'<button class="atc" type="button" disabled>Not available</button>'}</div></article>`;
+}
 const cart={}; let cat='All';
 /* dish illustrations (drawn, so the page needs no image files) */
 const rnd=i=>{const x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x)};
@@ -1920,7 +2147,7 @@ const waLink=x=>{const n=x.cust.name.split(' ')[0],c=x.token.slice(0,3)+' '+x.to
 
 let mode='takeaway',table=null,authNext=null;
 /* ---- table sessions ----
-   A table is held from its first dine-in order until staff tap "Mark table free". The server enforces it: place_order rejects
+   A table is held from its first dine-in order until staff close it from its bill. The server enforces it: place_order rejects
    a dine-in order for an occupied table. The guest who opened the session keeps its key on this device, which is what lets
    them add more items to their own order. */
 let mySeat=LS.get('seat',null), occ=[], occAt=0;
@@ -1970,10 +2197,11 @@ function renderMenu(){
   pruneCart(); const F=filters(); if(!F.includes(cat))cat='All';
   $('#tabs').innerHTML=F.map(c=>`<button class="chip" aria-pressed="${c===cat}" data-c="${esc(c)}">${esc(CHIP[c]||c)}</button>`).join('');
   const words=MQ.q.toLowerCase().split(/\s+/).filter(Boolean);
-  const list=MENU.filter(m=>(cat==='All'||(cat==='__bs'?isBS(m):cat==='__cp'?isCP(m):m.c===cat))&&(!MQ.veg||m.v)&&(!words.length||words.every(w=>(m.n+' '+m.c+' '+(m.d||'')).toLowerCase().includes(w))));
+  const list=entries(MENU.filter(m=>!isAddon(m)&&(cat==='All'||(cat==='__bs'?isBS(m):cat==='__cp'?isCP(m):m.c===cat))&&(!MQ.veg||m.v)&&(!words.length||words.every(w=>(m.n+' '+m.c+' '+(m.d||'')).toLowerCase().includes(w)))));
   const vt=$('#vegTog'); vt.setAttribute('aria-checked',String(!!MQ.veg));
   const filt=words.length||MQ.veg||cat!=='All'; $('#mcount').textContent=filt&&MENU.length?`${list.length} ${list.length===1?'dish':'dishes'} found`:'';
   $('#items').innerHTML=list.length?list.map(m=>{
+    if(m.grp)return grpCard(m);
     const q=cart[m.id]||0, n=esc(m.n);
     const tg=(isBS(m)?'<span class="tg bs">★ Bestseller</span>':'')+(isCP(m)?'<span class="tg cp"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#i-star"/></svg>Chef’s pick</span>':'');
     return `<article class="icard${m.a?'':' na'}"><div class="img">${pic(m)}</div><div class="info">${tg?`<div class="tags">${tg}</div>`:''}<h3><span class="vm ${m.v?'veg':'nv'}" role="img" aria-label="${m.v?'Vegetarian':'Non-vegetarian'}"></span>${n}</h3><p>${esc(m.d)}</p><span class="price">${inr(m.p)}</span>${m.stock>0&&m.stock<=5?`<small class="low">Only ${m.stock} left</small>`:''}</div><div class="act">`+
@@ -1996,11 +2224,22 @@ mqx.addEventListener('click',()=>{mq.value='';MQ.q='';mqx.hidden=true;unEnter();
 $('#vegTog').addEventListener('click',()=>{MQ.veg=MQ.veg?0:1;unEnter();renderMenu()});
 $('#items').addEventListener('click',e=>{if(e.target.closest('#mclr')){MQ.q='';MQ.veg=0;cat='All';mq.value='';mqx.hidden=true;unEnter();renderMenu()}});
 function bump(e){const b=e.target.closest('[data-m]');if(!b)return;document.querySelectorAll('.enter').forEach(x=>x.classList.remove('enter'));const i=b.dataset.m, m=get(i); if(!m||(+b.dataset.d>0&&!m.a))return;
+  if(+b.dataset.d>0&&!cart[i]&&$('#items').contains(b)&&addonsFor(m).length){openSheet(m.id,b);return}
   if(+b.dataset.d>0&&m.stock!=null&&(cart[i]||0)>=m.stock){toast(`Only ${m.stock} left`);return}
   cart[i]=Math.max(0,(cart[i]||0)+ +b.dataset.d); if(!cart[i]){delete cart[i];delete notes[i]}
   const y=scrollY; route2(); scrollTo(0,y);}
 function route2(){const id=location.hash.slice(1);if(id==='menu')renderMenu();if(id==='takeaway')renderTake();}
 $('#items').addEventListener('click',bump);
+$('#items').addEventListener('click',e=>{const b=e.target.closest('[data-opt]');if(b)openSheet(b.dataset.opt,b)});
+$('#optSheet').addEventListener('click',e=>{
+  const d=e.currentTarget;
+  if(e.target===d||e.target.closest('[data-osx]')){d.close();return}
+  const z=e.target.closest('[data-sz]'); if(z&&!z.disabled){OS.sel=z.dataset.sz;osPaint();return}
+  const sp=e.target.closest('[data-sp]'); if(sp){OS.sp=OS.sp===sp.dataset.sp?null:sp.dataset.sp;osPaint();return}
+  if(e.target.closest('#osGo'))osConfirm();
+});
+$('#optSheet').addEventListener('change',e=>{const c=e.target.closest('[data-ad]');if(!c)return;c.checked?OS.add.add(c.dataset.ad):OS.add.delete(c.dataset.ad);osPaint()});
+
 
 /* cart page */
 let coupon=null, lastOrder=null;
@@ -2015,7 +2254,7 @@ const total=()=>calc().total;
 const TRASH='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M9.500 7V5h5v2M7 7l1 12h8l1-12M10.500 11v5M13.500 11v5"/></svg>';
 function renderTake(){
   pruneCart(); const ids=Object.keys(cart), has=ids.length>0; if(!has||(coupon&&!findCode(coupon)))coupon=null;
-  $('#cartList').innerHTML=has?ids.map(i=>{const m=eget(i);return `<article class="icard cc"><div class="img">${pic(m)}</div><div class="info"><h3>${m.n}</h3><p>${m.d}</p><span class="price">${inr(m.p)}</span><input class="inote" data-note="${i}" maxlength="60" placeholder="Add a note (less spicy, no onion)" aria-label="Note for ${m.n}" value="${esc(notes[i]||'')}"></div><div class="act"><button class="trash" data-m="${i}" data-d="-999" aria-label="Remove ${m.n}">${TRASH}</button><span class="cstep"><button class="cb" data-m="${i}" data-d="-1" aria-label="One less ${m.n}">−</button><span aria-live="polite">${cart[i]}</span><button class="cb" data-m="${i}" data-d="1" aria-label="One more ${m.n}">+</button></span></div></article>`}).join('')
+  $('#cartList').innerHTML=has?ids.map(i=>{const m=eget(i);return `<article class="icard cc"><div class="img">${pic(m)}</div><div class="info"><h3>${cartName(m)}</h3><p>${isAddon(m)?'':m.d}</p><span class="price">${inr(m.p)}</span><input class="inote" data-note="${i}" maxlength="60" placeholder="Add a note (less spicy, no onion)" aria-label="Note for ${m.n}" value="${esc(notes[i]||'')}"></div><div class="act"><button class="trash" data-m="${i}" data-d="-999" aria-label="Remove ${m.n}">${TRASH}</button><span class="cstep"><button class="cb" data-m="${i}" data-d="-1" aria-label="One less ${m.n}">−</button><span aria-live="polite">${cart[i]}</span><button class="cb" data-m="${i}" data-d="1" aria-label="One more ${m.n}">+</button></span></div></article>`}).join('')
    :'<div class="bill empty"><p>Your cart is empty.</p><a class="atc" href="#menu" style="display:inline-block;width:auto;padding:0 28px;line-height:50px;text-decoration:none">Browse items</a></div>';
   $('#bill').hidden=!has; $('#takeaway .mwrap').classList.toggle('has',has); $('#placeBtn').hidden=!has; $('#placeBtn').textContent=mode==='dine'&&mine(+table)?'Add to My Order':'Place Order'; $('#contact').hidden=!has||mode==='dine';
   {const c=LS.get('cust');if(c){if(!$('#cName').value)$('#cName').value=c.name;if(!$('#cPhone').value)$('#cPhone').value=fmtPh(c.phone)}}
@@ -2348,16 +2587,10 @@ const orderRows=()=>{
   const s=oq.replace(/\D/g,''), r=orders.map((x,i)=>({x,i})).filter(({x})=>!s||(x.token||'').includes(s)||(x.cust&&x.cust.phone.includes(s)));
   return r.length?r.map(({x,i})=>`<article class="arow"><div class="ainfo"><b>${x.token?`<span class="tkchip">${x.token.slice(0,3)} ${x.token.slice(3)}</span>`:''}${x.dn?'Table T'+x.table:'Take away'}, ${inr(x.total)}</b><small>${when(x.at)}. ${x.lines.map(ln).join(', ')}${x.cust?`<br><b>${esc(x.cust.name)}</b>, +91 ${fmtPh(x.cust.phone)}`:''}</small></div>${x.cust&&x.token?`<span class="abtns"><a class="mini" href="${waLink(x)}" target="_blank" rel="noopener">WhatsApp</a><a class="mini" href="tel:+91${x.cust.phone}">Call</a></span>`:''}<button class="mini" data-act="print" data-i="${i}">Print</button><button class="sw" data-act="ost" data-i="${i}" aria-label="Status ${x.status}. Tap to change">${x.status}</button></article>`).join(''):`<p class="aempty">${s?'No order matches that.':'No orders yet.'}</p>`;
 };
-function tablesInUse(){
-  const t=[...occ].sort((a,b)=>a-b); if(!t.length)return '';
-  return `<section class="tinuse" aria-label="Tables in use"><h2 class="ah">Tables in use</h2>`+t.map(k=>{
-    const open=orders.filter(o=>o.dn&&+o.table===k&&o.status!=='Served').length;
-    return `<article class="arow"><div class="ainfo"><b>Table T${k}</b><small>${open?`${open} open ${open===1?'order':'orders'}`:'All orders served. Ready to free up.'}</small></div><button class="mini del" data-act="free" data-t="${k}">Mark table free</button></article>`}).join('')+`</section>`;
-}
 function tOrders(){
   const o=orderRows();
   const b=bookings.map((x,i)=>({x,i})).sort((a,c)=>(a.x.date+a.x.time).localeCompare(c.x.date+c.x.time)).map(({x,i})=>`<article class="arow"><div class="ainfo"><b>${dayLabel(x.date,{weekday:'short',day:'numeric',month:'short'})}, ${fmtTime(x.time)}, Table T${x.table}</b><small>${esc(x.name)}, ${esc(x.phone)}${x.note?'. “'+esc(x.note)+'”':''}</small></div><button class="mini del" data-act="bdel" data-i="${i}">Cancel booking</button></article>`).join('')||'<p class="aempty">No table bookings yet.</p>';
-  return `${tablesInUse()}<div class="atop"><h2 class="ah">Orders</h2><span class="abtns"><button class="mini" data-act="snd">Sound ${SET.snd?'on':'off'}</button>${orders.some(x=>x.status==='Served')?'<button class="mini" data-act="clr">Clear served</button>':''}</span></div><input id="tq" type="search" inputmode="numeric" placeholder="Find an order by pickup code or phone" value="${esc(oq)}" aria-label="Find an order by pickup code or phone" style="margin-bottom:12px"><div id="oList">${o}</div><h2 class="ah">Table bookings</h2>${b}`;
+  return `${tablesInUse()}${recentBills()}<div class="atop"><h2 class="ah">Orders</h2><span class="abtns"><button class="mini" data-act="snd">Sound ${SET.snd?'on':'off'}</button>${orders.some(x=>x.status==='Served')?'<button class="mini" data-act="clr">Clear served</button>':''}</span></div><input id="tq" type="search" inputmode="numeric" placeholder="Find an order by pickup code or phone" value="${esc(oq)}" aria-label="Find an order by pickup code or phone" style="margin-bottom:12px"><div id="oList">${o}</div><h2 class="ah">Table bookings</h2>${b}`;
 }
 /* ---- Table QR codes ----
    Each table gets a code that opens this site as  <your address>?table=10 . The page reads it (see qrInit) and drops the guest
@@ -2432,12 +2665,13 @@ function tDash(){
   const KP=[['Total orders','bag',v=>v],['Total revenue','rup',inr],['Customers','usr',v=>v],['Avg. order value','bar',inr]];
   const opt=(arr,cur)=>arr.map(([v,t])=>`<option value="${v}"${v===cur?' selected':''}>${t}</option>`).join('');
   return `<div class="dz-hi"><div><h2 class="ah">Good ${h<12?'morning':h<17?'afternoon':'evening'}!</h2><p>Here’s what’s happening at ${esc(NAME)}.</p></div><select class="dz-sel" id="dPer" aria-label="Period">${opt([['today','Today'],['yesterday','Yesterday'],['week','Last 7 days']],dPer)}</select></div>
+${dTables(td)}
 <div class="dz-g dz-k">${KP.map(([t,ic,f],i)=>`<div class="dz-c dz-kp"><span class="dz-b">${dIc(ic,26)}</span><div><small>${t}</small><div><strong>${f(S[i])}</strong>${dBadge(dPct(S[i],P[i]))}</div></div>${dSpark(days.map(d=>d[i]))}</div>`).join('')}</div>
 <div class="dz-g dz-3"><div class="dz-c"><h3>${dIc('bar',22)}Sales overview<select class="dz-sel" id="dRng" aria-label="Range">${opt([['d','Last 7 days'],['w','Last 4 weeks']],dRng)}</select></h3><div class="dz-big">${inr(tot)}${dBadge(dPct(tot,dSt(dAt(c0-n*st,c0))[1]))}</div><div class="dz-sub">Total sales</div>${dChart(pts)}</div>
 <div class="dz-c"><h3>Order status</h3>${dDonut(cur)}</div>
 <div class="dz-c dz-dark"><h3>Online orders</h3><div class="dz-st">${sh.open?'Taking orders':'Not taking orders'}</div><p>${esc(sh.msg||'Guests can order from the menu or from their table.')}</p><button class="dz-go" data-act="pause">${SET.paused?'Resume orders':'Pause orders'}</button></div></div>
-<div class="dz-g dz-3"><div class="dz-c"><h3>${dIc('sig',22)}Live orders<button class="dz-lk" data-dgo="orders">View all →</button></h3><input class="dz-q" id="dq" type="search" placeholder="Search open orders" aria-label="Search open orders" value="${esc(dQ)}"><div id="dOrd">${dOrders()}</div></div>
-<div class="dz-c"><h3>${dIc('tbl',22)}Table status</h3><div class="dz-tbs">${TB.map(([k])=>{const z=occ.includes(k)?'Occupied':bookings.some(o=>o.date===td&&+o.table===k)?'Booked':'Free';return z==='Occupied'?`<button type="button" class="dz-tb Occupied" data-act="free" data-t="${k}" aria-label="Table ${k} occupied. Mark table free"><b>T${k}</b>Occupied</button>`:`<div class="dz-tb ${z}" aria-label="Table ${k} ${z}"><b>T${k}</b>${z}</div>`}).join('')}</div>${occ.length?'<p class="dz-hint">Tap an occupied table to mark it free.</p>':''}</div>
+<div class="dz-g dz-2"><div class="dz-c"><h3>${dIc('sig',22)}Live orders<button class="dz-lk" data-dgo="orders">View all →</button></h3><input class="dz-q" id="dq" type="search" placeholder="Search open orders" aria-label="Search open orders" value="${esc(dQ)}"><div id="dOrd">${dOrders()}</div></div>
+
 <div class="dz-c"><h3>${dIc('sig',22).replace('sig','')}Quick actions</h3><div class="dz-qa"><button data-dgo="qr">${dIc('qr',16)}Table QR codes</button><button data-dgo="items" data-dadd>${dIc('plus',16)}Add menu item</button><button data-dgo="orders">${dIc('cal',16)}Orders &amp; bookings</button><button data-dgo="shop">${dIc('gear',16)}Shop settings</button></div></div></div>`}
 $('#aBody').addEventListener('click',e=>{const b=e.target.closest('[data-dgo]');if(b){tab=b.dataset.dgo;adminBody();scrollTo(0,0);if(b.dataset.dadd!=null)openItem()}});
 $('#aBody').addEventListener('input',e=>{if(e.target.id==='dq'){dQ=e.target.value;$('#dOrd').innerHTML=dOrders()}});
@@ -2445,10 +2679,230 @@ $('#aBody').addEventListener('change',e=>{if(e.target.id==='dPer'){dPer=e.target
 setInterval(()=>{if(unlocked&&tab==='dash'&&!document.hidden&&!document.querySelector('#dq:focus'))adminBody()},60000);
 const tSettings=()=>`<form class="acard" id="conForm" novalidate><h2 class="ah">Phone numbers</h2><p class="sub2">Shown on the website (Contact Us card and footer). 10-digit numbers, no +91.</p><label>Call number<input name="ph" type="tel" inputmode="tel" autocomplete="off" value="${esc(SET.ph||'')}"></label><label>WhatsApp number (optional)<input name="wa" type="tel" inputmode="tel" autocomplete="off" value="${esc(SET.wa||'')}"></label><p class="err" id="conErr" role="alert"></p><button class="go sm" type="submit">Save numbers</button></form><form class="acard" id="pinForm" novalidate><h2 class="ah">Staff PIN</h2><label>New PIN (4 to 8 digits)<input name="pin" type="password" inputmode="numeric" autocomplete="new-password"></label><p class="err" id="pinErr" role="alert"></p><button class="go sm" type="submit">Save PIN</button></form><div class="acard"><h2 class="ah">Backup</h2><p class="sub2">Save your menu, categories and coupons to a file, or load a saved one back in.</p><div class="abtns"><button class="mini" data-act="export">Export backup</button><label class="mini">Import backup<input type="file" id="impFile" accept="application/json" hidden></label><button class="mini del" data-act="reset">Reset menu to defaults</button></div></div>`;
 
+/* ============ TABLE BILLING ============
+   A table's bill is every dine-in round at that table that isn't on a saved bill yet, merged into one list.
+   "Close table" sends the bill to the server, which saves it in the bills table, marks the rounds Served and frees
+   the table in one step (saffron-billing-v1.sql). Nothing here changes how guests order. */
+const SESSION_GAP_H=6;   /* rounds more than this many hours apart count as separate visits (guards against old unbilled orders) */
+let BILLS=[], BILLING=null, billsAt=0;   /* BILLING: null = not asked yet, true = installed, false = the SQL hasn't been run */
+const billPhone={}, BL={k:null,method:'',saved:null,busy:false,opener:null,sig:''};
+const TBL_ST={New:'#3B82F6',Preparing:'#F5A524',Ready:'#2FA84F',Served:'#CFC8C1'};
+const BI={
+  clk:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
+  x:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  Cash:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM12 9.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM6.5 10v4M17.5 10v4"/></svg>',
+  UPI:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM10 12l1.8 1.8 3-3.300M10.5 18h3"/></svg>',
+  Card:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.500h18v11H3zM3 10.500h18M6.5 14.500h3"/></svg>',
+  pr:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V4h10v5M7 17H5a1 1 0 0 1-1-1v-5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5a1 1 0 0 1-1 1h-2M7 14h10v6H7z"/></svg>',
+  wa:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.500a8 8 0 0 1-11.9 7L4 20l1.5-4A8 8 0 1 1 20 11.500zM9.5 9c.3 2.5 2.7 4.9 5.2 5.300l1-1.2-1.8-1-.8.600a3.6 3.6 0 0 1-1.8-1.800l.6-.8-1-1.800z"/></svg>'
+};
+const money=n=>inr(Math.round(+n||0));
+const billedIds=()=>new Set(BILLS.flatMap(b=>(b.order_ids||[]).map(String)));
+const billNo=b=>'B-'+String(b.id).padStart(5,'0');
+/* "Chicken Biryani – Full" reads as "Chicken Biryani Full" on a bill */
+const billName=n=>{const z=sizeOf({n});return z?z.base+' '+z.size:String(n)};
+const clock=iso=>new Date(iso).toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit'});
+const seatedFor=iso=>{const m=Math.max(0,Math.floor((Date.now()-new Date(iso))/6e4));return m<1?'Just seated':m<60?m+' min':Math.floor(m/60)+'h '+String(m%60).padStart(2,'0')+'m'};
+const billReqs=k=>svcReqs.filter(s=>s.kind==='bill'&&+s.tbl===+k).sort((a,b)=>new Date(a.at)-new Date(b.at));
+const billReq=k=>billReqs(k)[0];
+const billErr=x=>x&&x.status===404?'Billing isn’t set up yet. Run saffron-billing-v1.sql in Supabase first.'
+  :x&&/^already_billed/.test(String(x.message))?'This table was just closed on another device.':say(x);
+
+/* which bills are already saved. Light rows only; throttled because the staff screen polls every 6 seconds */
+async function refreshBills(force){
+  if(!ADM)return;
+  if(!force&&Date.now()-billsAt<(BILLING===false?60000:20000))return;
+  billsAt=Date.now();
+  try{const r=await adm('admin_bills',{p_days:3}); if(Array.isArray(r)){BILLS=r;BILLING=true}}
+  catch(x){if(x&&x.status===404)BILLING=false}
+}
+/* the open rounds at table k: dine-in orders that aren't on a saved bill, newest visit only */
+function openRounds(k){
+  const done=billedIds(), l=orders.filter(o=>o.dn&&+o.table===+k&&!done.has(String(o.id))).sort((a,b)=>dTs(a)-dTs(b));
+  let from=0; for(let i=1;i<l.length;i++)if(dTs(l[i])-dTs(l[i-1])>SESSION_GAP_H*36e5)from=i;
+  return l.slice(from);
+}
+/* split one order's total into subtotal, discount and GST the same way the server priced it */
+function splitOrder(o){
+  const g=+SET.gst||0, T=+o.total||0, sub=o.lines.reduce((a,l)=>a+l.p*l.q,0);
+  let base,gst;
+  if(SET.incl){base=T;gst=Math.round(T*g/(100+g))}
+  else{base=Math.round(T*100/(100+g));for(const b of [base,base-1,base+1])if(b+Math.round(b*g/100)===T){base=b;break}gst=T-base}
+  return{sub,gst,disc:Math.max(0,sub-base)};
+}
+function billOf(k){
+  const rs=openRounds(k), parts=rs.map(splitOrder), sum=f=>parts.reduce((a,p)=>a+p[f],0), by=new Map();
+  rs.forEach(o=>o.lines.forEach(l=>{const key=l.n+'|'+l.p, e=by.get(key)||{n:l.n,p:l.p,q:0}; e.q+=l.q; by.set(key,e)}));
+  const c=(rs.find(o=>o.cust&&o.cust.phone)||{}).cust;
+  return{table:+k,
+    rounds:rs.map((o,i)=>({no:i+1,id:String(o.id),at:o.at,status:o.status,items:o.lines.map(l=>({n:l.n,q:l.q}))})),
+    lines:[...by.values()].map(e=>({n:e.n,q:e.q,p:e.p,amt:e.p*e.q})),
+    sub:sum('sub'),disc:sum('disc'),gst:sum('gst'),total:rs.reduce((a,o)=>a+(+o.total||0),0),
+    pct:+SET.gst||0,incl:!!SET.incl,opened:rs[0]?rs[0].at:null,phone:c?c.phone:''};
+}
+const savedOf=r=>({table:r.table_no,rounds:(r.rounds||[]).map(x=>Object.assign({},x,{status:'Served'})),lines:r.lines||[],
+  sub:+r.subtotal,disc:+r.discount,gst:+r.gst,total:+r.total,pct:+r.gst_pct,incl:!!r.tax_incl,opened:r.opened_at,closed:r.closed_at,
+  phone:r.phone||'',no:billNo(r),method:r.method});
+const lightOf=r=>({id:r.id,table_no:r.table_no,method:r.method,opened_at:r.opened_at,closed_at:r.closed_at,subtotal:r.subtotal,discount:r.discount,gst:r.gst,total:r.total,order_ids:r.order_ids,phone:r.phone});
+
+/* ---- dashboard: one card per occupied table; tables asking for the bill jump to the top ---- */
+function tcard({k,b,rq}){
+  const n=b.rounds.length, open=b.rounds.filter(r=>r.status!=='Served').length, seat=b.opened?seatedFor(b.opened):'';
+  const info=n?`${n} ${n===1?'round':'rounds'} · ${open?open+' in progress':'all served'}`:'No orders found';
+  const lab=`Table ${k}, running total ${money(b.total)}${seat?', seated '+seat:''}${rq?', asked for the bill '+dAgo(rq.at):''}. Open bill`;
+  return `<button type="button" class="tc${rq?' req':''}" data-act="bill" data-t="${k}" aria-label="${esc(lab)}"><span class="tc-top"><span class="tc-no">T${k}</span>${rq?'<span class="tc-tag"><i></i>Wants the bill</span>':''}</span><span class="tc-l">Running total</span><strong class="tc-amt">${money(b.total)}</strong><span class="tc-m">${BI.clk}<span>${esc(seat||'–')}</span><span class="tc-dots" aria-hidden="true">${b.rounds.map(r=>`<i style="background:${TBL_ST[r.status]||'#CFC8C1'}"></i>`).join('')}</span></span><span class="tc-i">${rq?`<b class="tc-ago">Asked ${esc(dAgo(rq.at))}</b>`:''}${info}</span></button>`;
+}
+const billSetup=()=>`<div class="acard bd-setup"><h2 class="ah">Billing isn’t set up yet</h2><p class="sub2">Run <b>saffron-billing-v1.sql</b> once in the Supabase SQL editor, then reload this page. Until then you can view and print bills, but tables can’t be closed.</p></div>`;
+function dTables(td){
+  const rows=[...occ].map(k=>({k,b:billOf(k),rq:billReq(k)}))
+    .sort((a,c)=>(c.rq?1:0)-(a.rq?1:0)||(a.rq&&c.rq?new Date(a.rq.at)-new Date(c.rq.at):0)||a.k-c.k);
+  const calm=TB.map(t=>t[0]).filter(k=>!occ.includes(k)), asks=rows.filter(r=>r.rq).length;
+  return `<div class="dz-g"><section class="dz-c dz-tbl" aria-label="Tables"><h3>${dIc('tbl',22)}Tables<span class="dz-cnt">${rows.length} in use${asks?` · ${asks} ${asks===1?'wants':'want'} the bill`:''} · ${calm.length} free or booked</span></h3>${BILLING===false&&rows.length?billSetup():''}${rows.length?`<div class="tcs">${rows.map(tcard).join('')}</div>`:'<p class="aempty">No tables in use right now.</p>'}<div class="dz-tbs wide">${calm.map(k=>{const z=bookings.some(o=>o.date===td&&+o.table===k)?'Booked':'Free';return `<div class="dz-tb ${z}" aria-label="Table ${k} ${z}"><b>T${k}</b>${z}</div>`}).join('')}</div></section></div>`;
+}
+/* Orders tab: the same tables as a plain list, plus today's closed bills */
+function tablesInUse(){
+  const t=[...occ].sort((a,b)=>(billReq(b)?1:0)-(billReq(a)?1:0)||a-b); if(!t.length)return '';
+  return `<section class="tinuse" aria-label="Tables in use"><h2 class="ah">Tables in use</h2>`+t.map(k=>{
+    const b=billOf(k), n=b.rounds.length, open=b.rounds.filter(r=>r.status!=='Served').length, rq=billReq(k);
+    return `<article class="arow"><div class="ainfo"><b>Table T${k}${n?', '+money(b.total):''}</b><small>${n?`${b.opened?'Seated '+esc(seatedFor(b.opened))+'. ':''}${open?`${open} ${open===1?'round':'rounds'} in progress.`:'All served. Ready to bill.'}`:'No orders found.'}${rq?' <b class="rqtag">Wants the bill.</b>':''}</small></div><button class="mini${rq?' hot':''}" data-act="bill" data-t="${k}">Bill &amp; close</button></article>`}).join('')+`</section>`;
+}
+function recentBills(){
+  if(BILLING===false)return billSetup();
+  const t0=new Date(); t0.setHours(0,0,0,0);
+  const l=BILLS.filter(b=>new Date(b.closed_at)>=t0);
+  if(!l.length)return '';
+  return `<section class="tinuse" aria-label="Bills closed today"><div class="atop"><h2 class="ah">Bills today</h2><small class="sub2">${l.length} ${l.length===1?'bill':'bills'} · ${money(l.reduce((a,b)=>a+(+b.total||0),0))}</small></div>`+l.slice(0,15).map(b=>`<article class="arow"><div class="ainfo"><b>${billNo(b)} · Table T${b.table_no}, ${money(b.total)}</b><small>${clock(b.closed_at)} · ${esc(b.method)}</small></div><button class="mini" data-act="bill-open" data-id="${b.id}">View</button></article>`).join('')+'</section>';
+}
+
+/* ---- the bill sheet ---- */
+const BD=()=>$('#billDlg');
+const curBill=()=>BL.saved||billOf(BL.k);
+function billView(){
+  const sv=BL.saved, B=curBill(), k=B.table, rq=sv?null:billReq(k), none=!B.rounds.length;
+  const meta=sv?`${when(B.closed)} · ${esc(B.no)}`:none?'No orders found':`Seated ${esc(seatedFor(B.opened))} · since ${clock(B.opened)}`;
+  const head=`<div class="bd-head"><div><span class="bd-eyebrow">${esc(NAME)}</span><h2 id="bdT">Table T${k}</h2><p class="bd-meta">${meta}</p>${sv?`<span class="bd-paid">Paid by ${esc(B.method)}</span>`:''}</div><button class="bd-x" type="button" data-bd="x" aria-label="Close">${BI.x}</button></div>`;
+  const ask=rq?`<div class="bd-ask" role="status"><i></i>Guests asked for the bill ${esc(dAgo(rq.at))}</div>`:'';
+  const rounds=B.rounds.length?`<section aria-label="Rounds"><h3 class="bd-h">Rounds</h3><ol class="bd-rounds">${B.rounds.map(r=>`<li><div class="bd-rh"><b>Round ${r.no}</b><time datetime="${esc(r.at)}">${clock(r.at)}</time><span class="bst ${esc(r.status)}">${esc(r.status)}</span></div><p>${r.items.map(i=>esc(billName(i.n))+' ×'+i.q).join(', ')}</p></li>`).join('')}</ol></section>`:'';
+  const row=(a,v)=>`<div class="bd-sum"><span>${a}</span><b>${v}</b></div>`;
+  const bill=B.lines.length?`<section aria-label="Bill"><h3 class="bd-h">Bill</h3><div class="bd-bill">${B.lines.map(l=>`<div class="bd-line"><span class="bd-n">${esc(billName(l.n))} <em>×${l.q}</em>${l.q>1?`<small>${money(l.p)} each</small>`:''}</span><span class="bd-a">${money(l.amt!=null?l.amt:l.p*l.q)}</span></div>`).join('')}${row('Subtotal',money(B.sub))}${B.disc>0?row('Discount','−'+money(B.disc)):''}${B.pct>0?row(B.incl?`Includes GST (${B.pct}%)`:`GST (${B.pct}%)`,money(B.gst)):''}<div class="bd-tot"><span>Total</span><strong>${money(B.total)}</strong></div></div></section>`:'<p class="bd-note">Nothing has been ordered at this table that still needs billing.</p>';
+  const ph=billPhone[k]!=null?billPhone[k]:(B.phone||'');
+  const share=none?'':`<section class="bd-share" aria-label="Print or send the bill"><label class="bd-h" for="bdPh" style="margin:0">Guest mobile, for WhatsApp</label><div class="bd-row"><div class="bd-phone"><span>+91</span><input id="bdPh" type="tel" inputmode="numeric" autocomplete="off" placeholder="98765 43210" value="${esc(ph)}" aria-describedby="bdPhE"></div><button type="button" class="mini" data-bd="wa" aria-label="Send the bill on WhatsApp">${BI.wa}<span>WhatsApp</span></button><button type="button" class="mini" data-bd="print" aria-label="Print the bill">${BI.pr}<span>Print</span></button></div><p class="bd-err" id="bdPhE" role="alert"></p></section>`;
+  return head+`<div class="bd-scroll">${ask}${rounds}${bill}${share}</div><div class="bd-foot" id="bdFoot">${footView()}</div>`;
+}
+const payView=()=>`<fieldset class="bd-pay"><legend class="bd-sr">Payment method</legend><div class="bd-pms">${['Cash','UPI','Card'].map(m=>`<label class="bd-pm"><input type="radio" name="bdm" value="${m}"${BL.method===m?' checked':''}><span>${BI[m]}${m}</span></label>`).join('')}</div></fieldset>`;
+function goView(){
+  const B=billOf(BL.k), open=B.rounds.filter(r=>r.status!=='Served').length;
+  const hint=BL.busy?'':!BL.method?'Choose Cash, UPI or Card to close the table.':open?`${open} ${open===1?'round is':'rounds are'} still in progress and will be marked Served.`:'';
+  return `<button class="go" type="button" data-bd="close"${BL.method&&!BL.busy?'':' disabled'}>${BL.busy?'Saving bill…':`Close table · ${BL.method?BL.method+' ':''}${money(B.total)}`}</button>${hint?`<p class="bd-hint">${hint}</p>`:''}`;
+}
+function footView(){
+  if(BL.saved)return '<button class="go" type="button" data-bd="x">Done</button>';
+  const B=billOf(BL.k);
+  if(!B.rounds.length)return `<button class="go" type="button" data-bd="free"${BL.busy?' disabled':''}>${BL.busy?'Freeing…':'Free table'}</button><p class="bd-hint">Nothing to bill at this table.</p>`;
+  return payView()+`<div id="bdGo">${goView()}</div>`;
+}
+const paintGo=()=>{const g=$('#bdGo');if(g)g.innerHTML=goView();else $('#bdFoot').innerHTML=footView()};
+const billSig=()=>{const B=curBill();return sigOf([B.rounds.map(r=>[r.id,r.status]),B.total,!!billReq(B.table)])};
+function paintBill(){
+  const d=BD(), sc=d.querySelector('.bd-scroll'), top=sc?sc.scrollTop:0, f=document.activeElement, caret=f&&f.id==='bdPh'?f.selectionStart:null, rf=f&&f.name==='bdm'?f.value:null;
+  d.innerHTML=billView(); BL.sig=billSig();
+  const s2=d.querySelector('.bd-scroll'); if(s2)s2.scrollTop=top;
+  if(caret!=null){const p=$('#bdPh');if(p){p.focus();p.setSelectionRange(caret,caret)}}
+  if(rf){const r=d.querySelector(`input[name=bdm][value="${rf}"]`);if(r)r.focus()}
+}
+function openBill(k,opener){
+  Object.assign(BL,{k:+k,method:'',saved:null,busy:false,opener:opener||null});
+  paintBill(); if(!BD().open)BD().showModal();
+}
+async function openSaved(id,opener){
+  const r=await adm('admin_bill',{p_id:+id});
+  Object.assign(BL,{k:r.table_no,method:'',saved:savedOf(r),busy:false,opener:opener||null});
+  paintBill(); if(!BD().open)BD().showModal();
+}
+/* keep an open bill current when a new round or a status change arrives */
+function syncBill(){
+  const d=BD(); if(!d.open||BL.k==null||BL.saved||BL.busy)return;
+  if(!occ.includes(BL.k)&&!openRounds(BL.k).length){toast(`Table T${BL.k} was closed on another device`);d.close();return}
+  if(billSig()!==BL.sig)paintBill();
+}
+const clearSvc=k=>{svcReqs.filter(s=>+s.tbl===+k).forEach(s=>adm('admin_service_done',{p_id:s.id}).catch(()=>{}));svcReqs=svcReqs.filter(s=>+s.tbl!==+k);paintSvc()};
+
+/* close the table: save the bill, mark the rounds Served and free the table in one server call */
+async function closeTable(){
+  const B=billOf(BL.k); if(BL.busy||!BL.method||!B.rounds.length)return;
+  BL.busy=true; paintGo();
+  const ph=normPhone(billPhone[B.table]||'')||'';
+  try{
+    const r=await adm('admin_close_table',{p_table:B.table,p_method:BL.method,p_bill:{
+      opened_at:B.opened,subtotal:B.sub,discount:B.disc,gst:B.gst,total:B.total,gst_pct:B.pct,tax_incl:B.incl,phone:ph,
+      order_ids:B.rounds.map(x=>x.id),orders:B.rounds.map(x=>({id:x.id,status:x.status})),lines:B.lines,
+      rounds:B.rounds.map(x=>({no:x.no,at:x.at,status:x.status,items:x.items}))}});
+    const ids=new Set(B.rounds.map(x=>x.id));
+    orders.forEach(o=>{if(ids.has(String(o.id)))o.status='Served'});
+    occ=occ.filter(x=>x!==B.table); BILLS.unshift(lightOf(r)); BILLING=true; clearSvc(B.table);
+    BL.saved=savedOf(r); delete billPhone[B.table]; BL.busy=false;
+    paintBill(); adminBody(); toast(`Table T${B.table} closed · ${money(B.total)} by ${r.method}`);
+  }catch(x){
+    BL.busy=false; toast(billErr(x));
+    if(x&&/^already_billed/.test(String(x.message))){await refreshBills(true);try{await refreshAdmin(false)}catch{}if(BD().open)BD().close();adminBody()}
+    else if(BD().open&&!BL.saved)paintGo();
+  }
+}
+/* a table with nothing to bill (opened by mistake, or its orders were cleared) can still be freed */
+async function freeTable(){
+  const k=BL.k; if(BL.busy||openRounds(k).length)return;
+  BL.busy=true; paintGo();
+  try{await adm('admin_free_table',{p_table:k});occ=occ.filter(x=>x!==k);clearSvc(k);BL.busy=false;BD().close();adminBody();toast(`Table T${k} is free`)}
+  catch(x){BL.busy=false;toast(say(x));if(BD().open)paintGo()}
+}
+
+/* ---- print and WhatsApp ---- */
+function billText(B){
+  const L=[`*${NAME}*`,`${B.no?B.no+' · ':''}Table T${B.table}`,when(B.closed||new Date().toISOString()),''];
+  B.lines.forEach(l=>L.push(`${billName(l.n)} ×${l.q}  ${money(l.amt!=null?l.amt:l.p*l.q)}`));
+  L.push('','Subtotal  '+money(B.sub)); if(B.disc>0)L.push('Discount  −'+money(B.disc)); if(B.pct>0)L.push(`${B.incl?'Includes GST':'GST'} (${B.pct}%)  ${money(B.gst)}`);
+  L.push(`*Total  ${money(B.total)}*`); if(B.method)L.push('Paid by '+B.method);
+  L.push('','Thank you for dining with us!'); return L.join('\n');
+}
+function sendBillWA(){
+  const B=curBill(), inp=$('#bdPh'), er=$('#bdPhE'), ph=normPhone(inp.value);
+  if(!ph){er.textContent='Enter the guest’s 10-digit mobile number.';inp.focus();return}
+  er.textContent=''; billPhone[B.table]=ph;
+  const a=document.createElement('a'); a.href='https://wa.me/91'+ph+'?text='+encodeURIComponent(billText(B)); a.target='_blank'; a.rel='noopener';
+  document.body.append(a); a.click(); a.remove();
+}
+/* narrow receipt through a hidden frame, like the kitchen ticket */
+function printBill(B){
+  if(!B.lines.length)return;
+  const fr=document.createElement('iframe'); fr.style.cssText='position:fixed;right:0;bottom:0;width:0;height:0;border:0'; fr.setAttribute('aria-hidden','true'); document.body.append(fr);
+  const d=fr.contentDocument, r=(a,b,c)=>`<div class="r${c?' '+c:''}"><span>${a}</span><span>${b}</span></div>`;
+  d.open(); d.write(`<!doctype html><title>${esc(B.no||'Bill, Table T'+B.table)}</title><style>@page{margin:4mm}body{font:13px/1.45 ui-monospace,Menlo,Consolas,monospace;width:72mm;margin:0;color:#000}h1{font-size:19px;text-align:center;margin:0 0 2px}.c{text-align:center}.sm{font-size:11px}hr{border:0;border-top:1px dashed #000;margin:7px 0}.r{display:flex;justify-content:space-between;gap:8px}.it{display:flex;gap:6px}.it b{flex:none;min-width:24px}.it span:nth-child(2){flex:1}.t{font-size:17px;font-weight:700;margin-top:3px}</style>
+<h1>${esc(NAME)}</h1>${SET.addr?`<div class="c sm">${esc(SET.addr)}</div>`:''}${SET.ph?`<div class="c sm">Ph ${esc(SET.ph)}</div>`:''}${SET.fssai?`<div class="c sm">FSSAI ${esc(SET.fssai)}</div>`:''}<hr>
+${r(esc(B.no||'BILL'),'Table T'+B.table)}<div class="sm">${esc(when(B.closed||new Date().toISOString()))}</div><hr>
+${B.lines.map(l=>`<div class="it"><b>${l.q}x</b><span>${esc(billName(l.n))}</span><span>${money(l.amt!=null?l.amt:l.p*l.q)}</span></div>`).join('')}<hr>
+${r('Subtotal',money(B.sub))}${B.disc>0?r('Discount','-'+money(B.disc)):''}${B.pct>0?r(B.incl?`Incl. GST ${B.pct}%`:`GST ${B.pct}%`,money(B.gst)):''}${r('TOTAL',money(B.total),'t')}${B.method?`<div class="c">Paid by ${esc(B.method)}</div>`:''}<hr><div class="c">Thank you! Visit again.</div>`);
+  d.close();
+  const w=fr.contentWindow; w.onafterprint=()=>fr.remove(); setTimeout(()=>{try{w.focus();w.print()}catch{}},250); setTimeout(()=>fr.remove(),60000);
+}
+
+BD().addEventListener('click',e=>{
+  if(e.target===BD()){BD().close();return}
+  const b=e.target.closest('[data-bd]'); if(!b)return;
+  const a=b.dataset.bd;
+  if(a==='x')BD().close(); else if(a==='print')printBill(curBill()); else if(a==='wa')sendBillWA();
+  else if(a==='close')closeTable(); else if(a==='free')freeTable();
+});
+BD().addEventListener('input',e=>{if(e.target.id==='bdPh'){billPhone[BL.k]=e.target.value;$('#bdPhE').textContent=''}});
+BD().addEventListener('change',e=>{if(e.target.name==='bdm'){BL.method=e.target.value;paintGo()}});
+BD().addEventListener('close',()=>{
+  const k=BL.k, op=BL.opener; BL.k=null; BL.saved=null; BL.method=''; BL.busy=false;
+  setTimeout(()=>{const t=(k!=null&&document.querySelector(`#aBody [data-act=bill][data-t="${k}"]`))||(op&&op.isConnected?op:null); if(t)t.focus()},0);
+});
+
 /* login: the PIN is checked on the server, which hands back a session for this visit only */
 function lockAdmin(){
   if(ADM){rpc('admin_logout',{p_tok:ADM}).catch(()=>{})}
-  ADM=null; unlocked=false; orders=[]; bookings=[]; COUPONS=COUPONS.filter(c=>c.on);
+  ADM=null; unlocked=false; orders=[]; bookings=[]; COUPONS=COUPONS.filter(c=>c.on); BILLS=[]; BILLING=null; billsAt=0; if(BD().open)BD().close();
 }
 /* wraps every staff call with the session token; if the session has ended, back to the login screen */
 async function adm(fn,args){
@@ -2460,6 +2914,7 @@ async function refreshAdmin(initial){
   orders=r.orders||[]; bookings=r.bookings||[]; COUPONS=r.coupons||[];
   try{const sv=await adm('admin_service_list'); if(Array.isArray(sv)){const seen=new Set(svcReqs.map(s=>s.id)), fresh=sv.filter(s=>!seen.has(s.id)); svcReqs=sv; if(!initial&&fresh.length&&unlocked)alertSvc(fresh[0])}}catch{}
   try{const o=await rpc('occupied_tables'); if(Array.isArray(o))occ=o.map(Number).filter(Number.isFinite)}catch{}
+  if(occ.length||tab==='orders'||initial)await refreshBills(!!initial);
   if(!initial){const fresh=orders.filter(o=>!prev.has(o.id)&&o.status==='New'); if(fresh.length&&unlocked)alertNew(fresh[0])}
 }
 let admSig='';
@@ -2468,8 +2923,8 @@ async function adminPoll(){
   try{await refreshAdmin(false)}catch{return}
   paintSvc();
   const nb=orders.filter(x=>x.status==='New').length, el=$('#nbadge'); if(el){el.textContent=nb;el.hidden=!nb}
-  const sg=sigOf([orders.map(o=>[o.id,o.status]),bookings.map(b=>b.id),occ]);
-  if(sg!==admSig){admSig=sg; if(unlocked&&(tab==='orders'||tab==='dash')&&!(document.activeElement&&/^(tq|dq)$/.test(document.activeElement.id)))adminBody()}
+  const sg=sigOf([orders.map(o=>[o.id,o.status,o.total]),bookings.map(b=>b.id),occ,svcReqs.map(s=>s.id),BILLS.map(b=>b.id)]);
+  if(sg!==admSig){admSig=sg; if(unlocked&&(tab==='orders'||tab==='dash')&&!(document.activeElement&&/^(tq|dq)$/.test(document.activeElement.id)))adminBody(); syncBill()}
 }
 $('#loginForm').addEventListener('submit',async e=>{e.preventDefault();
   const btn=e.target.querySelector('button'); btn.disabled=true;
@@ -2542,8 +2997,12 @@ $('#aBody').addEventListener('click',async e=>{
     else if(a==='print')printTicket(orders[i]);
     else if(a==='snd'){SET.snd=SET.snd?0:1;LS.set('snd',SET.snd);if(SET.snd){primeAudio();chime()}adminBody()}
     else if(a==='pause'){const r=await adm('admin_save_settings',{p_settings:{paused:SET.paused?0:1}});Object.assign(SET,r.settings);cacheAll();adminBody();shopBar();toast(SET.paused?'Online orders paused':'Taking orders again')}
-    else if(a==='clr'){await adm('admin_clear_served');orders=orders.filter(x=>x.status!=='Served');adminBody()}
-    else if(a==='free'){const k=+b.dataset.t; if(confirm(`Mark Table T${k} free? The guests there won’t be able to add to their order any more.`)){await adm('admin_free_table',{p_table:k});occ=occ.filter(x=>x!==k);adminBody();toast(`Table T${k} is free`)}}
+    else if(a==='clr'){
+      const hold=[...occ].filter(k=>openRounds(k).some(r=>r.status==='Served'));
+      if(hold.length&&!confirm(`${hold.map(k=>'T'+k).join(', ')} ${hold.length===1?'is':'are'} still open. Clearing served orders would take ${hold.length===1?'its':'their'} served rounds off the bill. Clear anyway?`))return;
+      await adm('admin_clear_served');orders=orders.filter(x=>x.status!=='Served');adminBody()}
+    else if(a==='bill')openBill(+b.dataset.t,b);
+    else if(a==='bill-open'){try{await openSaved(id,b)}catch(x){toast(billErr(x))}}
     else if(a==='bdel'){if(confirm('Cancel this booking? The table becomes free again.')){await adm('admin_cancel_booking',{p_id:bookings[i].id});bookings.splice(i,1);adminBody();toast('Booking cancelled')}}
     else if(a==='export'){const l=document.createElement('a');l.href=URL.createObjectURL(new Blob([JSON.stringify({menu:MENU,cats:CATS,coupons:COUPONS,settings:SET},null,1)],{type:'application/json'}));l.download='restaurant-backup.json';document.body.append(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(l.href),1000)}
     else if(a==='reset'&&confirm('Reset the menu, categories and coupons to the original set? Your edits and photos will be lost.')){await adm('admin_replace_menu',{p_menu:clone(DEF_MENU),p_cats:clone(DEF_CATS),p_coupons:clone(DEF_COUPONS)});MENU=clone(DEF_MENU);CATS=clone(DEF_CATS);COUPONS=clone(DEF_COUPONS);Object.keys(cart).forEach(k=>delete cart[k]);persist();adminBody();toast('Menu reset to defaults')}
@@ -2665,10 +3124,11 @@ function renderAccount(){
     const cps=COUPONS.filter(c=>c.on);
     el.innerHTML=`<div class="atop"><div style="text-align:left"><h2 class="ah" style="margin:0">Hi, ${esc(a.name.split(' ')[0])}</h2><small class="sub2">+91 ${fmtPh(a.phone)}</small></div><span class="abtns">${count()?`<a class="mini pri" href="#takeaway">Cart (${count()})</a>`:''}<button class="mini" data-ac="out">Sign out</button></span></div>
     <section class="acard${cur?' cur':''}" style="margin-top:14px"><h2 class="ah">Current order</h2>${cur?`<div class="ainfo"><b>${codeChip(cur)}${cur.dn?'Table T'+cur.table:'Take away'}, ${inr(cur.total)}</b><small>${when(cur.at)}. ${lineText(cur)}</small></div><ol class="steps" aria-label="Order status: ${cur.status}">${ST.map((s,i)=>`<li class="${i<k?'done':i===k?'cur':''}"><i></i>${s}</li>`).join('')}</ol>${chefPic(cur)}<p class="sub2" role="status">${say}</p>`:'<p class="sub2">No order in progress. <a href="#menu" style="color:#C95A0C">Browse the menu</a></p>'}</section>
+    ${rateCard()}
     ${svcCard()}
     ${loyaltyCard()}
     <section class="acard"><h2 class="ah">Your coupons</h2>${cps.length?cps.map(c=>`<article class="arow"><div class="ainfo"><b>${esc(c.c)}</b><small>${c.t==='pct'?c.v+'% off your order':'₹'+c.v+' off your order'}</small></div><button class="mini" data-ac="copy" data-c="${esc(c.c)}">Copy</button><button class="mini" data-ac="use" data-c="${esc(c.c)}">Apply</button></article>`).join(''):'<p class="sub2">No coupons right now. Check back soon.</p>'}</section>
-    <section class="acard"><h2 class="ah">Past orders</h2>${past.length?past.map(x=>{const i=myOrd.indexOf(x), ok=x.lines.some(canOrder);return `<article class="arow rord"><div class="ainfo"><b>${codeChip(x)}${x.dn?'Table T'+x.table:'Take away'}, ${inr(x.total)}</b><small>${when(x.at)}. ${lineText(x)}</small></div><button class="mini pri" data-ac="again" data-i="${i}"${ok?'':' disabled'} aria-label="Reorder this whole order">${ok?'Reorder':'Unavailable'}</button>${x.lines.length>1?`<div class="rl" role="group" aria-label="Add a single item"><span>Just one item:</span>${x.lines.map((l,j)=>`<button type="button" class="rchip" data-ac="again1" data-i="${i}" data-j="${j}"${canOrder(l)?'':' disabled title="Not available right now"'}>+ ${esc(l.n)} ×${l.q}</button>`).join('')}</div>`:''}</article>`}).join(''):'<p class="sub2">Your finished orders will show up here.</p>'}</section>`;
+    <section class="acard"><h2 class="ah">Past orders</h2>${past.length?past.map(x=>{const i=myOrd.indexOf(x), ok=x.lines.some(canOrder);return `<article class="arow rord"><div class="ainfo"><b>${codeChip(x)}${x.dn?'Table T'+x.table:'Take away'}, ${inr(x.total)}</b><small>${when(x.at)}. ${lineText(x)}</small></div>${rateBtn(x,i)}<button class="mini pri" data-ac="again" data-i="${i}"${ok?'':' disabled'} aria-label="Reorder this whole order">${ok?'Reorder':'Unavailable'}</button>${x.lines.length>1?`<div class="rl" role="group" aria-label="Add a single item"><span>Just one item:</span>${x.lines.map((l,j)=>`<button type="button" class="rchip" data-ac="again1" data-i="${i}" data-j="${j}"${canOrder(l)?'':' disabled title="Not available right now"'}>+ ${esc(l.n)} ×${l.q}</button>`).join('')}</div>`:''}</article>`}).join(''):'<p class="sub2">Your finished orders will show up here.</p>'}</section>`;
   }
   acctBtn(); paintSvcBtns();
 }
@@ -2678,6 +3138,8 @@ $('#acBody').addEventListener('click',e=>{
   else if(a==='out'){const t=ACCT&&ACCT.token;ACCT=null;myOrd=[];LS.set('acct',null);if(t)rpc('account_logout',{p_token:t}).catch(()=>{});renderAccount();toast('Signed out')}
   else if(a==='copy'){(navigator.clipboard?navigator.clipboard.writeText(b.dataset.c):Promise.reject()).then(()=>toast(b.dataset.c+' copied'),()=>toast('Code: '+b.dataset.c))}
   else if(a==='use'){coupon=b.dataset.c;if(count()){location.hash='takeaway'}else{toast(coupon+' will apply when you check out');location.hash='menu'}}
+  else if(a==='rate'){const o=myOrd[+b.dataset.i]; if(o)openFeedback(o,+b.dataset.r||0)}
+  else if(a==='ratex'){const o=myOrd[+b.dataset.i]; if(o){const m=fbOff();m[o.at]=1;LS.set('fbNo',m);renderAccount()}}
   else if(a==='again'){const o=myOrd[+b.dataset.i]; if(!o)return;
     if(!reorder(o.lines))return;
     if(o.dn&&seated()){mode='dine';table=seated().table}   /* still seated: it goes to their table as more items */
@@ -2713,6 +3175,64 @@ async function loadMine(){
     const ch=sigOf(r.orders)!==sigOf(myOrd); myOrd=r.orders||[]; return ch;
   }catch{return false}
 }
+
+
+/* ---- post-order feedback ----
+   After an order is Served the guest can rate it 1-5 and add a note. It is saved with rpc submit_feedback (see feedback_setup.sql);
+   the server checks the order really belongs to the signed-in account. Everyone is offered the Google review link, 4-5 stars
+   get it as the main button (Google doesn't allow showing the link to happy guests only). */
+const FBK={order:null,rating:0};
+const fbMap=()=>LS.get('fb',{})||{};
+const fbOff=()=>LS.get('fbNo',{})||{};
+const fbSave=(at,r)=>{const m=fbMap();m[at]=r;LS.set('fb',m)};
+const FB_STAR='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 17l-5.4 2.9 1.1-6.1L3.2 9.6l6.1-.8z"/></svg>';
+const FB_LBL=['Poor','Okay','Good','Great','Loved it'];
+const reviewUrl=()=>{const v=String(SET.review||'').trim();try{if(/^https:\/\//i.test(v))return new URL(v).href}catch{}return /^ChIJ[\w-]{10,}$/.test(v)?'https://search.google.com/local/writereview?placeid='+encodeURIComponent(v):''};
+const fbDone_=x=>x.at&&(x.at in fbMap());
+function rateBtn(x,i){
+  if(x.status!=='Served'||!x.at)return '';
+  return fbDone_(x)?`<span class="rated" aria-label="You rated this ${fbMap()[x.at]} out of 5">★ ${fbMap()[x.at]}</span>`:`<button class="mini" type="button" data-ac="rate" data-i="${i}" aria-label="Rate this order">Rate</button>`;
+}
+function rateCard(){
+  const no=fbOff(), x=myOrders().filter(o=>o.status==='Served'&&o.at&&!fbDone_(o)&&!no[o.at]&&Date.now()-new Date(o.at)<3*864e5).sort((a,b)=>new Date(b.at)-new Date(a.at))[0];
+  if(!x)return '';
+  const i=myOrd.indexOf(x);
+  return `<section class="acard" aria-label="Rate your order"><h2 class="ah">How was your order?</h2><p class="sub2" style="margin:0">${when(x.at)}. ${lineText(x)}</p><div class="fb-quick" role="group" aria-label="Tap a star to rate">${[1,2,3,4,5].map(n=>`<button class="fb-q" type="button" data-ac="rate" data-i="${i}" data-r="${n}" aria-label="${n} star${n>1?'s':''}, ${FB_LBL[n-1]}">${FB_STAR}</button>`).join('')}</div><button class="mini" type="button" data-ac="ratex" data-i="${i}">Not now</button></section>`;
+}
+function fbPaint(){
+  const d=$('#fbDlg');
+  d.querySelectorAll('.fb-s').forEach((l,i)=>{l.toggleAttribute('data-on',i<FBK.rating)});
+  const t=$('#fbL'); if(t)t.textContent=FBK.rating?FB_LBL[FBK.rating-1]:'';
+  const g=$('#fbGo'); if(g)g.disabled=!FBK.rating;
+}
+function openFeedback(o,r){
+  FBK.order=o; FBK.rating=r||0;
+  $('#fbDlg').innerHTML=`<div class="os-h"><div class="os-t"><h2 id="fbT">How was your order?</h2><p>${when(o.at)}. ${lineText(o)}</p></div><button class="os-x" type="button" data-fbx aria-label="Close">${OSX}</button></div><div class="os-b"><fieldset class="os-g"><legend>Your rating</legend><div class="fb-stars" role="radiogroup" aria-label="Rating">${[1,2,3,4,5].map(n=>`<label class="fb-s"><input type="radio" name="fbr" value="${n}"${FBK.rating===n?' checked':''}><span class="fb-i">${FB_STAR}</span><span class="sr">${n} star${n>1?'s':''}, ${FB_LBL[n-1]}</span></label>`).join('')}</div><p class="fb-l" id="fbL" aria-live="polite"></p></fieldset><label class="fb-c">Anything we could do better? <small>optional</small><textarea id="fbTx" rows="3" maxlength="300" placeholder="Taste, service, waiting time…"></textarea></label></div><div class="os-f"><p class="os-err" id="fbErr" role="alert"></p><button class="atc os-go" id="fbGo" type="button">Send feedback</button></div>`;
+  fbPaint(); const d=$('#fbDlg'); if(!d.open)d.showModal();
+  (d.querySelector('input:checked')||d.querySelector('input')).focus();
+}
+async function fbSend(){
+  const o=FBK.order, r=FBK.rating, go=$('#fbGo'), er=$('#fbErr'); if(!o||!r||!ACCT)return;
+  er.textContent=''; go.disabled=true; go.textContent='Sending…';
+  try{
+    await rpc('submit_feedback',{p_token:ACCT.token,p_at:o.at,p_rating:r,p_comment:$('#fbTx').value.trim().slice(0,300)||null});
+    fbSave(o.at,r); fbThanks(r);
+  }catch(e){
+    er.textContent=String((e&&e.message)||'')==='unauthorized'?'Please sign in again.':say(e); go.disabled=false; go.textContent='Send feedback';
+  }
+}
+function fbThanks(r){
+  const g=reviewUrl(), happy=r>=4;
+  $('#fbDlg').innerHTML=`<div class="os-h"><div class="os-t"><h2 id="fbT">${happy?'Thank you!':'Thanks for telling us'}</h2><p>${happy?'We’re so glad you enjoyed it.':'We’re sorry we missed the mark. Your note goes straight to our team.'}</p></div><button class="os-x" type="button" data-fbx aria-label="Close">${OSX}</button></div>${g?`<div class="os-b"><p class="sub2" style="margin:0 0 6px">${happy?'Would you share it on Google? It really helps a small restaurant.':'If you like, you can also post a public review on Google.'}</p></div>`:''}<div class="os-f">${g?`<a class="atc os-go fb-gl${happy?'':' alt'}" id="fbG" href="${esc(g)}" target="_blank" rel="noopener noreferrer">${happy?'Review us on Google':'Post a Google review'}</a>`:''}<button class="ghost os-go" type="button" data-fbx id="fbDone">Done</button></div>`;
+  ($('#fbG')||$('#fbDone')).focus();
+}
+$('#fbDlg').addEventListener('click',e=>{
+  const d=e.currentTarget;
+  if(e.target===d||e.target.closest('[data-fbx]')){d.close();return}
+  if(e.target.closest('#fbGo'))fbSend();
+});
+$('#fbDlg').addEventListener('change',e=>{if(e.target.name==='fbr'){FBK.rating=+e.target.value;fbPaint()}});
+$('#fbDlg').addEventListener('close',()=>{if(location.hash==='#account')renderAccount()});
 const acctRefresh=()=>{acctBtn();if(location.hash==='#account')renderAccount()};
 /* after any change on the server: re-draw whatever page is open (but never while someone is typing in it) */
 function refreshViews(){
@@ -2945,7 +3465,7 @@ function renderSite(){
   $('#ftContact').innerHTML=`<p><b>Hours</b>${hrs}</p>`+rows.map(([k,v])=>`<p><b>${k}</b>${v}</p>`).join('');
   $('#viDir').href=$('#viMap').href=$('#ftDir').href=$('#rvMore').href=mapsUrl();
   /* signature dishes: chef's picks and bestsellers first, then any other available dish, up to four */
-  const sgPool=MENU.filter(m=>m.a),sgPick=[...sgPool.filter(m=>isCP(m)||isBS(m)),...sgPool.filter(m=>!isCP(m)&&!isBS(m))].slice(0,4);
+  const sgPool=MENU.filter(m=>m.a&&!isAddon(m)),sgPick=[...sgPool.filter(m=>isCP(m)||isBS(m)),...sgPool.filter(m=>!isCP(m)&&!isBS(m))].slice(0,4);
   const SG_CROWN='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.5 10h-15L3 8zm2.2 12h13.6v1.8H5.2z"/></svg>',SG_STAR='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg>';
   $('#sgList').innerHTML=sgPick.map(m=>{const cp=isCP(m),bs=!cp&&isBS(m);return `<li class="sg-card"><div class="sg-box"><div class="sg-img${m.img?'':' art'}">${cp||bs?`<span class="sg-tag">${cp?SG_CROWN:SG_STAR}<span>${cp?'Chef&rsquo;s Special':'Bestseller'}</span></span>`:''}${pic(m)}</div><div class="sg-body"><h3 class="sg-n">${esc(m.n)}</h3><p class="sg-d">${esc(m.d)}</p><span class="sg-p">${inr(m.p)}</span></div></div></li>`}).join('');
   $('#signature').hidden=!sgPick.length;
