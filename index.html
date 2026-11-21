@@ -230,6 +230,16 @@ a{color:inherit}
 .sg-rule i:last-child{background:linear-gradient(270deg,rgba(238,125,26,.15),var(--sg-or) 60%)}
 .sg-rule svg,.sg-foot>svg{flex:none;width:clamp(20px,3vw,30px);height:auto;fill:var(--sg-or);filter:drop-shadow(0 3px 5px rgba(238,125,26,.4))}
 
+
+/* a single card in the last row sits in the middle */
+.sg-list>.sg-card:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:calc((100% - clamp(12px,3.4vw,36px))/2)}
+/* admin: signature dishes */
+.sgn{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--orange);color:#fff;font:600 14px var(--sans)}
+.sgph{position:relative;cursor:pointer}
+.sgph:focus-within{outline:3px solid var(--orange-d);outline-offset:2px}
+.sg-file{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.sgm-note{margin:0 0 12px;font-size:14px;color:var(--brown-2)}
+.sgm-warn{color:#A33A0A;font-weight:500}
 .sg-list{list-style:none;margin:clamp(24px,4.4vw,44px) 0 0;padding:0;width:100%;max-width:1080px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,3.4vw,36px)}
 .sg-card{container-type:inline-size;display:flex;min-width:0;text-align:left}
 .sg-box{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden;border-radius:clamp(20px,3vw,32px);border:1.5px solid rgba(238,125,26,.78);
@@ -1160,6 +1170,49 @@ body{padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inse
 .sw{height:38px;padding:0 16px;border-radius:999px;border:1.5px dashed var(--brown-2);background:transparent;color:var(--brown-2);font:500 14px var(--sans);cursor:pointer}
 .sw[aria-checked=true]{border:1.5px solid #F2891E;background:linear-gradient(180deg,#F58C21,#C95A0C);color:#fff}
 .abtns{display:flex;gap:8px;flex-wrap:wrap}
+
+/* legal pages + consent checkbox */
+.lgw{width:min(760px,92vw);margin:0 auto;padding:84px 0 64px}
+.lgw .atitle{font-size:clamp(44px,9vw,68px)}
+.lgb{text-align:left;font-size:16px;line-height:1.65;color:var(--brown)}
+.lgb .lgu{text-align:center;color:var(--brown-2);font-size:14px;margin:4px 0 18px}
+.lgb h2{font:700 27px/1.15 var(--serif);margin:28px 0 8px}
+.lgb p,.lgb ul{margin:8px 0}.lgb ul{padding-left:22px}.lgb li{margin:6px 0}
+.lgb a{color:var(--orange-d);font-weight:600}
+.lgb .lgbox{margin:10px 0;padding:14px 18px;border-radius:20px;background:linear-gradient(180deg,rgba(255,250,242,.96),rgba(253,238,218,.92));box-shadow:0 12px 24px -18px rgba(201,90,12,.6),inset 0 1px 0 #fff;font-size:15px;line-height:1.6}
+.lgtw{overflow-x:auto;margin:10px 0;border-radius:16px;border:1.5px solid rgba(138,90,58,.25)}
+.lgt{width:100%;border-collapse:collapse;font-size:15px;background:#FFFDF9}
+.lgt th,.lgt td{text-align:left;vertical-align:top;padding:10px 14px;border-bottom:1px solid rgba(138,90,58,.18)}
+.lgt th{background:#FCE9D2;font-weight:700}.lgt tr:last-child td{border-bottom:0}.lgt td:first-child{font-weight:600;white-space:nowrap}
+@media(max-width:560px){.lgt td:first-child{white-space:normal}}
+.lgform{display:grid;gap:14px;margin:14px 0}.lgform small{color:var(--brown-2)}
+.lgrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:520px){.lgrow{grid-template-columns:1fr}}
+.lgform .abtns{gap:10px;align-items:center}
+.lgchk{display:flex!important;gap:10px;align-items:flex-start;font-weight:400;font-size:14px;line-height:1.45;text-align:left}
+.lgchk input{width:22px;height:22px;flex:0 0 22px;padding:0;margin:1px 0 0;accent-color:var(--orange-d)}
+.lgchk a,.lgfoot a,.lgnote a{color:var(--orange-d);font-weight:600}
+.lgfoot{text-align:center;font-size:14px;color:var(--brown-2);margin:22px 0 0}
+
+/* order status stepper + clear button (staff view) */
+.arow.ord{align-items:flex-start}
+.ostep{flex:1 1 100%;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:2px}
+.ostep button{min-height:48px;padding:0 6px;border-radius:14px;border:1.5px dashed #CDB9A4;background:transparent;color:var(--brown-2);font:600 14px var(--sans);display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:transform .12s,background .15s}
+.ostep button:active{transform:scale(.97)}
+.ostep button:focus-visible{outline:3px solid var(--orange-d);outline-offset:2px}
+.ostep button i{flex:0 0 22px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font:700 12px var(--sans);font-style:normal;background:rgba(90,42,16,.09)}
+.ostep button.done{border-style:solid;border-color:transparent;background:#F1E6D8;color:#7A5A40}
+.ostep button.done i{background:#7A5A40;color:#fff}
+.ostep button.nxt{border:2px solid var(--orange);background:#FFF6E8;color:var(--brown)}
+.ostep button.nxt i{background:var(--orange);color:#fff}
+.ostep button.cur{border:2px solid transparent;color:#fff;box-shadow:0 8px 16px -10px rgba(0,0,0,.55)}
+.ostep button.cur i{background:rgba(255,255,255,.28);color:#fff}
+.ostep button.cur.s-New{background:#2F6FD6}.ostep button.cur.s-Preparing{background:#E08A0B}.ostep button.cur.s-Ready{background:#2A8A3C}.ostep button.cur.s-Served{background:#6B5A4C}
+.ostep.s3{grid-template-columns:repeat(3,1fr)}.ostep button.cur.s-wip{background:#E08A0B}.ostep button.cur.s-done{background:#2A8A3C}
+.ostep-h{flex:1 1 100%;margin:0;font-size:12px;color:var(--brown-2)}
+.mini.clr{border-color:#C2482A;color:#A33A0A;font-weight:600}
+.mini.clr:hover{background:#FDE7DF}
+@media(max-width:480px){.ostep button{font-size:13px;padding:0 2px}.ostep button i{display:none}.arow.ord .abtns{margin-left:0;width:100%}}
+
 .aempty{text-align:center;color:var(--brown-2);padding:26px 0}
 .ah{font-family:var(--script);font-weight:400;font-size:40px;line-height:1.1;margin:18px 0 8px}.acard .ah{margin:0}
 .sub2{color:var(--brown-2);line-height:1.5}
@@ -1422,6 +1475,290 @@ body[data-v=home] .foot{display:block}
 .tnote .clr{margin-top:12px;height:42px;padding:0 22px;border-radius:999px;border:1.5px solid var(--orange);background:#FFF8EE;color:var(--brown);font:500 15px var(--sans);cursor:pointer}
 @media (min-width:768px){#items .icard .tags{justify-content:center}}
 @media (max-width:560px){.msearch{flex-basis:100%;max-width:none}.vtog{flex:1 1 100%;justify-content:center}}
+/* ===== table bar, my table bill, thanks suggestions, table closed ===== */
+.tbar{position:sticky;top:calc(var(--pad) + 8px);z-index:7;display:flex;align-items:center;justify-content:space-between;gap:8px 12px;flex-wrap:wrap;margin:12px auto 0;max-width:560px;padding:10px 12px 10px 18px;border-radius:26px;border:2px solid var(--orange);background:linear-gradient(180deg,#FFF9F0,#FCE9D2);box-shadow:0 12px 24px -14px rgba(201,90,12,.7);color:var(--brown);text-align:left;font:500 15px var(--sans)}
+.tbar[hidden]{display:none}
+.tbar .tb-t b{font:700 20px var(--serif)}
+.tb-a{display:flex;align-items:center;gap:6px;margin-left:auto}
+.tb-l{color:var(--orange-d);font-weight:600;font-size:14px;text-decoration:underline;padding:10px 6px}
+.tb-b{height:40px;padding:0 18px;border-radius:999px;border:0;background:linear-gradient(180deg,#F58C21,#C95A0C);color:#fff;font:500 14px var(--sans);cursor:pointer}
+.mtools{scroll-margin-top:84px}
+.tbill{text-align:left}
+.tbill .tb-sum{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.tbill .tb-tot{text-align:right}.tbill .tb-tot small{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--brown-2)}.tbill .tb-tot strong{font:700 26px var(--serif)}
+.tb-round{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.tb-rh{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.tb-rh time{color:var(--brown-2);font-size:14px}
+.tb-line{display:flex;align-items:center;gap:10px;padding:4px 0}.tb-line span{flex:1;min-width:0}.tb-line em{font-style:normal;color:var(--brown-2)}
+.tb-plus{flex:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--orange);background:#FFF8EE;color:var(--brown);font:600 22px/1 var(--sans);cursor:pointer;transition:background .2s,color .2s}
+.tb-plus:hover:not(:disabled){background:var(--orange);color:#fff}
+.tb-plus:disabled{opacity:.45;border-style:dashed;cursor:not-allowed}
+.tb-note{margin:10px 0 0;font-size:13px}
+.tb-cart{margin-top:12px;justify-self:start}
+.tsug{margin-top:18px;padding:16px clamp(14px,4vw,22px) 14px;border-radius:30px;text-align:left;background:linear-gradient(180deg,rgba(255,250,242,.96),rgba(253,238,218,.92));box-shadow:0 14px 28px -18px rgba(201,90,12,.6),inset 0 1px 0 #fff}
+.tsug[hidden]{display:none}
+.tsug .ts-h{margin:0;font-family:var(--script);font-weight:400;font-size:clamp(30px,7vw,38px);line-height:1.1}
+.tsug .ts-s{margin:2px 0 6px;font-size:14px}
+.ts-g h3{margin:12px 0 2px;font:600 12.5px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--brown-2)}
+.ts-i{display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid rgba(238,125,26,.2)}
+.ts-i:first-of-type{border-top:0}
+.ts-n{flex:1;min-width:0;font-weight:500}.ts-n small{display:block;color:var(--brown-2);font-size:14px}
+.ts-b{flex:none;min-width:84px;height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--orange);background:#FFF8EE;color:var(--brown);font:500 14.5px var(--sans);cursor:pointer;transition:background .2s,color .2s}
+.ts-b:hover,.ts-b.on{background:linear-gradient(180deg,#F58C21,#C95A0C);color:#fff}
+.ts-go{margin-top:14px;text-decoration:none}
+@media(prefers-reduced-motion:reduce){.tb-plus,.ts-b{transition:none}}
+/* ===== staff: add items, discount, split; guest: join a table ===== */
+.bx{display:grid;gap:10px}
+.bx-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bx input[type=text],.bx input[type=number],.bx input[type=search]{width:100%;min-height:44px;padding:0 14px;border-radius:14px;border:1.5px solid var(--line);background:#fff;font:500 15px var(--sans);color:var(--brown)}
+.bx-row input[type=number]{flex:1;min-width:90px;width:auto}
+.bx-seg{display:inline-flex;border:1.5px solid var(--orange);border-radius:999px;overflow:hidden}
+.bx-seg button{border:0;background:#FFF8EE;color:var(--brown);font:500 14px var(--sans);padding:0 14px;min-height:40px;cursor:pointer}
+.bx-seg button[aria-pressed=true]{background:linear-gradient(180deg,#F58C21,#C95A0C);color:#fff}
+.bx-st{display:inline-flex;align-items:center;gap:6px}
+.bx-st button{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--orange);background:#FFF8EE;color:var(--brown);font:600 20px/1 var(--sans);cursor:pointer}
+.bx-st button:disabled{opacity:.4;cursor:not-allowed}
+.bx-st b{min-width:22px;text-align:center}
+.bx-list{max-height:260px;overflow:auto;border:1.5px solid var(--line);border-radius:16px;background:#fff;padding:2px 10px}
+.bx-it{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid rgba(238,125,26,.2)}
+.bx-it:first-child{border-top:0}
+.bx-it>span:first-child{flex:1;min-width:0}.bx-it small{display:block;color:var(--brown-2)}
+.bx-sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:6px 0;border-top:1px solid rgba(238,125,26,.2)}
+.bx-sh>b{min-width:64px}.bx-amt{font-weight:700;min-width:64px}
+.bx-sh input.bx-a{width:96px;min-height:40px}
+.bx-m{display:inline-flex;gap:6px;margin-left:auto}
+.bx-m label{position:relative}
+.bx-m input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.bx-m span{display:inline-block;padding:8px 12px;border-radius:999px;border:1.5px solid var(--orange);background:#FFF8EE;font:500 13px var(--sans)}
+.bx-m input:checked+span{background:linear-gradient(180deg,#F58C21,#C95A0C);color:#fff}
+.bx-m input:focus-visible+span{outline:3px solid var(--orange-d);outline-offset:2px}
+.jc{width:100%;min-height:56px;margin-top:6px;border-radius:16px;border:2px solid var(--orange);background:#fff;text-align:center;font:700 28px var(--sans);letter-spacing:.4em;color:var(--brown)}
+.tb-join{margin:8px 0 0;font-size:14px}
+
+/* =====================================================================
+   NEUMORPHIC SURFACES + MOTION LAYER
+   Sits on top of the original styles. Every surface is "extruded" from the same warm cream:
+   a light source from the top-left throws a white highlight one way and a warm amber shadow the other.
+   Pressed / selected things are cut INTO the surface (inset); primary actions stay orange for contrast.
+   ===================================================================== */
+:root{
+  --nm-hi:rgba(255,255,255,.95);
+  --nm-lo:rgba(206,126,54,.34);
+  --nm-lo2:rgba(206,126,54,.44);
+  --nm-face:linear-gradient(145deg,#FFF7EA,#FBE6CB);
+  --nm-face-2:linear-gradient(145deg,#FFF3E1,#F9E0C0);
+  --nm-flat:#FCEBD4;
+  --nm-up:9px 9px 20px var(--nm-lo),-9px -9px 20px var(--nm-hi);
+  --nm-up-m:6px 6px 14px var(--nm-lo),-6px -6px 14px var(--nm-hi);
+  --nm-up-s:4px 4px 9px var(--nm-lo),-4px -4px 9px var(--nm-hi);
+  --nm-up-xs:3px 3px 6px var(--nm-lo),-3px -3px 6px var(--nm-hi);
+  --nm-down:inset 6px 6px 12px var(--nm-lo2),inset -6px -6px 12px var(--nm-hi);
+  --nm-down-s:inset 3px 3px 7px var(--nm-lo2),inset -3px -3px 7px var(--nm-hi);
+  --nm-rim:rgba(255,255,255,.7);
+  --nm-or:linear-gradient(145deg,#F8993C,#D2600F);
+  --nm-vm:linear-gradient(145deg,#F4691F,#DA4000);
+  --nm-or-up:7px 8px 16px rgba(176,76,8,.42),-5px -5px 13px rgba(255,255,255,.9),inset 1px 1px 1px rgba(255,255,255,.38),inset -1px -2px 2px rgba(140,52,0,.28);
+  --nm-or-up-h:9px 11px 20px rgba(176,76,8,.5),-6px -6px 15px rgba(255,255,255,.95),inset 1px 1px 1px rgba(255,255,255,.42),inset -1px -2px 2px rgba(140,52,0,.28);
+  --nm-or-down:inset 5px 6px 11px rgba(120,42,0,.5),inset -4px -4px 9px rgba(255,176,98,.55);
+  --nm-ease:cubic-bezier(.22,.9,.28,1);
+  --nm-spring:cubic-bezier(.34,1.56,.64,1);
+}
+
+@property --mw{syntax:'<percentage>';inherits:false;initial-value:0%}
+
+/* ---------- shared transition so every surface "breathes" between raised and pressed ---------- */
+:is(.card,.icard,.bill,.tcard,.arow,.acard,.qrcard,.seatcard,.tbar,.vs-card,.sg-box,.rv-box,.chip,.rchip,.step,.add,.tp,.tbl,.svcb,.mini,.ghost,.dchip,.tslot,.hbtn,.op-pill,.go,.atc,.cb,.q,.round,.nav-burger,.nav-cta,.cartbar,.tb-b,.gl-more,.rv-more,.sg-more,.vs-go,.vtog,.coupon,.lb-b){
+  transition:transform .35s var(--nm-ease),box-shadow .35s var(--nm-ease),background .3s,color .25s,border-color .3s,translate .25s var(--nm-ease)
+}
+
+/* ---------- 1. big raised panels ---------- */
+.card,.icard,.bill,.tcard,.arow,.acard,.qrcard,.seatcard,.tbar{
+  background:var(--nm-face);border-color:var(--nm-rim);box-shadow:var(--nm-up)
+}
+.card{border-radius:30px}
+.icard{border:1.5px solid var(--nm-rim);box-shadow:var(--nm-up-m)}
+.icard:hover{box-shadow:12px 12px 26px var(--nm-lo),-10px -10px 22px var(--nm-hi)}
+.bill,.tcard{border:1.5px solid var(--nm-rim)}
+.arow,.acard{box-shadow:var(--nm-up-m)}
+.qrcard{box-shadow:var(--nm-up-m)}
+.seatcard{border:1.5px solid var(--nm-rim);box-shadow:var(--nm-up-m)}
+.seatcard:hover{box-shadow:11px 11px 22px var(--nm-lo),-9px -9px 20px var(--nm-hi)}
+.tbar{border:1.5px solid var(--nm-rim);box-shadow:var(--nm-up-m)}
+
+/* home cards: keep their art, add the extruded edge */
+.sg-box{border-color:rgba(255,255,255,.75);background:var(--nm-face);box-shadow:var(--nm-up),0 0 0 0 transparent}
+.sg-box:hover{box-shadow:13px 14px 28px var(--nm-lo),-10px -10px 24px var(--nm-hi)}
+.sg-img{border-bottom-color:rgba(255,255,255,.6)}
+.rv-box{border-color:rgba(255,255,255,.8);background:var(--nm-face);box-shadow:var(--nm-up)}
+.rv-box:hover{border-color:rgba(255,255,255,.9);box-shadow:13px 14px 28px var(--nm-lo),-10px -10px 24px var(--nm-hi)}
+.vs-card{border-color:rgba(255,255,255,.8);background:var(--nm-face);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:var(--nm-up-m)}
+.rv-av{box-shadow:var(--nm-up-m)}
+.gl-tile{box-shadow:8px 10px 22px var(--nm-lo),-6px -6px 16px var(--nm-hi)}
+
+/* ---------- 2. dialogs / sheets ---------- */
+#dlg,#optSheet,#fbDlg,#billDlg{background:var(--nm-face-2);box-shadow:18px 22px 50px rgba(120,52,6,.42),-10px -10px 30px rgba(255,255,255,.7)}
+
+/* ---------- 3. wells: things cut INTO the surface ---------- */
+input,select,textarea{
+  border:1.5px solid transparent;background:var(--nm-flat);box-shadow:var(--nm-down);
+  transition:box-shadow .3s var(--nm-ease),background .3s,border-color .3s
+}
+input:focus,select:focus,textarea:focus{outline:none;background:#FFF2DE;border-color:rgba(238,125,26,.55);box-shadow:var(--nm-down),0 0 0 4px rgba(238,125,26,.18)}
+.msearch input{border-color:transparent;background:var(--nm-flat);box-shadow:var(--nm-down)}
+.msearch input:focus{box-shadow:var(--nm-down),0 0 0 4px rgba(238,125,26,.18)}
+.bsum,.coupon{background:var(--nm-flat);box-shadow:var(--nm-down-s)}
+.coupon:hover{box-shadow:var(--nm-down)}
+.loybar{background:var(--nm-flat);box-shadow:var(--nm-down-s)}
+.plan{border:3px solid rgba(255,255,255,.7);background:var(--nm-flat);box-shadow:var(--nm-down),inset 0 0 0 4px rgba(255,255,255,.0)}
+.q{background:var(--nm-face);box-shadow:var(--nm-up-xs)}
+.tp[data-occ=true]{background:var(--nm-flat);box-shadow:var(--nm-down-s);border-color:transparent}
+
+/* ---------- 4. raised round / pill controls ---------- */
+.round,.nav-burger,.cb,.lb-b{background:var(--nm-face);border-color:var(--nm-rim);box-shadow:var(--nm-up-s)}
+.round:hover,.nav-burger:hover,.cb:hover,.lb-b:hover{box-shadow:6px 7px 14px var(--nm-lo),-5px -5px 12px var(--nm-hi)}
+.round:active,.nav-burger:active,.cb:active,.lb-b:active{box-shadow:var(--nm-down-s);transform:scale(.96)}
+
+.chip,.rchip,.add,.tp,.tbl,.svcb,.mini,.ghost,.dchip,.tslot,.step,.vtog,.gl-more,.rv-more,.sg-more,.op-pill,.hero .hbtn.ghost,.hbtn:not(.fill){
+  background:var(--nm-face);border-color:var(--nm-rim);box-shadow:var(--nm-up-s)
+}
+.hbtn:not(.fill),.hero .hbtn.ghost{border-color:rgba(255,255,255,.75)}
+.chips .chip{background:var(--nm-face);box-shadow:var(--nm-up-s)}
+.step{box-shadow:var(--nm-down-s);background:var(--nm-flat);border-color:transparent}
+.step button,.step .cb{box-shadow:var(--nm-up-xs)}
+.hero .hbtn,.hero .hbtn.ghost{box-shadow:var(--nm-up-s)}
+.hero .hbtn.ghost{background:linear-gradient(145deg,rgba(255,248,236,.92),rgba(252,230,203,.86))}
+.op-pill{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:var(--nm-up-m);background:linear-gradient(145deg,rgba(255,249,238,.95),rgba(252,229,200,.88))}
+.op-pill:hover{background:linear-gradient(145deg,rgba(255,251,244,.98),rgba(253,234,208,.92));box-shadow:12px 13px 24px rgba(190,100,30,.38),-8px -8px 18px rgba(255,255,255,.95)}
+
+:is(.chip,.rchip,.add,.tp,.tbl,.svcb,.mini,.ghost,.dchip,.tslot,.hbtn:not(.fill),.vtog,.gl-more,.rv-more,.sg-more,.op-pill,.seatcard):hover{
+  box-shadow:7px 8px 16px var(--nm-lo),-6px -6px 14px var(--nm-hi)
+}
+/* press = pushed into the surface */
+:is(.chip,.rchip,.add,.tp,.tbl,.svcb,.mini,.ghost,.dchip,.tslot,.hbtn:not(.fill),.vtog,.gl-more,.rv-more,.sg-more,.op-pill,.seatcard):active,
+.hero .hbtn.ghost:active{
+  box-shadow:var(--nm-down-s);transform:translateY(1px) scale(.985)
+}
+
+/* selected = pressed in, but still orange so it reads at a glance */
+.chip[aria-pressed=true],.chips .chip[aria-pressed=true],.tbl[aria-pressed=true],.tp[aria-pressed=true],.dchip[aria-pressed=true],.tslot[aria-pressed=true],
+.os-p[aria-checked=true],.os-p[aria-pressed=true],.bx-seg button[aria-pressed=true],.bx-m input:checked+span{
+  background:var(--nm-or);border-color:transparent;color:#fff;box-shadow:var(--nm-or-down)
+}
+.vtog{border-color:var(--nm-rim)}
+.vtog[aria-checked=true]{border-color:rgba(46,139,61,.35);background:linear-gradient(145deg,#F3FBEF,#E2F2DB);box-shadow:var(--nm-down-s)}
+.vt-s{background:var(--nm-flat);box-shadow:var(--nm-down-s)}
+.vt-s i{box-shadow:3px 3px 6px rgba(120,60,10,.35),-1px -1px 3px rgba(255,255,255,.9);transition:transform .35s var(--nm-spring)}
+.vtog[aria-checked=true] .vt-s{background:#2E8B3D;box-shadow:inset 2px 2px 5px rgba(0,60,10,.45),inset -2px -2px 4px rgba(120,220,130,.4)}
+
+/* ---------- 5. primary orange actions: extruded orange ---------- */
+.go,.atc,.hbtn.fill,.hero .hbtn.fill,.nav-cta,.cartbar,.tb-b,.vs-go,.loytier{
+  background:var(--nm-or);box-shadow:var(--nm-or-up);position:relative
+}
+.go,.atc,.hbtn.fill,.hero .hbtn.fill,.nav-cta,.tb-b,.vs-go{border-color:transparent}
+.cartbar{border-color:rgba(255,255,255,.55);position:fixed}
+.vs-go{position:relative}
+.go:hover,.atc:hover,.hbtn.fill:hover,.hero .hbtn.fill:hover,.nav-cta:hover,.cartbar:hover,.tb-b:hover,.vs-go:hover{box-shadow:var(--nm-or-up-h)}
+.go:active,.atc:active,.hbtn.fill:active,.hero .hbtn.fill:active,.nav-cta:active,.cartbar:active,.tb-b:active,.vs-go:active{box-shadow:var(--nm-or-down);transform:translateY(1px) scale(.985)}
+.go:disabled,.atc:disabled{box-shadow:var(--nm-down-s);background:var(--nm-flat);color:var(--brown-2)}
+
+/* the hero / nav / directions buttons keep the brand's deeper vermilion */
+.hero .hbtn.fill,.nav-cta,.vs-go{background:var(--nm-vm)}
+
+/* soft light sweep across the two hero actions, once every few seconds */
+.hero .hbtn.fill::after,.nav-cta::after,.go.placebtn::after,.cartbar:not(.tcont)::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.42) 50%,transparent 65%);
+  background-size:260% 100%;background-position:160% 0;opacity:0
+}
+
+/* ---------- 6. nav + sticky chrome ---------- */
+.top{background:linear-gradient(180deg,rgba(255,247,234,.94),rgba(252,236,214,.9));border-bottom:1px solid rgba(255,255,255,.7);box-shadow:0 10px 24px -12px rgba(190,100,30,.35)}
+
+/* ---------- 7. toast ---------- */
+#toast{background:linear-gradient(145deg,#6B3517,#4A2210);box-shadow:8px 10px 22px rgba(70,28,4,.45),-4px -4px 12px rgba(255,255,255,.4)}
+
+/* =====================================================================
+   MOTION
+   ===================================================================== */
+.nm-rip{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(255,255,255,.65),rgba(255,255,255,0) 70%);transform:scale(0);opacity:.9}
+.nm-ripd{background:radial-gradient(circle,rgba(238,125,26,.35),rgba(238,125,26,0) 70%)}
+:is(.go,.atc,.hbtn,.nav-cta,.add,.chip,.rchip,.tp,.tbl,.dchip,.tslot,.mini,.ghost,.svcb,.tb-b,.vs-go,.gl-more,.rv-more,.sg-more,.op-pill){overflow:hidden}
+
+.nm-dot{position:fixed;left:0;top:0;z-index:60;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 35% 30%,#FFC58A,#E4600A);box-shadow:0 6px 14px rgba(190,70,0,.5)}
+.nm-pop{animation:nmpop .6s var(--nm-spring)}
+@keyframes nmpop{0%{transform:scale(1)}35%{transform:scale(1.28)}100%{transform:scale(1)}}
+
+/* thin scroll rail under the home nav */
+#nmRail{position:fixed;left:0;top:0;height:3px;width:100%;z-index:50;transform-origin:0 50%;transform:scaleX(0);pointer-events:none;
+  background:linear-gradient(90deg,#F8993C,#E24400);box-shadow:0 2px 10px rgba(226,68,0,.45);opacity:0;transition:opacity .3s}
+body[data-v=home] #nmRail.on{opacity:1}
+
+@media (prefers-reduced-motion:no-preference){
+  /* -- scroll reveals: hidden state is only applied once JS has confirmed it can reveal them -- */
+  html.nm-js .nm-r{opacity:0;translate:0 34px;scale:.965;filter:blur(7px);
+    transition:opacity .9s var(--nm-ease),translate 1s var(--nm-ease),scale 1s var(--nm-ease),filter .9s var(--nm-ease);transition-delay:calc(var(--nd,0) * 85ms)}
+  html.nm-js .nm-r.nm-in{opacity:1;translate:none;scale:none;filter:none}
+  /* gallery photos open like a lens iris, headings sweep open left to right. Masks (not clip-path) so the
+     browser still reports these elements as on screen while they are hidden. */
+  html.nm-js .nm-r.nm-g{opacity:1;translate:none;scale:1;filter:none;--mw:0%;
+    -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 calc(var(--mw) - 14%),transparent var(--mw));mask-image:radial-gradient(circle at 50% 50%,#000 calc(var(--mw) - 14%),transparent var(--mw))}
+  html.nm-js .nm-r.nm-g.nm-in{--mw:125%;transition:--mw 1.25s var(--nm-ease)}
+  html.nm-js .nm-r.nm-h{opacity:1;scale:1;filter:none;translate:-16px 0;--mw:0%;
+    -webkit-mask-image:linear-gradient(90deg,#000 calc(var(--mw) - 16%),transparent var(--mw));mask-image:linear-gradient(90deg,#000 calc(var(--mw) - 16%),transparent var(--mw));
+    -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+  html.nm-js .nm-r.nm-h.nm-in{--mw:125%;translate:0 0;transition:--mw 1.25s var(--nm-ease),translate 1.25s var(--nm-ease)}
+  html.nm-js .nm-r.nm-h.nm-done,html.nm-js .nm-r.nm-g.nm-done{-webkit-mask-image:none;mask-image:none;transition:none}
+
+  /* -- hero: slow breathing artwork, and a gentle parallax set by script (uses `translate`, never `transform`) -- */
+  #home.on .hero-bg{animation:artin 1.5s cubic-bezier(.2,.8,.2,1) both,nmdrift 26s ease-in-out 1.6s infinite alternate;
+    transform-origin:72% 62%;translate:var(--hx,0px) var(--hy,0px)}
+  @keyframes nmdrift{from{scale:1}to{scale:1.028}}
+  .hero .wm{transition:translate .5s var(--nm-ease)}
+
+  /* -- light sweep on primary CTAs -- */
+  .hero .hbtn.fill::after,.nav-cta::after,.go.placebtn::after,.cartbar:not(.tcont)::after{animation:nmsweep 6.5s ease-in-out 2.4s infinite}
+  .nav-cta::after{animation-delay:3.6s}
+  @keyframes nmsweep{0%{background-position:160% 0;opacity:0}6%{opacity:1}22%{background-position:-60% 0;opacity:1}28%,100%{background-position:-60% 0;opacity:0}}
+
+  /* -- neumorphic "breathing" on the key floating buttons so the page never feels static -- */
+  .cartbar:not(.tcont){animation:nmfloat 4.6s ease-in-out infinite}
+  @keyframes nmfloat{0%,100%{translate:0 0}50%{translate:0 -3px}}
+
+  /* -- cards in the menu / cart / admin lists glide in with a soft overshoot -- */
+  #items.enter .icard,#cartList.enter .icard{animation:nmcard .75s var(--nm-spring) both;animation-delay:calc(var(--i,0)*70ms + .25s)}
+  @keyframes nmcard{from{opacity:0;transform:translateY(26px) scale(.96)}to{opacity:1;transform:none}}
+
+  /* -- table + time chips: tiny spring when selected -- */
+  .chip[aria-pressed=true],.tp[aria-pressed=true],.tbl[aria-pressed=true],.dchip[aria-pressed=true],.tslot[aria-pressed=true]{animation:nmselect .5s var(--nm-spring)}
+  @keyframes nmselect{0%{transform:scale(.92)}60%{transform:scale(1.05)}100%{transform:none}}
+
+  /* -- order stepper numbers + loyalty bar -- */
+  .loybar>*{transition:width 1.1s var(--nm-ease)}
+
+}
+
+/* touch devices: no hover lift, but keep the pressed state */
+@media (hover:none){
+  :is(.chip,.rchip,.add,.tp,.tbl,.svcb,.mini,.ghost,.dchip,.tslot,.hbtn:not(.fill),.vtog,.gl-more,.rv-more,.sg-more,.op-pill,.seatcard):hover{box-shadow:var(--nm-up-s)}
+  .op-pill:hover{box-shadow:var(--nm-up-m)}
+  .sg-box:hover,.rv-box:hover,.icard:hover{box-shadow:var(--nm-up-m)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hero .hbtn.fill::after,.nav-cta::after,.go.placebtn::after,.cartbar::after{display:none}
+  .nm-rip,.nm-dot{display:none}
+}
+@media print{#nmRail,.nm-dot{display:none}}
+
+/* ---------- follow-ups ---------- */
+.go-a{background:var(--nm-face);box-shadow:var(--nm-up-xs)}
+/* once a reveal has finished, hand the element back to its normal hover/press transitions */
+html.nm-js .nm-r.nm-done{transition:transform .35s var(--nm-ease),box-shadow .35s var(--nm-ease),background .3s,color .25s,border-color .3s,translate .25s var(--nm-ease),rotate .45s var(--nm-ease)}
+/* tilt: smooth the `rotate` and give the cards a shared vanishing point */
+.sg-box,.rv-box,.vs-card,.icard,.qrcard{transition:transform .35s var(--nm-ease),box-shadow .35s var(--nm-ease),background .3s,border-color .3s,rotate .45s var(--nm-ease)}
+.sg-list,.rv-list,.vs-cards,#items,.qrgrid,#cartList{perspective:1100px}
+
+.tslot:disabled,.dchip:disabled,.tbl:disabled,.chip:disabled{background:var(--nm-flat);box-shadow:var(--nm-down-s);border-color:transparent;color:var(--brown-2)}
 </style>
 </head>
 <body>
@@ -1717,7 +2054,7 @@ body[data-v=home] .foot{display:block}
     </div>
     <div class="ft-bar">
       <span>&copy; <span id="ftYear"></span> <span data-brand>Your Restaurant</span></span><span id="ftFssai" hidden></span><span id="ftCredit">Website by Hanumate Software</span>
-      <span class="sp"></span><a class="ft-staff" href="#admin">Staff login</a><button class="ft-top" type="button" data-go="top">Back to top</button>
+      <span class="sp"></span><a class="ft-staff" href="#terms">Terms</a><a class="ft-staff" href="#privacy">Privacy</a><a class="ft-staff" href="#concerns">Raise a concern</a><a class="ft-staff" href="#admin">Staff login</a><button class="ft-top" type="button" data-go="top">Back to top</button>
     </div>
   </div>
   <svg class="ft-mark" viewBox="0 0 1000 190" aria-hidden="true" focusable="false"><text x="500" y="168" text-anchor="middle" data-fit="960" data-fs="200" font-size="200" fill="rgba(252,230,204,.07)">Your Restaurant</text></svg>
@@ -1731,6 +2068,7 @@ body[data-v=home] .foot{display:block}
     <svg class="cloche" viewBox="0 0 220 110" aria-hidden="true"><use href="#i-cloche"/></svg>
     <h1 class="mtitle" id="mtitle">Select Items</h1>
     <p class="tnote" id="tnote" hidden></p>
+    <div class="tbar" id="tbar" role="region" aria-label="Your table" hidden></div>
     <div class="mtools">
       <div class="msearch" role="search">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
@@ -1782,7 +2120,7 @@ body[data-v=home] .foot{display:block}
     <div class="divider" aria-hidden="true"><i></i><svg><use href="#i-star"/></svg><i></i></div>
     <div class="plan" id="plan" role="group" aria-label="Restaurant floor plan"></div>
     <div class="tpills" id="tpills" role="group" aria-label="Choose a table"></div>
-    <p class="tnote2" id="occNote" hidden><svg class="lk" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 11V8a4.5 4.5 0 0 1 9 0v3"/><rect x="5" y="11" width="14" height="10" rx="2.5"/></svg>Locked tables are occupied right now.</p>
+    <p class="tnote2" id="occNote" hidden><svg class="lk" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 11V8a4.5 4.5 0 0 1 9 0v3"/><rect x="5" y="11" width="14" height="10" rx="2.5"/></svg>Locked tables are occupied right now. With friends at one? Tap it and enter their join code.</p>
   </div>
   <div class="seatbar" id="seatbar"><span id="seatTxt"></span><button class="go" id="startBtn" type="button">Start ordering</button></div>
 </main>
@@ -1821,6 +2159,7 @@ body[data-v=home] .foot{display:block}
             <label>Special requests (optional)<textarea name="note" rows="2" maxlength="240" placeholder="Birthday, high chair, window seat…"></textarea></label>
           </div>
         </section>
+        <div class="lgnote" style="margin:4px 0 2px"><label class="lgchk"><input type="checkbox" name="agree"><span>I agree to the <a href="#terms" target="_blank" rel="noopener">Terms &amp; Conditions<span class="vh"> (opens in a new tab)</span></a> and the <a href="#privacy" target="_blank" rel="noopener">Privacy Policy<span class="vh"> (opens in a new tab)</span></a>. We use your name and number only for this booking.</span></label></div>
         <div class="bsum" id="bSum" role="status" aria-live="polite"></div>
         <p class="err" id="bErr" role="alert"></p>
         <button class="go" id="bBtn" type="submit">Confirm Booking</button>
@@ -1865,7 +2204,7 @@ body[data-v=home] .foot{display:block}
       <label>Your name<input id="cName" autocomplete="name" maxlength="40"></label>
       <label>Mobile number (WhatsApp)<input id="cPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="98765 43210"></label>
       <p class="err" id="cErr" role="alert"></p>
-      <small>We’ll message or call you on this number about this order only.</small>
+      <small>We’ll message or call you on this number about this order only. By placing the order you agree to our <a href="#terms" target="_blank" rel="noopener" style="color:#C95A0C;font-weight:600">Terms<span class="vh"> (opens in a new tab)</span></a> and <a href="#privacy" target="_blank" rel="noopener" style="color:#C95A0C;font-weight:600">Privacy Policy<span class="vh"> (opens in a new tab)</span></a>.</small>
     </div>
     <button class="go placebtn" id="placeBtn" type="button" hidden>Place Order</button>
     </aside>
@@ -1888,6 +2227,7 @@ body[data-v=home] .foot{display:block}
       <svg class="sp" viewBox="0 0 44 36" aria-hidden="true"><path d="M8 30l4-12M20 24l2-16M32 22l9-9M36 32l8-2"/></svg>
     </div>
     <p class="tnote2 thold" id="tHold" hidden></p>
+    <section class="tsug" id="tSug" aria-label="Drinks and desserts" hidden></section>
     <section class="token" id="token" hidden aria-label="Pickup code"><span class="tk-l">Your pickup code</span><div class="tk-d" id="tkd" role="img"></div><small id="tknote">Show this code at the counter to collect your order.</small></section>
     <a class="tlink" href="#account" id="tTrack"></a>
     <a class="cartbar tcont" href="#menu"><span class="ct">Continue Ordering</span><svg class="ch" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
@@ -1901,7 +2241,24 @@ body[data-v=home] .foot{display:block}
     <svg class="cloche" viewBox="0 0 220 110" aria-hidden="true"><use href="#i-cloche"/></svg>
     <h1 class="atitle">My account</h1>
     <div id="acBody"></div>
+    <p class="lgfoot"><a href="#terms">Terms</a> · <a href="#privacy">Privacy</a> · <a href="#concerns">Raise a concern</a></p>
   </div>
+</main>
+
+<!-- ============ LEGAL PAGES ============ -->
+<main class="view" id="terms" aria-labelledby="lgT-terms">
+  <a class="round l" href="#" aria-label="Back to welcome"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></a>
+  <div class="lgw"><h1 class="atitle" id="lgT-terms">Terms &amp; Conditions</h1><div class="lgb" id="lgb-terms"></div></div>
+</main>
+
+<main class="view" id="privacy" aria-labelledby="lgT-privacy">
+  <a class="round l" href="#" aria-label="Back to welcome"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></a>
+  <div class="lgw"><h1 class="atitle" id="lgT-privacy">Privacy Policy</h1><div class="lgb" id="lgb-privacy"></div></div>
+</main>
+
+<main class="view" id="concerns" aria-labelledby="lgT-concerns">
+  <a class="round l" href="#" aria-label="Back to welcome"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></a>
+  <div class="lgw"><h1 class="atitle" id="lgT-concerns">Raise a concern</h1><div class="lgb" id="lgb-concerns"></div></div>
 </main>
 
 <!-- ============ ADMIN ============ -->
@@ -1920,7 +2277,7 @@ body[data-v=home] .foot{display:block}
     <section id="aDash" hidden>
       <div class="atop"><h1 class="atitle">Admin</h1><div class="abtns"><a class="mini" href="#menu">View menu</a><button class="mini" id="lockBtn" type="button">Lock</button></div></div>
       <div class="atabs" id="aTabs" role="group" aria-label="Admin sections">
-        <button class="chip" data-tab="dash">Dashboard</button><button class="chip" data-tab="items">Items</button><button class="chip" data-tab="coupons">Coupons</button><button class="chip" data-tab="orders">Orders &amp; bookings<span class="nb" id="nbadge" hidden></span></button><button class="chip" data-tab="shop">Shop</button><button class="chip" data-tab="photos">Photos</button><button class="chip" data-tab="qr">Table QR</button><button class="chip" data-tab="settings">Settings</button>
+        <button class="chip" data-tab="dash">Dashboard</button><button class="chip" data-tab="items">Items</button><button class="chip" data-tab="sig">Signature</button><button class="chip" data-tab="coupons">Coupons</button><button class="chip" data-tab="orders">Orders &amp; bookings<span class="nb" id="nbadge" hidden></span></button><button class="chip" data-tab="concerns">Concerns<span class="nb" id="cbadge" hidden></span></button><button class="chip" data-tab="shop">Shop</button><button class="chip" data-tab="photos">Photos</button><button class="chip" data-tab="qr">Table QR</button><button class="chip" data-tab="settings">Settings</button>
       </div>
       <div id="svcBar" aria-live="polite"></div>
       <div id="aBody"></div>
@@ -1960,9 +2317,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
 const BRAND_DEFAULT='Your Restaurant';
 let NAME=BRAND_DEFAULT; /* set from SET.name below */
 /* Contact details for the Visit card and footer. Fill these in before handing over; anything left empty is simply hidden.
-   name: restaurant name shown in logo, footer, page title and messages (blank = generic demo). ph / wa: 10-digit numbers. ig / fb: handle or full link. maps: Google Maps share link. fssai: 14-digit licence no. credit: 0 hides the studio credit. */
+   name: restaurant name shown in logo, footer, page title and messages (blank = generic demo). ph / wa: 10-digit numbers. ig / fb: handle or full link. maps: Google Maps share link. fssai: 14-digit licence no. credit: 0 hides the studio credit.
+   legal: registered name of the business (blank = uses name). gstin: 15-character GST number (blank hides it). go: name of the Grievance Officer shown on the legal pages (blank = The Manager). em: email shown on the legal pages, put a real one here. */
 /* review: your Google review link (Google Business Profile > Ask for reviews > copy link) or just the Place ID. Leave empty to hide the Google button. */
-const SITE_DEFAULTS={name:'',ph:'9876543210',wa:'',em:'',addr:'Beside Kakatiya University, Warangal, Telangana – 506009',maps:'',review:'',ig:'',fb:'',fssai:'',credit:1};
+const SITE_DEFAULTS={name:'',ph:'9876543210',wa:'',em:'',addr:'Beside Kakatiya University, Warangal, Telangana – 506009',maps:'',review:'',ig:'',fb:'',fssai:'',legal:'',gstin:'',go:'',credit:1};
 /* ---- data layer: menu, categories, coupons, orders live in this browser (localStorage).
    Integration point: swap LS.get/LS.set for Supabase reads/writes to share one menu across devices. ---- */
 const LS={get(k,d){try{const v=localStorage.getItem('saffron.'+k);return v?JSON.parse(v):d}catch{return d}},
@@ -2157,8 +2515,215 @@ const saveSeat=v=>{mySeat=v;LS.set('seat',v)};
 const lbl=r=>r==='takeaway'&&mode==='dine'?'Order':LABEL[r];
 
 /* shared header */
-const ROUTES=['menu','dine','takeaway','book','seat','thanks','admin','account'], NAV=['menu','dine','takeaway'];
-const LABEL={menu:'Menu',dine:'Dine in',takeaway:'Take away',book:'Book a table',seat:'Select table',thanks:'Order placed',admin:'Admin',account:'My account'};
+const ROUTES=['menu','dine','takeaway','book','seat','thanks','admin','account','terms','privacy','concerns'], NAV=['menu','dine','takeaway'];
+const LABEL={menu:'Menu',dine:'Dine in',takeaway:'Take away',book:'Book a table',seat:'Select table',thanks:'Order placed',admin:'Admin',account:'My account',terms:'Terms & Conditions',privacy:'Privacy Policy',concerns:'Raise a concern'};
+/* ============ LEGAL PAGES: Terms, Privacy Policy, Raise a concern ============
+   Text is built from the restaurant details in SITE_DEFAULTS / settings (name, address, email, phones, FSSAI, GSTIN,
+   grievance officer), so filling those in updates all three pages. Bump LEGAL_UPDATED whenever the wording changes. */
+const LEGAL_UPDATED='21 November 2026', LEGAL_VER='2026-11-21', LEGAL_IDS=['terms','privacy','concerns'];
+/* consent is saved to Supabase (rpc record_consent, see saffron-legal-v1.sql). If the guest is offline, or the SQL isn't installed yet,
+   the record waits in this browser and is retried later. */
+let lgBusy=false;
+function lgSend(rec){const q=LS.get('consentq',[]);q.push(Object.assign({v:LEGAL_VER},rec));LS.set('consentq',q.slice(-20));lgFlush()}
+async function lgFlush(){
+  if(lgBusy)return; lgBusy=true;
+  try{
+    let q=LS.get('consentq',[]);
+    while(q.length){
+      const r=q[0];
+      try{await rpc('record_consent',{p_kind:r.k,p_phone:r.p,p_name:r.n||'',p_terms:r.v,p_privacy:r.v})}
+      catch(e){ if(e&&e.status>=400&&e.status<500&&e.status!==404){q.shift();LS.set('consentq',q);continue} break }
+      q.shift(); LS.set('consentq',q);
+    }
+  }catch{}
+  lgBusy=false;
+}
+setTimeout(lgFlush,4000);
+/* staff side: concerns inbox */
+let CONC=[];
+const CST=['New','In progress','Resolved'], CCLS={'New':'s-New','In progress':'s-wip','Resolved':'s-done'};
+const lgName=()=>esc(SET.legal||NAME), lgOfficer=()=>esc(SET.go||'The Manager');
+const lgChk=()=>`<label class="lgchk"><input type="checkbox" name="agree"><span>I agree to the <a href="#terms" target="_blank" rel="noopener">Terms &amp; Conditions<span class="vh"> (opens in a new tab)</span></a> and the <a href="#privacy" target="_blank" rel="noopener">Privacy Policy<span class="vh"> (opens in a new tab)</span></a>.</span></label>`;
+const lgAgreeMsg='Please tick the box to agree to the Terms and Privacy Policy.';
+function lgContact(){
+  const w=normPhone(SET.wa), p=normPhone(SET.ph), r=[];
+  if(SET.em)r.push(`Email: <a href="mailto:${esc(SET.em)}">${esc(SET.em)}</a>`);
+  if(p)r.push(`Phone: <a href="tel:+91${p}">+91 ${fmtPh(p)}</a>`);
+  if(w)r.push(`WhatsApp: <a href="https://wa.me/91${w}" target="_blank" rel="noopener">+91 ${fmtPh(w)}<span class="vh"> (opens in a new tab)</span></a>`);
+  if(SET.addr)r.push('Address: '+esc(SET.addr));
+  return `<div class="lgbox"><b>${lgName()}</b>${SET.fssai?'<br>FSSAI Lic. No. '+esc(SET.fssai):''}${SET.gstin?'<br>GSTIN '+esc(SET.gstin):''}${r.length?'<br>'+r.join('<br>'):''}</div>`;
+}
+const lgGrievance=()=>`<div class="lgbox"><b>Grievance Officer: ${lgOfficer()}</b>, ${lgName()}<br>${SET.em?`Email: <a href="mailto:${esc(SET.em)}">${esc(SET.em)}</a><br>`:''}${normPhone(SET.ph)?`Phone: <a href="tel:+91${normPhone(SET.ph)}">+91 ${fmtPh(normPhone(SET.ph))}</a><br>`:''}Or use the form on the <a href="#concerns">Raise a concern</a> page.<br>We acknowledge every concern within 48 hours and aim to resolve it within 30 days.</div>`;
+const lgGst=()=>{const g=+SET.gst||0;return g?(SET.incl?`Prices include GST at ${g}%.`:`GST at ${g}% is added to the prices and shown on your bill before you pay.`):'Any applicable taxes are shown on your bill.'};
+
+function lgTerms(){
+  const n=lgName();
+  return `<p class="lgu">Last updated ${LEGAL_UPDATED}</p>
+<p>Welcome to ${n}. These Terms &amp; Conditions explain how you may use this website to browse our menu, order food, book a table and manage your account. By creating an account, placing an order or booking a table you agree to them, together with our <a href="#privacy">Privacy Policy</a>. If you don’t agree, please don’t use the site. You are always welcome to order at the restaurant.</p>
+<h2>1. Who we are</h2>${lgContact()}
+<h2>2. Using this site</h2>
+<ul><li>You must be 18 or older to create an account or place an order. If you are younger, please use the site only with a parent or guardian, who is responsible for the order.</li>
+<li>Give us correct details (name, mobile number, table). We use them to serve you and to reach you about your order.</li>
+<li>Online ordering and table service may be paused at times, for example when we are closed, very busy or have a power or internet problem. Our opening hours are shown on this site.</li></ul>
+<h2>3. Menu, prices and tax</h2>
+<ul><li>All prices are in Indian rupees (₹). ${lgGst()}</li>
+${+SET.pack>0?`<li>A packaging charge of ₹${+SET.pack} applies to each take-away order. It is shown before you place the order.</li>`:''}
+<li>Photos are for illustration. Portion size and appearance can vary a little.</li>
+<li>Items can sell out. If something becomes unavailable after you order, we will tell you and offer a replacement or remove it and refund that item.</li>
+<li>If a price is wrong because of an obvious mistake, we will tell you before preparing the order and you can choose to go ahead or cancel.</li></ul>
+<h2>4. Placing an order</h2>
+<ul><li>Your order is confirmed when you receive a pickup code (take-away) or it appears as your current order (dine-in). We may decline or cancel an order if we are closed, an item is unavailable or something looks wrong. If that happens we will tell you, and refund anything you have already paid.</li>
+<li><b>Take-away:</b> show your pickup code at the counter. Please collect promptly. We cannot guarantee the quality of food left waiting for a long time.</li>
+<li><b>Dine-in:</b> choose your table (or scan its QR code) and order as many rounds as you like. All rounds at your table are added to one bill. Please check the table number, because we serve the table you select.</li></ul>
+<h2>5. Payment, coupons and points</h2>
+<ul><li>You pay at the restaurant (cash or UPI), when you collect a take-away order or when your table asks for the bill. This website does not take card, UPI or bank details.</li>
+<li>We give you a bill showing the items, tax and total.</li>
+<li>Coupons are valid only as stated on them, usually one per order, and cannot be combined or exchanged for cash. We can withdraw a coupon that is misused.</li>
+<li>Loyalty points are earned on completed orders, have no cash value and cannot be transferred. We may change or end the programme, and will give reasonable notice if we do.</li></ul>
+<h2>6. Cancellations and refunds</h2>
+<ul><li>You can cancel a take-away order free of charge until the kitchen starts preparing it (while it shows as New). Please call or message us straight away. Once it shows Preparing, we cannot cancel it, because the food is already being made.</li>
+<li>If we cancel, or cannot make your order, you get a full refund of anything paid.</li>
+<li>If your food is not as ordered, is missing, or you have a food safety concern, tell us at the restaurant straight away or use <a href="#concerns">Raise a concern</a>. We will replace it, correct the bill or refund you, as fits the problem.</li>
+<li>Approved refunds are returned by the same method you paid with (cash or UPI), within 7 days.</li></ul>
+<h2>7. Table bookings</h2>
+<ul><li>A booking holds your table for 15 minutes after the booked time. After that we may give the table to other guests.</li>
+<li>Please cancel by calling or messaging us if your plans change, so another guest can have the table.</li>
+<li>In an emergency (for example a power failure or a closure) we may have to change or cancel a booking. We will contact you and help you rebook.</li></ul>
+<h2>8. Food safety and allergens</h2>
+<ul><li>Our kitchen handles ingredients such as nuts, dairy, gluten, eggs, fish, shellfish, soy and sesame. We cannot promise any dish is free of an allergen. If you have an allergy or special dietary need, tell our staff before ordering.</li>
+<li>Dishes are marked vegetarian (green) or non-vegetarian (red/brown). ${SET.fssai?`Our FSSAI licence number is ${esc(SET.fssai)}.`:''}</li></ul>
+<h2>9. Your account</h2>
+<ul><li>Your account is protected by your mobile number and a 4-digit PIN. Keep the PIN private. You are responsible for what happens under your account, so tell us at once if you think someone else has used it.</li>
+<li>You can ask us to delete your account at any time (see the Privacy Policy). We may suspend an account that is misused.</li></ul>
+<h2>10. Fair use</h2>
+<p>Please don’t place false or prank orders or bookings, try to enter staff or admin areas, interfere with or copy the site by automated means, or abuse our staff. We may refuse service, cancel orders or close accounts for this kind of misuse.</p>
+<h2>11. Feedback and reviews</h2>
+<p>When you rate an order or write feedback, you let us use it to improve our service and, without your name or number, to show on this site. Please keep it honest and lawful.</p>
+<h2>12. Our content</h2>
+<p>The name, logo, photos, text and design of this site belong to ${n} or its licensors. You may use them for your own personal, non-commercial use, but not copy or reuse them without our written permission.</p>
+<h2>13. Our responsibility</h2>
+<ul><li>We work hard to keep this site accurate and running, but we cannot promise it will always be available or error-free.</li>
+<li>To the fullest extent the law allows, we are not responsible for indirect or consequential losses, and our liability for any order is limited to the amount you paid for that order.</li>
+<li><b>This does not limit anything the law does not allow us to limit.</b> That includes liability for death or personal injury caused by our negligence, for fraud, and your rights as a consumer under the Consumer Protection Act, 2019 and other Indian laws.</li></ul>
+<h2>14. Complaints</h2>
+<p>If something goes wrong, please tell us first. We want to put it right. Use the <a href="#concerns">Raise a concern</a> page or the details below.</p>${lgGrievance()}
+<h2>15. Changes to these terms</h2>
+<p>We may update these terms from time to time. The date at the top shows the latest version. Changes apply to orders and bookings made after the update. If a change is significant, we will say so on the site.</p>
+<h2>16. Governing law</h2>
+<p>These terms are governed by the laws of India. Subject to your rights as a consumer, including the right to approach the Consumer Commission where you live or work, the courts at Hanamkonda, Telangana have jurisdiction over any dispute.</p>`;
+}
+
+function lgPrivacy(){
+  const n=lgName();
+  return `<p class="lgu">Last updated ${LEGAL_UPDATED}</p>
+<p>${n} (“we”) respects your privacy. This policy explains what personal data we collect through this website, why, who sees it, how long we keep it and what choices you have. We follow the Digital Personal Data Protection Act, 2023, the Information Technology Act, 2000 and related rules. For this data we are the “Data Fiduciary”.</p>
+<h2>1. Who is responsible</h2>${lgContact()}
+<h2>2. What we collect</h2>
+<div class="lgtw"><table class="lgt"><thead><tr><th>When</th><th>What we collect</th></tr></thead><tbody>
+<tr><td>You create an account</td><td>Name, mobile number and a 4-digit PIN</td></tr>
+<tr><td>You place an order</td><td>Items, notes, table number or take-away details, time, total, pickup code, and your name and mobile number</td></tr>
+<tr><td>You book a table</td><td>Name, phone number, date, time, table and any special request</td></tr>
+<tr><td>You call a waiter or ask for the bill</td><td>Your table number and the time of the request</td></tr>
+<tr><td>You pay</td><td>Bill amounts, tax, discount, payment method (cash or UPI), and your mobile number if you ask us to send the bill on WhatsApp</td></tr>
+<tr><td>You rate an order or raise a concern</td><td>Your rating, your note, and the details you type</td></tr>
+<tr><td>You use the site</td><td>Small items saved in your browser (see section 6) and standard technical data such as your IP address, which our hosting providers see when your device connects</td></tr>
+</tbody></table></div>
+<p>We do <b>not</b> collect card, UPI or bank details, your precise location, your contacts or any government ID on this site.</p>
+<h2>2A. Why we use it</h2>
+<ul><li>To take, prepare, serve and bill your order, and to manage table bookings and table service.</li>
+<li>To message or call you about your order or booking (for example, “your order is ready”).</li>
+<li>To run your account, coupons and loyalty points.</li>
+<li>To improve our food and service using ratings and feedback.</li>
+<li>To look into your concerns, keep accounts and tax records, and meet legal duties.</li></ul>
+<p>We use your data only for these purposes. We do <b>not</b> sell it, and we do not send promotional messages unless you separately ask us to. You can stop such messages at any time.</p>
+<h2>3. Your consent</h2>
+<p>We ask you to agree when you create an account or book a table, and the sign-up screen links to this policy. You give the details yourself, for the purposes above. You can withdraw your consent at any time (see section 8). Withdrawing is as easy as giving it, but then we may no longer be able to take your orders or bookings.</p>
+<h2>4. Who we share it with</h2>
+<ul><li><b>Our staff</b>, who see the orders, tables and contact details they need to serve you.</li>
+<li><b>Technology providers</b> who host and run this website and its database (we use Supabase for the database), and the people who maintain the site for us. They may only use data to provide those services.</li>
+<li><b>WhatsApp (Meta)</b>, only when you or our staff choose to open a chat. WhatsApp’s own policy then applies.</li>
+<li><b>Google</b>, which supplies the fonts this site loads, and the map link if you tap directions. This lets Google see your IP address.</li>
+<li><b>Authorities, courts and our tax and accounting advisers</b>, where the law requires it or where it is needed to claim or defend a legal right.</li></ul>
+<h2>5. Data stored outside India</h2>
+<p>Our hosting providers may keep data on servers in India or in other countries. We use providers that protect data in line with industry standards, and we transfer data only where Indian law allows.</p>
+<h2>6. Browser storage</h2>
+<p>This site saves small items in your browser’s local storage (similar to cookies) so it works properly. These keep you signed in, remember your cart and table, and remember your choices. We do not use advertising or tracking cookies. You can clear them from your browser settings, but you may then need to sign in again.</p>
+<h2>7. How long we keep it</h2>
+<ul><li><b>Account details:</b> until you ask us to delete the account.</li>
+<li><b>Orders and bills:</b> as long as we need them for accounting and tax, which under GST law can be up to 6 years.</li>
+<li><b>Bookings and table requests:</b> only as long as needed for the visit and our records.</li>
+<li><b>Concerns and feedback:</b> until resolved, then up to 3 years in case of follow-up or a legal claim.</li></ul>
+<p>When we no longer need data, and the law does not require us to keep it, we delete it or remove anything that identifies you.</p>
+<h2>8. Your rights</h2>
+<p>Under the Digital Personal Data Protection Act, 2023 you can:</p>
+<ul><li>ask for a summary of the personal data we hold about you and how it is used;</li>
+<li>ask us to correct, complete or update it;</li>
+<li>ask us to erase it, except where we must keep it by law (such as tax records);</li>
+<li>withdraw your consent;</li>
+<li>get your concern or complaint handled by our Grievance Officer; and</li>
+<li>nominate another person to exercise these rights for you if you die or are unable to.</li></ul>
+<p>To use any of these, tell us through <a href="#concerns">Raise a concern</a> (choose “My personal data”) or contact the Grievance Officer below. We may ask you to confirm it is you, for example by replying from the mobile number on the account. We acknowledge requests within 48 hours and respond within 30 days.</p>
+<h2>9. Children</h2>
+<p>This site is not meant for anyone under 18. We do not knowingly process a child’s personal data without the verifiable consent of a parent or lawful guardian. If you think a child has given us data, please tell us and we will delete it.</p>
+<h2>10. Security</h2>
+<p>We take reasonable steps to protect your data, including encrypted connections, limiting staff access and keeping the staff area locked with a PIN. No website can be completely secure. If a breach affects your personal data, we will tell you and the Data Protection Board of India as the law requires.</p>
+<h2>11. Complaints</h2>
+<p>If we have not resolved your privacy concern, you can complain to the Data Protection Board of India. Please contact us first.</p>${lgGrievance()}
+<h2>12. Changes to this policy</h2>
+<p>We may update this policy. The date at the top shows the latest version, and we will tell you on the site if a change is significant.</p>`;
+}
+
+function lgConcerns(){
+  const w=normPhone(SET.wa), p=normPhone(SET.ph);
+  const btns=`<button class="go sm" type="button" data-lg="save">Submit concern</button>`+(w?`<button class="mini" type="button" data-lg="wa">Also send on WhatsApp</button>`:'')+(SET.em?`<button class="mini" type="button" data-lg="mail">Send by email</button>`:'')+(p?`<a class="mini" href="tel:+91${p}">Call us</a>`:'');
+  return `<p class="lgu">Food, service, billing or your personal data</p>
+<p>Something not right? We want to know, and we want to fix it. Fill in the form and tap Submit. It goes straight to our team and you get a reference number to quote when you follow up.</p>
+<form class="bill lgform" id="lgForm" novalidate>
+<label>What is this about?<select name="t"><option>Food quality or hygiene</option><option>Wrong, missing or late order</option><option>Bill, payment or refund</option><option>Table booking</option><option>Staff or service</option><option>My personal data (see, correct or delete it, or withdraw consent)</option><option>Website problem</option><option>Something else</option></select></label>
+<div class="lgrow"><label>Your name<input name="n" autocomplete="name" maxlength="60"></label><label>Mobile number<input name="p" type="tel" inputmode="tel" autocomplete="tel" placeholder="98765 43210"></label></div>
+<label>Order code or table (if you have it)<input name="o" maxlength="30" placeholder="e.g. 482 913 or T10"></label>
+<label>Tell us what happened<textarea name="m" rows="5" maxlength="1000"></textarea></label>
+<p class="err" id="lgErr" role="alert"></p>
+<div class="abtns">${btns}</div>
+<small>We use these details only to look into your concern and reply to you. See our <a href="#privacy">Privacy Policy</a>.</small></form>
+<h2>What happens next</h2>
+<ul><li>We acknowledge your concern within 48 hours.</li><li>We aim to resolve it within 30 days, and usually much sooner.</li><li>We tell you what we found and what we did.</li></ul>
+<h2>Grievance Officer</h2>${lgGrievance()}
+<h2>Not satisfied with our answer?</h2>
+<ul><li><b>Consumer complaints:</b> call the National Consumer Helpline on 1915, or approach the Consumer Commission under the Consumer Protection Act, 2019.</li>
+<li><b>Food safety:</b> report it through the FSSAI Food Safety Connect service.</li>
+<li><b>Personal data:</b> you may complain to the Data Protection Board of India, after raising it with us first.</li></ul>`;
+}
+function renderLegal(id){const el=$('#lgb-'+id); if(el)el.innerHTML=id==='terms'?lgTerms():id==='privacy'?lgPrivacy():lgConcerns()}
+/* concern form: Submit saves it to Supabase (rpc submit_concern). WhatsApp and email open a message that is already written. */
+document.addEventListener('click',async e=>{
+  const b=e.target.closest('[data-lg]'); if(!b)return; const f=$('#lgForm'); if(!f)return;
+  const er=m=>{$('#lgErr').textContent=m}, x=f.elements, how=b.dataset.lg;
+  const nm=x.n.value.trim(), ph=normPhone(x.p.value), msg=x.m.value.trim(), od=x.o.value.trim();
+  if(!nm)return er('Please enter your name.');
+  if(!ph)return er('Enter a valid 10-digit mobile number so we can reply.');
+  if(msg.length<10)return er('Please tell us a little more about the concern.');
+  er('');
+  const out=(ref)=>{
+    const txt=(ref?'Concern '+ref+'\n':'Concern\n')+'Type: '+x.t.value+'\nName: '+nm+'\nMobile: +91 '+ph+(od?'\nOrder or table: '+od:'')+'\n\n'+msg;
+    if(how==='mail'||(how==='save'&&!normPhone(SET.wa)&&SET.em))location.href='mailto:'+SET.em+'?subject='+encodeURIComponent('Concern'+(ref?' '+ref:'')+': '+x.t.value)+'&body='+encodeURIComponent(txt);
+    else window.open('https://wa.me/91'+normPhone(SET.wa)+'?text='+encodeURIComponent(txt),'_blank','noopener');
+  };
+  if(how!=='save'){ out(f.dataset.ref||''); return }
+  b.disabled=true;
+  try{
+    const r=await rpc('submit_concern',{p_topic:x.t.value,p_name:nm,p_phone:ph,p_order:od,p_message:msg});
+    f.dataset.ref=r.ref;
+    f.outerHTML=`<div class="lgbox" id="lgDone" role="status"><b>Thank you. We’ve received your concern.</b><br>Your reference number is <b>${esc(r.ref)}</b>. Please keep it. We will acknowledge it within 48 hours and aim to resolve it within 30 days, on the mobile number you gave us.</div>`;
+    toast('Concern sent. Reference '+r.ref);
+  }catch(x2){
+    b.disabled=false;
+    if(x2&&x2.status===404&&(normPhone(SET.wa)||SET.em)){ out(''); toast('Opening your message to send it to us directly') }
+    else if(x2&&/^too_many/.test(String(x2.message||'')))er('You’ve sent several concerns in the last hour. Please call us instead.');
+    else er(x2&&x2.net?say(x2):'We couldn’t send that. Please try again, or call us.');
+  }
+});
+
 function header(cur){
   return `<a class="brand" href="#" aria-label="${NAME} home">${NAME}</a><nav aria-label="Pages">`+
    NAV.map(r=>`<a href="#${r}" ${r===(cur==='book'||cur==='seat'?'dine':cur)?'aria-current="page"':''}>${lbl(r)}${r==='takeaway'&&count()?`<span class="badge">${count()}</span>`:''}</a>`).join('')+`</nav>`;
@@ -2174,6 +2739,7 @@ function route(){
   document.title=NAME+' – '+(id==='home'?'Biryani, rice and noodles in Hanamkonda':LABEL[id]);
   const t=$('#'+id+' .top'); if(t)t.innerHTML=header(id);
   if(id==='menu')renderMenu(); if(id==='takeaway')renderTake(); if(id==='seat')renderSeat(); if(id==='dine')renderDine(); if(id==='book')renderBook(); if(id==='thanks')renderThanks(); if(id==='admin')renderAdmin(); if(id!=='admin')lockAdmin(); if(id!=='account')authNext=null; if(id==='account')renderAccount(); if(id==='home'){acctBtn();homeEnter()}
+  if(LEGAL_IDS.includes(id))renderLegal(id);
   if(id==='menu')stagger('#items'); if(id==='takeaway')stagger('#cartList'); shopBar();
   window.scrollTo(0,0);
 }
@@ -2210,7 +2776,7 @@ function renderMenu(){
       :`<button class="atc" data-m="${m.id}" data-d="1">Add to Cart</button>`)+`</div></article>`}).join(''):`<p class="tnote">${MENU.length?noMatch(words.join(' ')):LOAD==='ok'?'No items here yet.':LOAD==='err'?'Couldn’t load the menu. Check your connection and refresh the page.':'Loading the menu…'}</p>`;
   const n=count(); $('#mbadge').textContent=n; $('#mbadge').hidden=!n; $('#cbn').textContent=n; $('#cartbar').classList.toggle('show',n>0);
   $('#mback').href=mode==='dine'?'#seat':'#';
-  const tn=$('#tnote'); tn.hidden=mode!=='dine'; tn.innerHTML=mine(+table)?`Adding to your order at Table T${+table}`:`Ordering for Table T${+table} · <a href="#seat">Change table</a>`;
+  const tn=$('#tnote'); tn.hidden=mode!=='dine'; tn.innerHTML=mine(+table)?`Adding to your order at Table T${+table}`:`Ordering for Table T${+table} · <a href="#seat">Change table</a>`; tbarPaint();
   if(mode==='dine'&&Date.now()-occAt>15000)loadOcc();
 }
 $('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-c]');if(b){cat=b.dataset.c;renderMenu()}});
@@ -2297,9 +2863,9 @@ $('#placeBtn').addEventListener('click',async()=>{
     if(more)args.p_session=seated().key;   /* only sent when we hold a session, so the page still works before the SQL is installed */
     const r=await rpc('place_order',args);
     if(dn&&r&&r.session&&r.session.key){saveSeat({table:+r.session.table,key:r.session.key,at:Date.now()}); if(!occ.includes(+r.session.table))occ.push(+r.session.table)}
-    lastOrder={dn,table,more,time:dn?'':'in 20 minutes',lines:r.lines.map(l=>[l.id,l.q]),token:r.token,cust};
+    lastOrder={dn,table,more,joinFirst:(()=>{const j=JOINED===+table&&dn; if(j)JOINED=0; return j})(),time:dn?'':'in 20 minutes',lines:r.lines.map(l=>[l.id,l.q]),token:r.token,cust};
     Object.keys(cart).forEach(k=>delete cart[k]); Object.keys(notes).forEach(k=>delete notes[k]); coupon=null;
-    loadRemote(); if(ACCT)loadMine().then(acctRefresh);
+    loadRemote(); if(ACCT)loadMine().then(acctRefresh); loadTable().then(acctRefresh);
     location.hash='thanks';
   }catch(x){
     const m=String((x&&x.message)||'');
@@ -2322,6 +2888,7 @@ function renderThanks(){
   $('#token').hidden=!o.token;
   $('#tTrack').textContent=acct()?'Track this order in My account':'Create an account to track your orders';
   $('#tknote').textContent=o.cust?`Show this code at the counter. We’ll WhatsApp or call you on +91 ${fmtPh(o.cust.phone)} when it’s ready.`:'Show this code at the counter to collect your order.';
+  renderSug();
   if(o.token){const k=$('#tkd');k.innerHTML=[...o.token].map((d,i)=>`<b style="animation-delay:${.55+i*.09}s">${d}</b>`).join('');k.setAttribute('aria-label','Pickup code '+[...o.token].join(' '))}
 }
 
@@ -2404,9 +2971,10 @@ $('#bookForm').addEventListener('submit',async e=>{
   if(!bk.table){err('Pick a table from the floor plan.');$('#bPlan').scrollIntoView({behavior:'smooth',block:'center'});return}
   if(!name){err('Enter your name.');f.elements.name.focus();return}
   if(!/^\+?\d{10,13}$/.test(phone.replace(/[\s-]/g,''))){err('Enter a valid 10-digit phone number.');f.elements.phone.focus();return}
+  if(!f.elements.agree.checked){err(lgAgreeMsg);f.elements.agree.focus();return}
   err(''); const btn=$('#bBtn'); btn.disabled=true; btn.textContent='Booking…';
   const booking={name,phone,note,date:bk.date,time:bk.time,table:bk.table};
-  try{ const r=await sendBooking(booking); lastBooking=r; showBooked(r) }
+  try{ const r=await sendBooking(booking); lastBooking=r; showBooked(r); lgSend({k:'booking',p:normPhone(phone)||phone.replace(/\D/g,'').slice(-10),n:name}) }
   catch(x){ err(say(x)); if(String((x&&x.message)||'').startsWith('taken'))loadTaken() }
   finally{ btn.disabled=false; btn.textContent='Confirm Booking' }
 });
@@ -2478,13 +3046,13 @@ async function verifySeat(){
   const q=seated(); if(!q||Date.now()-q.at<8000)return;
   let ok=occ.includes(q.table);
   if(ok){try{ok=(await rpc('my_table_session',{p_table:q.table,p_session:q.key}))===true}catch{return}}
-  if(!ok){saveSeat(null); if(Date.now()-q.at<5*36e5)toast(`Table T${q.table} was closed by our team. Pick a table to order again.`)}
+  if(!ok){saveSeat(null); tableClosed(q)}
 }
 /* the table I picked is held by someone else: let go of it and send me back to the picker */
 function dropTable(n){
   n=n||table; table=null;
-  toast(`Table T${n} already has an order in progress. Pick another table, or ask our team.`);
-  if(/^(menu|takeaway)$/.test(location.hash.slice(1)))location.hash='seat'; else sync();
+  toast(`Table T${n} already has an order in progress. Pick another table, or join it with your friend’s code.`);
+  if(/^(menu|takeaway)$/.test(location.hash.slice(1))){location.hash='seat'; setTimeout(()=>{if(location.hash==='#seat'&&n)openJoin(n)},1500)} else sync();
 }
 async function loadOcc(){
   try{const r=await rpc('occupied_tables'); if(!Array.isArray(r))return; occ=r.map(Number).filter(Number.isFinite); occAt=Date.now()}
@@ -2496,7 +3064,7 @@ async function loadOcc(){
   if(document.body.dataset.v==='seat')paintOcc();
   if(document.body.dataset.v==='dine')renderDine();
 }
-function renderDine(){const q=seated(), c=$('#seatCard'); c.hidden=!q; if(q)$('#seatCardT').textContent='Table T'+q.table; $('#svc').hidden=!q; paintSvcBtns()}
+function renderDine(){const q=seated(), c=$('#seatCard'); c.hidden=!q; if(q){const rs=tableRounds(); $('#seatCardT').textContent='Table T'+q.table+(rs.length?' · '+inr(Math.round(roundsTotal(rs)))+' so far':'')} $('#svc').hidden=!q; paintSvcBtns()}
 /* ---- Call waiter / Request bill: 90s cooldown per button so a table can't spam the staff ---- */
 const SVC_WAIT=90000, SVC_TXT={waiter:['Call waiter','Waiter is on the way'],bill:['Request bill','Bill requested']};
 let svcT=null;
@@ -2534,7 +3102,7 @@ $('#seatCard').addEventListener('click',()=>{const q=seated(); if(q){mode='dine'
 function pick(n){
   const q=seated();
   if(q&&n!==q.table){toast(`You’re seated at Table T${q.table}. Ask our team if you’d like to move.`);return}
-  if(locked(n)){toast(`Table T${n} is occupied right now. Please pick another.`);return}
+  if(locked(n)){openJoin(n);return}
   table=n; sync();
 }
 function sync(){paintOcc();document.querySelectorAll('#seat [data-t]').forEach(el=>el.setAttribute('aria-pressed',String(+el.dataset.t===table)));$('#seatTxt').textContent=table?(mine(table)?`Your table · T${table}`:`Table T${table}`):'';$('#startBtn').textContent=mine(table)?'Add more items':'Start ordering';$('#seatbar').classList.toggle('show',!!table)}
@@ -2570,7 +3138,7 @@ const when=iso=>new Date(iso).toLocaleString('en-IN',{day:'numeric',month:'short
 function renderAdmin(){paintSvc();$('#aLogin').hidden=unlocked;$('#aDash').hidden=!unlocked;if(unlocked)adminBody();else setTimeout(()=>$('#pin').focus(),0)}
 function adminBody(){
   document.querySelectorAll('#aTabs [data-tab]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.tab===tab));
-  $('#admin').classList.toggle('dw',tab==='dash');$('#aBody').innerHTML=({dash:tDash,items:tItems,coupons:tCoupons,orders:tOrders,shop:tShop,qr:tQR,photos:tPhotos,settings:tSettings})[tab]();
+  $('#admin').classList.toggle('dw',tab==='dash');$('#aBody').innerHTML=({dash:tDash,items:tItems,coupons:tCoupons,orders:tOrders,concerns:tConcerns,shop:tShop,qr:tQR,photos:tPhotos,sig:tSig,settings:tSettings})[tab]();
   {const n=orders.filter(x=>x.status==='New').length,nb=$('#nbadge');nb.textContent=n;nb.hidden=!n}
 }
 const refresh=()=>tab==='items'&&$('#aList')?$('#aList').innerHTML=itemRows():adminBody();
@@ -2583,10 +3151,22 @@ function tCoupons(){
   return `<form class="bill cadd" id="cpForm" novalidate><label>Code<input name="c" maxlength="16" autocomplete="off" style="text-transform:uppercase"></label><label>Type<select name="t"><option value="pct">Percent off</option><option value="flat">Flat ₹ off</option></select></label><label>Value<input name="v" type="number" min="1" inputmode="numeric"></label><button class="go sm" type="submit">Add coupon</button></form><p class="err" id="cpErr" role="alert"></p>`+
   (COUPONS.map((x,i)=>`<article class="arow"><div class="ainfo"><b>${esc(x.c)}</b><small>${x.t==='pct'?x.v+'% off':'₹'+x.v+' off'}</small></div><button class="sw" role="switch" aria-checked="${!!x.on}" data-act="cpon" data-i="${i}">${x.on?'Active':'Paused'}</button><button class="mini del" data-act="cpdel" data-i="${i}">Delete</button></article>`).join('')||'<p class="aempty">No coupons yet. Add one above.</p>');
 }
+const HID=new Set(LS.get('hid',[]).map(String));
+const ostep=(x,i)=>{const k=ST.indexOf(x.status),nx=Math.min(k+1,ST.length-1);
+  return `<div class="ostep" role="group" aria-label="Order status, now ${x.status}">${ST.map((s,j)=>`<button type="button" data-act="ost" data-i="${i}" data-to="${s}" class="${j<k?'done':j===k?'cur s-'+s:j===nx?'nxt':''}"${j===k?' aria-pressed="true" aria-current="step"':' aria-pressed="false"'} aria-label="${j===k?'Now '+s:'Mark as '+s}"><i aria-hidden="true">${j<k?'✓':j+1}</i>${s}</button>`).join('')}</div>`};
 const orderRows=()=>{
-  const s=oq.replace(/\D/g,''), r=orders.map((x,i)=>({x,i})).filter(({x})=>!s||(x.token||'').includes(s)||(x.cust&&x.cust.phone.includes(s)));
-  return r.length?r.map(({x,i})=>`<article class="arow"><div class="ainfo"><b>${x.token?`<span class="tkchip">${x.token.slice(0,3)} ${x.token.slice(3)}</span>`:''}${x.dn?'Table T'+x.table:'Take away'}, ${inr(x.total)}</b><small>${when(x.at)}. ${x.lines.map(ln).join(', ')}${x.cust?`<br><b>${esc(x.cust.name)}</b>, +91 ${fmtPh(x.cust.phone)}`:''}</small></div>${x.cust&&x.token?`<span class="abtns"><a class="mini" href="${waLink(x)}" target="_blank" rel="noopener">WhatsApp</a><a class="mini" href="tel:+91${x.cust.phone}">Call</a></span>`:''}<button class="mini" data-act="print" data-i="${i}">Print</button><button class="sw" data-act="ost" data-i="${i}" aria-label="Status ${x.status}. Tap to change">${x.status}</button></article>`).join(''):`<p class="aempty">${s?'No order matches that.':'No orders yet.'}</p>`;
+  const s=oq.replace(/\D/g,''), r=orders.map((x,i)=>({x,i})).filter(({x})=>!HID.has(String(x.id))&&(!s||(x.token||'').includes(s)||(x.cust&&x.cust.phone.includes(s))));
+  return r.length?r.map(({x,i})=>`<article class="arow ord"><div class="ainfo"><b>${x.token?`<span class="tkchip">${x.token.slice(0,3)} ${x.token.slice(3)}</span>`:''}${x.dn?'Table T'+x.table:'Take away'}, ${inr(x.total)}</b><small>${when(x.at)}. ${x.lines.map(ln).join(', ')}${x.cust?`<br><b>${esc(x.cust.name)}</b>, +91 ${fmtPh(x.cust.phone)}`:''}</small></div>${x.cust&&x.token?`<span class="abtns"><a class="mini" href="${waLink(x)}" target="_blank" rel="noopener">WhatsApp</a><a class="mini" href="tel:+91${x.cust.phone}">Call</a></span>`:''}<span class="abtns"><button class="mini" data-act="print" data-i="${i}">Print</button><button class="mini clr" data-act="oclr" data-i="${i}" aria-label="Clear this order after payment">Clear</button></span>${ostep(x,i)}</article>`).join(''):`<p class="aempty">${s?'No order matches that.':'No orders yet.'}</p>`;
 };
+
+/* ---- Concerns tab ---- */
+const cstep=(c,i)=>{const k=CST.indexOf(c.status);
+  return `<div class="ostep s3" role="group" aria-label="Concern status, now ${c.status}">${CST.map((s,j)=>`<button type="button" data-act="cst" data-i="${i}" data-to="${s}" class="${j<k?'done':j===k?'cur '+CCLS[s]:j===k+1?'nxt':''}"${j===k?' aria-pressed="true" aria-current="step"':' aria-pressed="false"'} aria-label="${j===k?'Now '+s:'Mark as '+s}"><i aria-hidden="true">${j<k?'✓':j+1}</i>${s}</button>`).join('')}</div>`};
+function tConcerns(){
+  const open=CONC.filter(c=>c.status!=='Resolved').length;
+  return `<div class="atop"><h2 class="ah">Customer concerns</h2><small class="sub2">${open} open · ${CONC.length} total</small></div>`+
+   (CONC.length?CONC.map((c,i)=>`<article class="arow ord${c.status==='Resolved'?' off':''}"><div class="ainfo"><b><span class="tkchip">${esc(c.ref)}</span>${esc(c.topic)}</b><small>${when(c.at)}. ${esc(c.name)}, +91 ${fmtPh(c.phone)}${c.ord?'. Order or table: '+esc(c.ord):''}<br>${esc(c.message).replace(/\n/g,'<br>')}${c.resolution?'<br><b>Our note:</b> '+esc(c.resolution):''}</small></div><span class="abtns"><a class="mini" href="https://wa.me/91${esc(c.phone)}" target="_blank" rel="noopener">WhatsApp</a><a class="mini" href="tel:+91${esc(c.phone)}">Call</a></span>${cstep(c,i)}</article>`).join(''):'<p class="aempty">No concerns yet. They appear here when a guest submits the Raise a concern form.</p>');
+}
 function tOrders(){
   const o=orderRows();
   const b=bookings.map((x,i)=>({x,i})).sort((a,c)=>(a.x.date+a.x.time).localeCompare(c.x.date+c.x.time)).map(({x,i})=>`<article class="arow"><div class="ainfo"><b>${dayLabel(x.date,{weekday:'short',day:'numeric',month:'short'})}, ${fmtTime(x.time)}, Table T${x.table}</b><small>${esc(x.name)}, ${esc(x.phone)}${x.note?'. “'+esc(x.note)+'”':''}</small></div><button class="mini del" data-act="bdel" data-i="${i}">Cancel booking</button></article>`).join('')||'<p class="aempty">No table bookings yet.</p>';
@@ -2684,7 +3264,7 @@ const tSettings=()=>`<form class="acard" id="conForm" novalidate><h2 class="ah">
    "Close table" sends the bill to the server, which saves it in the bills table, marks the rounds Served and frees
    the table in one step (saffron-billing-v1.sql). Nothing here changes how guests order. */
 const SESSION_GAP_H=6;   /* rounds more than this many hours apart count as separate visits (guards against old unbilled orders) */
-let BILLS=[], BILLING=null, billsAt=0;   /* BILLING: null = not asked yet, true = installed, false = the SQL hasn't been run */
+let BILLS=[], BILLING=null, billsAt=0, BILLERR='';   /* BILLING: null = not asked yet, true = installed, false = the SQL hasn't been run */
 const billPhone={}, BL={k:null,method:'',saved:null,busy:false,opener:null,sig:''};
 const TBL_ST={New:'#3B82F6',Preparing:'#F5A524',Ready:'#2FA84F',Served:'#CFC8C1'};
 const BI={
@@ -2714,7 +3294,7 @@ async function refreshBills(force){
   if(!force&&Date.now()-billsAt<(BILLING===false?60000:20000))return;
   billsAt=Date.now();
   try{const r=await adm('admin_bills',{p_days:3}); if(Array.isArray(r)){BILLS=r;BILLING=true}}
-  catch(x){if(x&&x.status===404)BILLING=false}
+  catch(x){if(x&&x.status===404){BILLING=false;BILLERR=String(x.message||'').slice(0,180)}}
 }
 /* the open rounds at table k: dine-in orders that aren't on a saved bill, newest visit only */
 function openRounds(k){
@@ -2730,7 +3310,7 @@ function splitOrder(o){
   else{base=Math.round(T*100/(100+g));for(const b of [base,base-1,base+1])if(b+Math.round(b*g/100)===T){base=b;break}gst=T-base}
   return{sub,gst,disc:Math.max(0,sub-base)};
 }
-function billOf(k){
+function billOf0(k){
   const rs=openRounds(k), parts=rs.map(splitOrder), sum=f=>parts.reduce((a,p)=>a+p[f],0), by=new Map();
   rs.forEach(o=>o.lines.forEach(l=>{const key=l.n+'|'+l.p, e=by.get(key)||{n:l.n,p:l.p,q:0}; e.q+=l.q; by.set(key,e)}));
   const c=(rs.find(o=>o.cust&&o.cust.phone)||{}).cust;
@@ -2739,6 +3319,13 @@ function billOf(k){
     lines:[...by.values()].map(e=>({n:e.n,q:e.q,p:e.p,amt:e.p*e.q})),
     sub:sum('sub'),disc:sum('disc'),gst:sum('gst'),total:rs.reduce((a,o)=>a+(+o.total||0),0),
     pct:+SET.gst||0,incl:!!SET.incl,opened:rs[0]?rs[0].at:null,phone:c?c.phone:''};
+}
+/* manual discount (with a reason) applied on top of the raw bill, only for the table whose bill is open */
+function billOf(k){const B=billOf0(k),a=BL.adj; if(!a||BL.saved||+a.k!==+k||!B.rounds.length)return B; return applyAdj(B,a)}
+function applyAdj(B,a){
+  let d=a.mode==='pct'?Math.round(B.total*a.val/100):Math.round(a.val); d=Math.max(0,Math.min(d,B.total)); if(!d)return B;
+  const T2=B.total-d, g2=B.total?Math.round(B.gst*T2/B.total):0, dpre=B.incl?d:Math.round(d/(1+B.pct/100));
+  return Object.assign({},B,{disc:B.disc+dpre,gst:g2,total:T2,adj:{amt:d,pre:dpre,reason:a.reason,mode:a.mode,val:a.val}});
 }
 const savedOf=r=>({table:r.table_no,rounds:(r.rounds||[]).map(x=>Object.assign({},x,{status:'Served'})),lines:r.lines||[],
   sub:+r.subtotal,disc:+r.discount,gst:+r.gst,total:+r.total,pct:+r.gst_pct,incl:!!r.tax_incl,opened:r.opened_at,closed:r.closed_at,
@@ -2752,12 +3339,12 @@ function tcard({k,b,rq}){
   const lab=`Table ${k}, running total ${money(b.total)}${seat?', seated '+seat:''}${rq?', asked for the bill '+dAgo(rq.at):''}. Open bill`;
   return `<button type="button" class="tc${rq?' req':''}" data-act="bill" data-t="${k}" aria-label="${esc(lab)}"><span class="tc-top"><span class="tc-no">T${k}</span>${rq?'<span class="tc-tag"><i></i>Wants the bill</span>':''}</span><span class="tc-l">Running total</span><strong class="tc-amt">${money(b.total)}</strong><span class="tc-m">${BI.clk}<span>${esc(seat||'–')}</span><span class="tc-dots" aria-hidden="true">${b.rounds.map(r=>`<i style="background:${TBL_ST[r.status]||'#CFC8C1'}"></i>`).join('')}</span></span><span class="tc-i">${rq?`<b class="tc-ago">Asked ${esc(dAgo(rq.at))}</b>`:''}${info}</span></button>`;
 }
-const billSetup=()=>`<div class="acard bd-setup"><h2 class="ah">Billing isn’t set up yet</h2><p class="sub2">Run <b>saffron-billing-v1.sql</b> once in the Supabase SQL editor, then reload this page. Until then you can view and print bills, but tables can’t be closed.</p></div>`;
+const billSetup=()=>`<div class="acard bd-setup"><h2 class="ah">Billing isn’t set up yet</h2><p class="sub2">Run <b>saffron-billing-v1.sql</b> once in the Supabase SQL editor, then reload this page. Until then you can view and print bills, but tables can’t be closed.</p>${BILLERR?`<p class="sub2" style="font-size:13px">Server said: ${esc(BILLERR)}</p>`:''}</div>`;
 function dTables(td){
   const rows=[...occ].map(k=>({k,b:billOf(k),rq:billReq(k)}))
     .sort((a,c)=>(c.rq?1:0)-(a.rq?1:0)||(a.rq&&c.rq?new Date(a.rq.at)-new Date(c.rq.at):0)||a.k-c.k);
   const calm=TB.map(t=>t[0]).filter(k=>!occ.includes(k)), asks=rows.filter(r=>r.rq).length;
-  return `<div class="dz-g"><section class="dz-c dz-tbl" aria-label="Tables"><h3>${dIc('tbl',22)}Tables<span class="dz-cnt">${rows.length} in use${asks?` · ${asks} ${asks===1?'wants':'want'} the bill`:''} · ${calm.length} free or booked</span></h3>${BILLING===false&&rows.length?billSetup():''}${rows.length?`<div class="tcs">${rows.map(tcard).join('')}</div>`:'<p class="aempty">No tables in use right now.</p>'}<div class="dz-tbs wide">${calm.map(k=>{const z=bookings.some(o=>o.date===td&&+o.table===k)?'Booked':'Free';return `<div class="dz-tb ${z}" aria-label="Table ${k} ${z}"><b>T${k}</b>${z}</div>`}).join('')}</div></section></div>`;
+  return `<div class="dz-g"><section class="dz-c dz-tbl" aria-label="Tables"><h3>${dIc('tbl',22)}Tables<span class="dz-cnt">${rows.length} in use${asks?` · ${asks} ${asks===1?'wants':'want'} the bill`:''} · ${calm.length} free or booked</span></h3>${BILLING===false&&rows.length?billSetup():''}${rows.length?`<div class="tcs">${rows.map(tcard).join('')}</div>`:'<p class="aempty">No tables in use right now.</p>'}<div class="dz-tbs wide">${calm.map(k=>{const z=bookings.some(o=>o.date===td&&+o.table===k)?'Booked':'Free';return `<button type="button" class="dz-tb ${z}" data-act="bill" data-t="${k}" aria-label="Table ${k} ${z}. Add an order"><b>T${k}</b>${z}</button>`}).join('')}</div></section></div>`;
 }
 /* Orders tab: the same tables as a plain list, plus today's closed bills */
 function tablesInUse(){
@@ -2784,26 +3371,27 @@ function billView(){
   const ask=rq?`<div class="bd-ask" role="status"><i></i>Guests asked for the bill ${esc(dAgo(rq.at))}</div>`:'';
   const rounds=B.rounds.length?`<section aria-label="Rounds"><h3 class="bd-h">Rounds</h3><ol class="bd-rounds">${B.rounds.map(r=>`<li><div class="bd-rh"><b>Round ${r.no}</b><time datetime="${esc(r.at)}">${clock(r.at)}</time><span class="bst ${esc(r.status)}">${esc(r.status)}</span></div><p>${r.items.map(i=>esc(billName(i.n))+' ×'+i.q).join(', ')}</p></li>`).join('')}</ol></section>`:'';
   const row=(a,v)=>`<div class="bd-sum"><span>${a}</span><b>${v}</b></div>`;
-  const bill=B.lines.length?`<section aria-label="Bill"><h3 class="bd-h">Bill</h3><div class="bd-bill">${B.lines.map(l=>`<div class="bd-line"><span class="bd-n">${esc(billName(l.n))} <em>×${l.q}</em>${l.q>1?`<small>${money(l.p)} each</small>`:''}</span><span class="bd-a">${money(l.amt!=null?l.amt:l.p*l.q)}</span></div>`).join('')}${row('Subtotal',money(B.sub))}${B.disc>0?row('Discount','−'+money(B.disc)):''}${B.pct>0?row(B.incl?`Includes GST (${B.pct}%)`:`GST (${B.pct}%)`,money(B.gst)):''}<div class="bd-tot"><span>Total</span><strong>${money(B.total)}</strong></div></div></section>`:'<p class="bd-note">Nothing has been ordered at this table that still needs billing.</p>';
+  const bill=B.lines.length?`<section aria-label="Bill"><h3 class="bd-h">Bill</h3><div class="bd-bill">${B.lines.map(l=>`<div class="bd-line"><span class="bd-n">${esc(billName(l.n))} <em>×${l.q}</em>${l.q>1?`<small>${money(l.p)} each</small>`:''}</span><span class="bd-a">${money(l.amt!=null?l.amt:l.p*l.q)}</span></div>`).join('')}${row('Subtotal',money(B.sub))}${B.disc>0?row('Discount','−'+money(B.disc)):''}${B.pct>0?row(B.incl?`Includes GST (${B.pct}%)`:`GST (${B.pct}%)`,money(B.gst)):''}<div class="bd-tot"><span>Total</span><strong>${money(B.total)}</strong></div>${B.adj?`<p class="bd-hint" style="text-align:left;margin-top:6px">Includes a manual discount of ${money(B.adj.amt)}: ${esc(B.adj.reason)}</p>`:''}</div></section>`:'<p class="bd-note">Nothing has been ordered at this table that still needs billing.</p>';
   const ph=billPhone[k]!=null?billPhone[k]:(B.phone||'');
   const share=none?'':`<section class="bd-share" aria-label="Print or send the bill"><label class="bd-h" for="bdPh" style="margin:0">Guest mobile, for WhatsApp</label><div class="bd-row"><div class="bd-phone"><span>+91</span><input id="bdPh" type="tel" inputmode="numeric" autocomplete="off" placeholder="98765 43210" value="${esc(ph)}" aria-describedby="bdPhE"></div><button type="button" class="mini" data-bd="wa" aria-label="Send the bill on WhatsApp">${BI.wa}<span>WhatsApp</span></button><button type="button" class="mini" data-bd="print" aria-label="Print the bill">${BI.pr}<span>Print</span></button></div><p class="bd-err" id="bdPhE" role="alert"></p></section>`;
-  return head+`<div class="bd-scroll">${ask}${rounds}${bill}${share}</div><div class="bd-foot" id="bdFoot">${footView()}</div>`;
+  return head+`<div class="bd-scroll">${ask}${rounds}${addView()}${bill}${adjView()}${share}</div><div class="bd-foot" id="bdFoot">${footView()}</div>`;
 }
 const payView=()=>`<fieldset class="bd-pay"><legend class="bd-sr">Payment method</legend><div class="bd-pms">${['Cash','UPI','Card'].map(m=>`<label class="bd-pm"><input type="radio" name="bdm" value="${m}"${BL.method===m?' checked':''}><span>${BI[m]}${m}</span></label>`).join('')}</div></fieldset>`;
 function goView(){
-  const B=billOf(BL.k), open=B.rounds.filter(r=>r.status!=='Served').length;
-  const hint=BL.busy?'':!BL.method?'Choose Cash, UPI or Card to close the table.':open?`${open} ${open===1?'round is':'rounds are'} still in progress and will be marked Served.`:'';
-  return `<button class="go" type="button" data-bd="close"${BL.method&&!BL.busy?'':' disabled'}>${BL.busy?'Saving bill…':`Close table · ${BL.method?BL.method+' ':''}${money(B.total)}`}</button>${hint?`<p class="bd-hint">${hint}</p>`:''}`;
+  const B=billOf(BL.k), open=B.rounds.filter(r=>r.status!=='Served').length, sp=splitOn(), SH=sp?splitShares(B):null, ready=sp?!!SH:!!BL.method;
+  const hint=BL.busy?'':!ready?(sp?splitHint(B):'Choose Cash, UPI or Card to close the table.'):open?`${open} ${open===1?'round is':'rounds are'} still in progress and will be marked Served.`:'';
+  return `<button class="go" type="button" data-bd="close"${ready&&!BL.busy?'':' disabled'}>${BL.busy?'Saving bill…':sp?`Close table · Split ${BL.sp.n} ways · ${money(B.total)}`:`Close table · ${BL.method?BL.method+' ':''}${money(B.total)}`}</button>${hint?`<p class="bd-hint">${hint}</p>`:''}`;
 }
 function footView(){
   if(BL.saved)return '<button class="go" type="button" data-bd="x">Done</button>';
   const B=billOf(BL.k);
   if(!B.rounds.length)return `<button class="go" type="button" data-bd="free"${BL.busy?' disabled':''}>${BL.busy?'Freeing…':'Free table'}</button><p class="bd-hint">Nothing to bill at this table.</p>`;
-  return payView()+`<div id="bdGo">${goView()}</div>`;
+  return (splitOn()?'':payView())+`<div id="bdGo">${goView()}</div>`;
 }
 const paintGo=()=>{const g=$('#bdGo');if(g)g.innerHTML=goView();else $('#bdFoot').innerHTML=footView()};
 const billSig=()=>{const B=curBill();return sigOf([B.rounds.map(r=>[r.id,r.status]),B.total,!!billReq(B.table)])};
 function paintBill(){
+  bxSave();
   const d=BD(), sc=d.querySelector('.bd-scroll'), top=sc?sc.scrollTop:0, f=document.activeElement, caret=f&&f.id==='bdPh'?f.selectionStart:null, rf=f&&f.name==='bdm'?f.value:null;
   d.innerHTML=billView(); BL.sig=billSig();
   const s2=d.querySelector('.bd-scroll'); if(s2)s2.scrollTop=top;
@@ -2811,37 +3399,45 @@ function paintBill(){
   if(rf){const r=d.querySelector(`input[name=bdm][value="${rf}"]`);if(r)r.focus()}
 }
 function openBill(k,opener){
-  Object.assign(BL,{k:+k,method:'',saved:null,busy:false,opener:opener||null});
+  Object.assign(BL,{k:+k,method:'',saved:null,busy:false,opener:opener||null,adj:null,adjDraft:null,adjMode:null,sp:null,add:null,fresh:!occ.includes(+k)&&!openRounds(+k).length});
   paintBill(); if(!BD().open)BD().showModal();
 }
 async function openSaved(id,opener){
-  const r=await adm('admin_bill',{p_id:+id});
-  Object.assign(BL,{k:r.table_no,method:'',saved:savedOf(r),busy:false,opener:opener||null});
+  const r=await adm('admin_bill',{p_id:+id}), sv=savedOf(r);
+  try{const n=await adm('admin_bill_notes',{p_ids:[+id]}), x=Array.isArray(n)&&n[0];
+    if(x){if(x.reason&&+x.manual>0)sv.adj={amt:+x.manual,reason:x.reason}; if(Array.isArray(x.split)&&x.split.length)sv.split=x.split}}catch{}
+  Object.assign(BL,{k:r.table_no,method:'',saved:sv,busy:false,opener:opener||null,adj:null,sp:null,add:null,fresh:false});
   paintBill(); if(!BD().open)BD().showModal();
 }
 /* keep an open bill current when a new round or a status change arrives */
 function syncBill(){
   const d=BD(); if(!d.open||BL.k==null||BL.saved||BL.busy)return;
-  if(!occ.includes(BL.k)&&!openRounds(BL.k).length){toast(`Table T${BL.k} was closed on another device`);d.close();return}
+  if(openRounds(BL.k).length)BL.fresh=false;
+  if(!occ.includes(BL.k)&&!openRounds(BL.k).length&&!BL.fresh){toast(`Table T${BL.k} was closed on another device`);d.close();return}
   if(billSig()!==BL.sig)paintBill();
 }
 const clearSvc=k=>{svcReqs.filter(s=>+s.tbl===+k).forEach(s=>adm('admin_service_done',{p_id:s.id}).catch(()=>{}));svcReqs=svcReqs.filter(s=>+s.tbl!==+k);paintSvc()};
 
 /* close the table: save the bill, mark the rounds Served and free the table in one server call */
 async function closeTable(){
-  const B=billOf(BL.k); if(BL.busy||!BL.method||!B.rounds.length)return;
+  const B=billOf(BL.k), SH=splitShares(B), method=SH?SH[0].method:BL.method; if(BL.busy||!method||!B.rounds.length||(splitOn()&&!SH))return;
   BL.busy=true; paintGo();
   const ph=normPhone(billPhone[B.table]||'')||'';
   try{
-    const r=await adm('admin_close_table',{p_table:B.table,p_method:BL.method,p_bill:{
+    const r=await adm('admin_close_table',{p_table:B.table,p_method:method,p_bill:{
       opened_at:B.opened,subtotal:B.sub,discount:B.disc,gst:B.gst,total:B.total,gst_pct:B.pct,tax_incl:B.incl,phone:ph,
       order_ids:B.rounds.map(x=>x.id),orders:B.rounds.map(x=>({id:x.id,status:x.status})),lines:B.lines,
       rounds:B.rounds.map(x=>({no:x.no,at:x.at,status:x.status,items:x.items}))}});
     const ids=new Set(B.rounds.map(x=>x.id));
     orders.forEach(o=>{if(ids.has(String(o.id)))o.status='Served'});
     occ=occ.filter(x=>x!==B.table); BILLS.unshift(lightOf(r)); BILLING=true; clearSvc(B.table);
+    let extraFail=false;
+    if(B.adj||SH){try{await adm('admin_bill_adjust',{p_bill_id:r.id,p_manual:B.adj?B.adj.amt:0,p_extra:B.adj?B.adj.pre:0,p_discount:B.disc,p_gst:B.gst,p_total:B.total,p_reason:B.adj?B.adj.reason:null,p_split:SH||null})}catch{extraFail=true}}
     BL.saved=savedOf(r); delete billPhone[B.table]; BL.busy=false;
-    paintBill(); adminBody(); toast(`Table T${B.table} closed · ${money(B.total)} by ${r.method}`);
+    Object.assign(BL.saved,{disc:B.disc,gst:B.gst,total:B.total,adj:B.adj||null,split:SH||null});
+    if(SH&&SH.some(s=>s.method!==SH[0].method))BL.saved.method='Split';
+    if(BILLS[0])Object.assign(BILLS[0],{discount:B.disc,gst:B.gst,total:B.total,method:BL.saved.method});
+    paintBill(); adminBody(); toast(extraFail?`Table T${B.table} closed. The discount reason and split weren’t saved: run the new SQL first.`:`Table T${B.table} closed · ${money(B.total)} by ${BL.saved.method}`);
   }catch(x){
     BL.busy=false; toast(billErr(x));
     if(x&&/^already_billed/.test(String(x.message))){await refreshBills(true);try{await refreshAdmin(false)}catch{}if(BD().open)BD().close();adminBody()}
@@ -2860,8 +3456,8 @@ async function freeTable(){
 function billText(B){
   const L=[`*${NAME}*`,`${B.no?B.no+' · ':''}Table T${B.table}`,when(B.closed||new Date().toISOString()),''];
   B.lines.forEach(l=>L.push(`${billName(l.n)} ×${l.q}  ${money(l.amt!=null?l.amt:l.p*l.q)}`));
-  L.push('','Subtotal  '+money(B.sub)); if(B.disc>0)L.push('Discount  −'+money(B.disc)); if(B.pct>0)L.push(`${B.incl?'Includes GST':'GST'} (${B.pct}%)  ${money(B.gst)}`);
-  L.push(`*Total  ${money(B.total)}*`); if(B.method)L.push('Paid by '+B.method);
+  L.push('','Subtotal  '+money(B.sub)); if(B.disc>0)L.push('Discount  −'+money(B.disc)); if(B.adj)L.push('Discount reason: '+B.adj.reason); if(B.pct>0)L.push(`${B.incl?'Includes GST':'GST'} (${B.pct}%)  ${money(B.gst)}`);
+  L.push(`*Total  ${money(B.total)}*`); if(B.split){L.push('','Split '+B.split.length+' ways:');B.split.forEach((s,i)=>L.push(`Guest ${i+1}  ${money(s.amt)} (${s.method})`))}else if(B.method)L.push('Paid by '+B.method);
   L.push('','Thank you for dining with us!'); return L.join('\n');
 }
 function sendBillWA(){
@@ -2880,7 +3476,7 @@ function printBill(B){
 <h1>${esc(NAME)}</h1>${SET.addr?`<div class="c sm">${esc(SET.addr)}</div>`:''}${SET.ph?`<div class="c sm">Ph ${esc(SET.ph)}</div>`:''}${SET.fssai?`<div class="c sm">FSSAI ${esc(SET.fssai)}</div>`:''}<hr>
 ${r(esc(B.no||'BILL'),'Table T'+B.table)}<div class="sm">${esc(when(B.closed||new Date().toISOString()))}</div><hr>
 ${B.lines.map(l=>`<div class="it"><b>${l.q}x</b><span>${esc(billName(l.n))}</span><span>${money(l.amt!=null?l.amt:l.p*l.q)}</span></div>`).join('')}<hr>
-${r('Subtotal',money(B.sub))}${B.disc>0?r('Discount','-'+money(B.disc)):''}${B.pct>0?r(B.incl?`Incl. GST ${B.pct}%`:`GST ${B.pct}%`,money(B.gst)):''}${r('TOTAL',money(B.total),'t')}${B.method?`<div class="c">Paid by ${esc(B.method)}</div>`:''}<hr><div class="c">Thank you! Visit again.</div>`);
+${r('Subtotal',money(B.sub))}${B.disc>0?r('Discount','-'+money(B.disc)):''}${B.adj?`<div class="sm">Discount: ${esc(B.adj.reason)}</div>`:''}${B.pct>0?r(B.incl?`Incl. GST ${B.pct}%`:`GST ${B.pct}%`,money(B.gst)):''}${r('TOTAL',money(B.total),'t')}${B.split?B.split.map((s,i)=>r('Guest '+(i+1)+' ('+esc(s.method)+')',money(s.amt))).join(''):B.method?`<div class="c">Paid by ${esc(B.method)}</div>`:''}<hr><div class="c">Thank you! Visit again.</div>`);
   d.close();
   const w=fr.contentWindow; w.onafterprint=()=>fr.remove(); setTimeout(()=>{try{w.focus();w.print()}catch{}},250); setTimeout(()=>fr.remove(),60000);
 }
@@ -2895,8 +3491,94 @@ BD().addEventListener('click',e=>{
 BD().addEventListener('input',e=>{if(e.target.id==='bdPh'){billPhone[BL.k]=e.target.value;$('#bdPhE').textContent=''}});
 BD().addEventListener('change',e=>{if(e.target.name==='bdm'){BL.method=e.target.value;paintGo()}});
 BD().addEventListener('close',()=>{
-  const k=BL.k, op=BL.opener; BL.k=null; BL.saved=null; BL.method=''; BL.busy=false;
+  const k=BL.k, op=BL.opener; BL.k=null; BL.saved=null; BL.method=''; BL.busy=false; BL.adj=BL.adjDraft=BL.adjMode=BL.sp=BL.add=null; BL.fresh=false;
   setTimeout(()=>{const t=(k!=null&&document.querySelector(`#aBody [data-act=bill][data-t="${k}"]`))||(op&&op.isConnected?op:null); if(t)t.focus()},0);
+});
+
+
+/* ============ STAFF: ADD ITEMS, MANUAL DISCOUNT, SPLIT BILL (inside the table bill sheet) ============ */
+const splitOn=()=>!!BL.sp&&BL.sp.n>1&&!BL.saved;
+function spShares(T){
+  const sp=BL.sp; if(!sp||sp.n<2)return null;
+  if(sp.mode==='amt'){const a=[]; let s=0; for(let i=0;i<sp.n-1;i++){const v=Math.round(+sp.amts[i]||0);a.push(v);s+=v} a.push(T-s); return a}
+  const b=Math.floor(T/sp.n), r=T-b*sp.n; return Array.from({length:sp.n},(_,i)=>b+(i<r?1:0));
+}
+function splitShares(B){
+  if(!splitOn())return null; const a=spShares(B.total); if(!a||a.some(x=>x<=0))return null;
+  const m=BL.sp.meths; if(a.some((_,i)=>!m[i]))return null;
+  return a.map((x,i)=>({amt:x,method:m[i]}));
+}
+const splitHint=B=>{const a=spShares(B.total); return !a||a.some(x=>x<=0)?'The shares must add up to the bill total.':'Choose a payment method for each share.'};
+function bxSave(){const v=$('#bxVal'), w=$('#bxWhy'); if(v||w)BL.adjDraft={val:v?v.value:'',reason:w?w.value:''}}
+function splitSumHtml(sp){return `<section class="bx" aria-label="Split payments"><h3 class="bd-h">Paid in ${sp.length} shares</h3>${sp.map((s,i)=>`<div class="bd-sum"><span>Guest ${i+1} · ${esc(s.method)}</span><b>${money(s.amt)}</b></div>`).join('')}</section>`}
+function adjView(){
+  const B=curBill();
+  if(BL.saved)return B.split?splitSumHtml(B.split):'';
+  if(!B.rounds.length)return '';
+  const a=BL.adj, dr=BL.adjDraft||{val:a?a.val:'',reason:a?a.reason:''}, mode=BL.adjMode||(a&&a.mode)||'amt';
+  const disc=`<section class="bx" aria-label="Manual discount"><h3 class="bd-h">Manual discount</h3><div class="bx-row"><span class="bx-seg" role="group" aria-label="Discount type"><button type="button" data-bx="dm" data-v="amt" aria-pressed="${mode==='amt'}">₹ Amount</button><button type="button" data-bx="dm" data-v="pct" aria-pressed="${mode==='pct'}">% Percent</button></span><input id="bxVal" type="number" inputmode="decimal" min="0" step="any" placeholder="${mode==='pct'?'e.g. 10':'e.g. 100'}" value="${esc(dr.val)}" aria-label="Discount value"></div><input id="bxWhy" type="text" maxlength="60" list="bxWhyL" placeholder="Reason (required), e.g. Birthday" value="${esc(dr.reason)}" aria-label="Reason for the discount"><datalist id="bxWhyL"><option value="Birthday"><option value="Regular guest"><option value="Service delay"><option value="Wrong order"><option value="Manager approved"></datalist><div class="bx-row"><button type="button" class="mini pri" data-bx="adjgo">${a?'Update discount':'Apply discount'}</button>${a?'<button type="button" class="mini" data-bx="adjclr">Remove</button>':''}</div><p class="bd-err" id="bxErr" role="alert"></p></section>`;
+  const sp=BL.sp||{n:1,mode:'eq',amts:[],meths:[]}, n=sp.n, sh=n>1?spShares(B.total):null;
+  const split=`<section class="bx" aria-label="Split bill"><h3 class="bd-h">Split bill</h3><div class="bx-row"><span>Split between</span><span class="bx-st"><button type="button" data-bx="spn" data-d="-1" aria-label="Fewer people"${n<=1?' disabled':''}>−</button><b aria-live="polite">${n}</b><button type="button" data-bx="spn" data-d="1" aria-label="More people"${n>=12?' disabled':''}>+</button></span>${n>1?`<span class="bx-seg" role="group" aria-label="How to split"><button type="button" data-bx="spm" data-v="eq" aria-pressed="${sp.mode==='eq'}">Equal</button><button type="button" data-bx="spm" data-v="amt" aria-pressed="${sp.mode==='amt'}">Custom</button></span>`:''}</div>${n>1?sh.map((v,i)=>`<div class="bx-sh"><b>Guest ${i+1}</b>${sp.mode==='amt'&&i<n-1?`<input class="bx-a" data-i="${i}" type="number" inputmode="numeric" min="1" step="1" value="${esc(sp.amts[i]??'')}" aria-label="Amount for guest ${i+1}">`:`<span class="bx-amt" id="bxA${i}">${money(v)}</span>`}<span class="bx-m" role="radiogroup" aria-label="Payment for guest ${i+1}">${['Cash','UPI','Card'].map(m=>`<label><input type="radio" name="bxm${i}" value="${m}"${sp.meths[i]===m?' checked':''}><span>${m}</span></label>`).join('')}</span></div>`).join(''):''}</section>`;
+  return disc+split;
+}
+function addList(){
+  const A=BL.add, w=String(A.q||'').toLowerCase().split(/\s+/).filter(Boolean);
+  const l=MENU.filter(m=>m.a&&(!w.length||w.every(x=>(m.n+' '+m.c).toLowerCase().includes(x)))).slice(0,40);
+  return l.length?l.map(m=>{const q=A.cart[m.id]||0; return `<div class="bx-it"><span><span class="vm ${m.v?'veg':'nv'}" role="img" aria-label="${m.v?'Vegetarian':'Non-vegetarian'}"></span> ${esc(m.n)}<small>${inr(m.p)}</small></span><span class="bx-st"><button type="button" data-bx="aq" data-m="${m.id}" data-d="-1" aria-label="Remove one ${esc(m.n)}"${q?'':' disabled'}>−</button><b>${q}</b><button type="button" data-bx="aq" data-m="${m.id}" data-d="1" aria-label="Add one ${esc(m.n)}">+</button></span></div>`}).join(''):'<p class="bd-hint" style="padding:10px">No dishes found.</p>';
+}
+const addCount=()=>Object.values(BL.add.cart).reduce((a,b)=>a+b,0);
+const addBtn=()=>{const n=addCount(); return n?`Send to kitchen (${n} ${n===1?'item':'items'})`:'Pick items to send'};
+function addView(){
+  if(BL.saved)return '';
+  const A=BL.add;
+  if(!A)return `<section class="bx" aria-label="Add items"><button type="button" class="mini pri" data-bx="addopen">＋ Add items for this table</button><p class="bd-hint" style="text-align:left">For guests who order out loud. It goes to the kitchen as a new round on this table’s bill.</p></section>`;
+  return `<section class="bx" aria-label="Add items"><h3 class="bd-h">Add items to Table T${BL.k}</h3><input id="bxQ" type="search" placeholder="Search dishes" autocomplete="off" aria-label="Search dishes" value="${esc(A.q)}"><div class="bx-list" id="bxList">${addList()}</div><div class="bx-row"><button type="button" class="mini pri" data-bx="addsend" id="bxSend"${addCount()&&!A.busy?'':' disabled'}>${addBtn()}</button><button type="button" class="mini" data-bx="addx">Cancel</button></div><p class="bd-err" id="bxAddErr" role="alert"></p></section>`;
+}
+async function addSend(){
+  const A=BL.add; if(!A||A.busy)return;
+  const lines=Object.keys(A.cart).filter(i=>A.cart[i]>0).map(i=>({id:+i,q:A.cart[i]})); if(!lines.length)return;
+  A.busy=true; const b=$('#bxSend'); b.disabled=true; b.textContent='Sending…';
+  try{
+    await adm('admin_add_items',{p_table:BL.k,p_lines:lines});
+    BL.add=null; BL.fresh=false; if(!occ.includes(BL.k))occ.push(BL.k);
+    try{await refreshAdmin(false)}catch{}
+    toast(`Sent to the kitchen for Table T${BL.k}`); paintBill(); adminBody();
+  }catch(x){
+    A.busy=false; const m=String((x&&x.message)||''), er=$('#bxAddErr');
+    if(er)er.textContent=x&&x.status===404?'Adding items isn’t set up yet. Run the new SQL in Supabase first.':/^(sold_out|unavailable)/.test(m)?'One of those items is sold out or unavailable right now.':say(x);
+    b.disabled=false; b.textContent=addBtn();
+  }
+}
+function adjApply(){
+  const B0=billOf0(BL.k), er=$('#bxErr'), mode=BL.adjMode||(BL.adj&&BL.adj.mode)||'amt', val=+$('#bxVal').value, why=$('#bxWhy').value.trim();
+  if(!(val>0)){er.textContent='Enter the discount.';$('#bxVal').focus();return}
+  if(mode==='pct'&&val>100){er.textContent='A percentage can’t be more than 100.';return}
+  if(why.length<3){er.textContent='Give a reason for the discount.';$('#bxWhy').focus();return}
+  const d=mode==='pct'?Math.round(B0.total*val/100):Math.round(val);
+  if(d<=0||d>B0.total){er.textContent='The discount can’t be more than the bill.';return}
+  BL.adj={k:BL.k,mode,val,reason:why.slice(0,60)}; BL.adjDraft=null; BL.adjMode=null; paintBill();
+}
+BD().addEventListener('click',e=>{
+  const b=e.target.closest('[data-bx]'); if(!b)return; const a=b.dataset.bx;
+  if(a==='dm'){bxSave(); BL.adjMode=b.dataset.v; paintBill()}
+  else if(a==='adjgo')adjApply();
+  else if(a==='adjclr'){BL.adj=null;BL.adjDraft=null;BL.adjMode=null;paintBill()}
+  else if(a==='spn'){const sp=BL.sp||(BL.sp={n:1,mode:'eq',amts:[],meths:[]}); sp.n=Math.max(1,Math.min(12,sp.n+ +b.dataset.d)); paintBill()}
+  else if(a==='spm'){BL.sp.mode=b.dataset.v; paintBill()}
+  else if(a==='addopen'){BL.add={q:'',cart:{},busy:false}; paintBill(); const q=$('#bxQ'); if(q)q.focus()}
+  else if(a==='addx'){BL.add=null; paintBill()}
+  else if(a==='aq'){const A=BL.add, id=b.dataset.m; A.cart[id]=Math.max(0,(A.cart[id]||0)+ +b.dataset.d); if(!A.cart[id])delete A.cart[id]; $('#bxList').innerHTML=addList(); const s=$('#bxSend'); s.disabled=!addCount(); s.textContent=addBtn()}
+  else if(a==='addsend')addSend();
+});
+BD().addEventListener('input',e=>{
+  const t=e.target;
+  if(t.id==='bxQ'){BL.add.q=t.value; $('#bxList').innerHTML=addList()}
+  else if(t.classList.contains('bx-a')){
+    BL.sp.amts[+t.dataset.i]=t.value; const B=billOf(BL.k), a=spShares(B.total), el=$('#bxA'+(BL.sp.n-1)); if(el&&a)el.textContent=money(a[a.length-1]); paintGo();
+  }
+});
+BD().addEventListener('change',e=>{
+  const m=/^bxm(\d+)$/.exec(e.target.name||''); if(m&&BL.sp){BL.sp.meths[+m[1]]=e.target.value; paintGo()}
 });
 
 /* login: the PIN is checked on the server, which hands back a session for this visit only */
@@ -2913,6 +3595,8 @@ async function refreshAdmin(initial){
   const r=await adm('admin_state'), prev=new Set(orders.map(o=>o.id));
   orders=r.orders||[]; bookings=r.bookings||[]; COUPONS=r.coupons||[];
   try{const sv=await adm('admin_service_list'); if(Array.isArray(sv)){const seen=new Set(svcReqs.map(s=>s.id)), fresh=sv.filter(s=>!seen.has(s.id)); svcReqs=sv; if(!initial&&fresh.length&&unlocked)alertSvc(fresh[0])}}catch{}
+  try{const cc=await adm('admin_concerns'); if(Array.isArray(cc)){const seen=new Set(CONC.map(x=>x.id)), fresh=cc.filter(x=>!seen.has(x.id)); CONC=cc; if(!initial&&fresh.length&&unlocked)toast('New concern '+fresh[0].ref+': '+fresh[0].topic)}}catch{}
+  {const nc=CONC.filter(c=>c.status==='New').length, cb=$('#cbadge'); if(cb){cb.textContent=nc;cb.hidden=!nc}}
   try{const o=await rpc('occupied_tables'); if(Array.isArray(o))occ=o.map(Number).filter(Number.isFinite)}catch{}
   if(occ.length||tab==='orders'||initial)await refreshBills(!!initial);
   if(!initial){const fresh=orders.filter(o=>!prev.has(o.id)&&o.status==='New'); if(fresh.length&&unlocked)alertNew(fresh[0])}
@@ -2923,8 +3607,8 @@ async function adminPoll(){
   try{await refreshAdmin(false)}catch{return}
   paintSvc();
   const nb=orders.filter(x=>x.status==='New').length, el=$('#nbadge'); if(el){el.textContent=nb;el.hidden=!nb}
-  const sg=sigOf([orders.map(o=>[o.id,o.status,o.total]),bookings.map(b=>b.id),occ,svcReqs.map(s=>s.id),BILLS.map(b=>b.id)]);
-  if(sg!==admSig){admSig=sg; if(unlocked&&(tab==='orders'||tab==='dash')&&!(document.activeElement&&/^(tq|dq)$/.test(document.activeElement.id)))adminBody(); syncBill()}
+  const sg=sigOf([orders.map(o=>[o.id,o.status,o.total]),bookings.map(b=>b.id),occ,svcReqs.map(s=>s.id),BILLS.map(b=>b.id),CONC.map(c=>[c.id,c.status])]);
+  if(sg!==admSig){admSig=sg; if(unlocked&&(tab==='orders'||tab==='dash'||tab==='concerns')&&!(document.activeElement&&/^(tq|dq)$/.test(document.activeElement.id)))adminBody(); syncBill()}
 }
 $('#loginForm').addEventListener('submit',async e=>{e.preventDefault();
   const btn=e.target.querySelector('button'); btn.disabled=true;
@@ -2948,12 +3632,12 @@ async function savePicks(id,bs,cp){
 }
 /* item editor */
 function paintPic(){const f=$('#itemForm').elements;$('#dPic').innerHTML=pic({img:draftImg,k:editing&&editing.k,c:f.c.value,v:+f.v.value})}
-function openItem(id){
+function openItem(id,asSig){
   editing=id?get(id):null; draftImg=editing?editing.img||null:null;
   const f=$('#itemForm').elements; $('#dlgT').textContent=editing?'Edit item':'Add item'; $('#dErr').textContent='';
   $('#catList').innerHTML=CATS.map(c=>`<option value="${esc(c)}">`).join('');
   f.n.value=editing?editing.n:''; f.d.value=editing?editing.d:''; f.p.value=editing?editing.p:''; f.c.value=editing?editing.c:'';
-  f.v.value=editing?String(editing.v):'1'; f.bs.checked=!!editing&&isBS(editing); f.cp.checked=!!editing&&isCP(editing); f.a.checked=editing?!!editing.a:true; f.s.value=editing&&editing.stock!=null?editing.stock:''; paintPic();
+  f.v.value=editing?String(editing.v):'1'; f.bs.checked=!!editing&&isBS(editing); f.cp.checked=!!editing&&isCP(editing)||!!asSig; f.a.checked=editing?!!editing.a:true; f.s.value=editing&&editing.stock!=null?editing.stock:''; paintPic();
   $('#dlg').showModal(); f.n.focus();
 }
 /* photos are shrunk before saving so many fit in browser storage */
@@ -2976,25 +3660,114 @@ $('#itemForm').addEventListener('submit',async e=>{
     if(editing)Object.assign(editing,r); else MENU.push(r);
     if(!CATS.includes(r.c))CATS.push(r.c);
     try{await savePicks(r.id,f.bs.checked,f.cp.checked)}catch(x){toast('Item saved, but its badges couldn’t be saved')}
-    persist(); $('#dlg').close(); toast(editing?`${n} saved`:`${n} added`); refresh();
+    persist(); $('#dlg').close(); toast(editing?`${n} saved`:`${n} added`); renderSite(); refresh();
   }catch(x){err(say(x))}
   finally{btn.disabled=false}
 });
+
+
+/* ============ ADMIN: SIGNATURE DISHES ============
+   The cards under "Signature Dishes" on the home page are the chef's picks, in this order (the same list that marks Chef's pick
+   badges, saved with the shop settings). Nothing chosen yet = popular dishes are shown automatically. A dish's name, description,
+   price and photo belong to the dish itself; the photo can be changed here. */
+function sigDishes(){
+  const MAX=6, pool=MENU.filter(m=>m.a&&!isAddon(m)), ids=(SET.cp||[]).map(String);
+  const chosen=ids.map(id=>pool.find(m=>String(m.id)===id)).filter(Boolean);
+  if(chosen.length)return{list:chosen.slice(0,MAX),auto:false,max:MAX};
+  return{list:[...pool.filter(isBS),...pool.filter(m=>!isBS(m))].slice(0,4),auto:true,max:MAX};
+}
+const SGM={add:false,q:''};
+const sgIds=()=>(SET.cp||[]).filter(id=>MENU.some(m=>m.id==id&&!isAddon(m)));
+const sgFocus=sel=>setTimeout(()=>{const e=document.querySelector(sel);if(e)e.focus()},0);
+async function sgSave(ids){
+  const r=await adm('admin_save_settings',{p_settings:{cp:ids}});
+  Object.assign(SET,r.settings); SET.cp=ids; cacheAll(); renderSite();
+}
+async function sgImg(m,img){
+  if(!m)return;
+  const r=await adm('admin_save_item',{p_item:{id:m.id,n:m.n,d:m.d||'',p:m.p,c:m.c,v:+m.v,a:m.a?1:0,img,stock:m.stock==null?null:m.stock}});
+  Object.assign(m,r); persist(); renderSite(); adminBody(); sgFocus(`.sg-file[data-id="${m.id}"]`);
+  toast(img?`Photo updated for ${m.n}`:`Photo removed for ${m.n}`);
+}
+function sgPickRows(){
+  const taken=new Set(sgIds().map(String)), s=SGM.q.trim().toLowerCase();
+  const l=MENU.filter(m=>!isAddon(m)&&!taken.has(String(m.id))&&(!s||(m.n+' '+m.c).toLowerCase().includes(s))).slice(0,40);
+  return l.length?l.map(m=>`<article class="arow${m.a?'':' off'}"><div class="athumb">${pic(m)}</div><div class="ainfo"><b>${esc(m.n)}</b><small>${inr(m.p)} · ${esc(m.c)}${m.a?'':' · not available'}</small></div><button class="mini pri" type="button" data-act="sgadd" data-id="${m.id}" aria-label="Add ${esc(m.n)} to Signature dishes">Add</button></article>`).join(''):'<p class="aempty">No other dishes match.</p>';
+}
+function tSig(){
+  const ids=sgIds(), items=ids.map(id=>MENU.find(m=>m.id==id)), MAX=sigDishes().max, full=ids.length>=MAX, auto=!ids.length;
+  const head=`<div class="acard"><div style="flex:1 1 240px"><h2 class="ah">Signature dishes</h2><p class="sgm-note" style="margin:6px 0 0">The cards under “Signature Dishes” on your home page, in this order. Up to ${MAX} dishes. Landscape photos work best; they are cropped to fit the card. Name, description and price are edited on the dish itself (Edit details).</p></div><span class="abtns"><button class="go sm" type="button" data-act="sgopen" aria-expanded="${SGM.add}"${full?' disabled':''}>Add from menu</button><button class="mini" type="button" data-act="sgnew"${full?' disabled':''}>Create new dish</button></span></div>`;
+  const picker=SGM.add&&!full?`<section class="acard" aria-label="Add a dish" style="display:block"><div class="atool"><input id="sgq" type="search" placeholder="Search dishes" autocomplete="off" aria-label="Search dishes" value="${esc(SGM.q)}"></div><div id="sgPick">${sgPickRows()}</div></section>`:'';
+  if(auto){
+    const a=sigDishes().list;
+    return head+picker+`<section class="acard" style="display:block"><h3 class="bd-h" style="margin:0 0 6px">Showing popular dishes automatically</h3><p class="sgm-note">You haven’t chosen any yet. Your website shows these ${a.length} for now.</p>${a.map(m=>`<article class="arow"><div class="athumb">${pic(m)}</div><div class="ainfo"><b>${esc(m.n)}</b><small>${inr(m.p)} · ${esc(m.c)}</small></div></article>`).join('')}<button class="go sm" type="button" data-act="sgstart">Choose these myself</button></section>`;
+  }
+  const rows=items.map((m,i)=>{
+    const warn=i>=MAX?'Not shown: the home page shows the first '+MAX+'.':!m.a?'Hidden: this dish is not available. Turn it on in Items.':'';
+    return `<article class="arow${m.a&&i<MAX?'':' off'}"><span class="sgn" aria-hidden="true">${i+1}</span><div class="athumb">${pic(m)}</div><div class="ainfo"><b>${esc(m.n)}</b><small>${inr(m.p)} · ${esc(m.c)}${warn?` · <span class="sgm-warn">${warn}</span>`:''}</small></div><span class="abtns"><label class="mini sgph">${m.img?'Change photo':'Add photo'}<input class="sg-file" type="file" accept="image/*" data-id="${m.id}" aria-label="${m.img?'Change':'Add'} photo for ${esc(m.n)}"></label>${m.img?`<button class="mini" type="button" data-act="sgnopic" data-id="${m.id}" aria-label="Remove photo of ${esc(m.n)}">Remove photo</button>`:''}<button class="mini" type="button" data-act="sgedit" data-id="${m.id}" aria-label="Edit details of ${esc(m.n)}">Edit details</button><button class="mini" type="button" data-act="sgup" data-id="${m.id}" aria-label="Move ${esc(m.n)} up"${i===0?' disabled':''}>↑</button><button class="mini" type="button" data-act="sgdown" data-id="${m.id}" aria-label="Move ${esc(m.n)} down"${i===items.length-1?' disabled':''}>↓</button><button class="mini del" type="button" data-act="sgrm" data-id="${m.id}" aria-label="Remove ${esc(m.n)} from Signature dishes">Remove</button></span></article>`;
+  }).join('');
+  return head+picker+`<div id="sgRows">${rows}</div><p class="sgm-note">Removing a dish only takes it off this section. It stays on your menu.</p>`;
+}
+async function sgAct(b){
+  const a=b.dataset.act, id=b.dataset.id, ids=sgIds(), at=ids.findIndex(x=>x==id), MAX=sigDishes().max;
+  try{
+    if(a==='sgopen'){SGM.add=!SGM.add; SGM.q=''; adminBody(); if(SGM.add)sgFocus('#sgq'); return}
+    if(a==='sgnew'){openItem(null,true); return}
+    if(a==='sgedit'){openItem(id); return}
+    if(a==='sgstart'){await sgSave(sigDishes().list.map(m=>m.id)); toast('Now you can change them'); adminBody(); return}
+    if(a==='sgadd'){
+      const m=MENU.find(x=>x.id==id); if(!m||at>=0)return;
+      if(ids.length>=MAX){toast(`You can show up to ${MAX} signature dishes.`);return}
+      await sgSave([...ids,m.id]); toast(`${m.n} added`); adminBody(); sgFocus('[data-act=sgopen]'); return;
+    }
+    if(a==='sgrm'){
+      const m=MENU.find(x=>x.id==id); await sgSave(ids.filter(x=>x!=id)); toast(`${m?m.n:'Dish'} removed from Signature dishes`); adminBody(); sgFocus('[data-act=sgopen]'); return;
+    }
+    if(a==='sgup'||a==='sgdown'){
+      const j=at+(a==='sgup'?-1:1); if(at<0||j<0||j>=ids.length)return;
+      const n=[...ids]; [n[at],n[j]]=[n[j],n[at]]; await sgSave(n); adminBody();
+      const same=`[data-act=${a}][data-id="${id}"]`, other=`[data-act=${a==='sgup'?'sgdown':'sgup'}][data-id="${id}"]`;
+      sgFocus(document.querySelector(same+':not([disabled])')?same:other); return;
+    }
+    if(a==='sgnopic'){await sgImg(MENU.find(x=>x.id==id),null); return}
+  }catch(x){toast(say(x))}
+}
+$('#aBody').addEventListener('change',async e=>{
+  const f=e.target.closest&&e.target.closest('.sg-file'); if(!f||!f.files[0])return;
+  const m=MENU.find(x=>x.id==f.dataset.id), file=f.files[0]; f.value=''; if(!m)return;
+  let img; try{img=await shrink(file,800,.8)}catch{toast('That image couldn’t be read. Try a JPG or PNG.'); return}
+  try{await sgImg(m,img)}catch(x){toast(say(x))}
+});
+$('#aBody').addEventListener('input',e=>{if(e.target.id==='sgq'){SGM.q=e.target.value; const l=$('#sgPick'); if(l)l.innerHTML=sgPickRows()}});
 
 /* clicks inside the dashboard */
 $('#aBody').addEventListener('click',async e=>{
   const b=e.target.closest('[data-act]'); if(!b)return; const a=b.dataset.act, id=b.dataset.id, i=+b.dataset.i;
   try{
-    if(a==='add')openItem(); else if(a==='edit')openItem(id);
+    if(/^sg/.test(a))sgAct(b); else if(a==='add')openItem(); else if(a==='edit')openItem(id);
     else if(a==='qrone')printQR([+b.dataset.t]); else if(a==='qrall')printQR(TB.map(t=>t[0])); else if(a==='qrdl')await qrDownload(+b.dataset.t);
     else if(a==='avail'){const m=get(id);const r=await adm('admin_save_item',{p_item:{id:m.id,a:m.a?0:1}});Object.assign(m,r);persist();refresh();toast(`${m.n} is now ${m.a?'available':'not available'}`);const nb=$(`#aList [data-act=avail][data-id="${id}"]`);if(nb)nb.focus()}
     else if(a==='del'){const m=get(id);if(confirm(`Delete “${m.n}”? This can’t be undone.`)){await adm('admin_delete_item',{p_id:m.id});MENU.splice(MENU.indexOf(m),1);delete cart[id];persist();refresh();toast(`${m.n} deleted`)}}
     else if(a==='cpon'){const next=COUPONS.map((c,k)=>k===i?Object.assign({},c,{on:c.on?0:1}):c);await adm('admin_save_coupons',{p_coupons:next});COUPONS=next;adminBody()}
     else if(a==='cpdel'){if(confirm(`Delete coupon ${COUPONS[i].c}?`)){const next=COUPONS.filter((c,k)=>k!==i);await adm('admin_save_coupons',{p_coupons:next});COUPONS=next;adminBody()}}
-    else if(a==='ost'){const o=orders[i],nx=ST[(ST.indexOf(o.status)+1)%ST.length];const r=await adm('admin_set_status',{p_id:o.id,p_status:nx});orders[i]=r;adminBody();if(r.status==='Ready'&&r.cust)toast('Ready. Tap WhatsApp to tell '+r.cust.name.split(' ')[0])}
+    else if(a==='ost'){const o=orders[i],to=b.dataset.to;if(to&&to===o.status)return;const nx=to||ST[(ST.indexOf(o.status)+1)%ST.length];const r=await adm('admin_set_status',{p_id:o.id,p_status:nx});orders[i]=r;adminBody();if(r.status==='Ready'&&r.cust)toast('Ready. Tap WhatsApp to tell '+r.cust.name.split(' ')[0]);else toast((r.dn?'Table T'+r.table:'Take away')+' marked '+r.status)}
+    else if(a==='oclr'){
+      const o=orders[i], who=o.dn?'Table T'+o.table:'Take away '+(o.token?o.token.slice(0,3)+' '+o.token.slice(3):'order');
+      const unbilled=o.dn&&openRounds(+o.table).some(r=>String(r.id)===String(o.id));
+      const msg=unbilled?`${who} hasn’t been billed yet. Clearing it takes it off the table’s bill. Use “Bill & close” first if the guest is paying now. Clear anyway?`
+        :o.status!=='Served'?`${who} is still “${o.status}”. Clear it anyway?`:`Customer paid? Clear ${who}, ${inr(o.total)} from the list?`;
+      if(!confirm(msg))return;
+      try{await adm('admin_clear_order',{p_id:String(o.id)});orders=orders.filter(x=>x!==o);toast(who+' cleared')}
+      catch(x){ if(x&&x.status===404){ /* server function not installed yet: mark Served and hide it on this device */
+          try{const r=await adm('admin_set_status',{p_id:o.id,p_status:'Served'});orders[i]=r}catch{}
+          HID.add(String(o.id));LS.set('hid',[...HID].slice(-300));toast(who+' cleared on this device. Run saffron-clear-order.sql to remove it everywhere')
+        } else throw x }
+      adminBody()}
     else if(a==='gdel'){const L=curGal();if(L.length<=5)return toast('Keep at least 5 photos');if(confirm('Remove this photo from the gallery?')){L.splice(i,1);await saveGal(L);adminBody();toast('Photo removed')}}
     else if(a==='greset'){if(confirm('Go back to the original gallery photos? Your added and replaced photos will be removed.')){await saveGal([]);adminBody();toast('Original photos restored')}}
     else if(a==='print')printTicket(orders[i]);
+    else if(a==='cst'){const c=CONC[i],to=b.dataset.to;if(!c||to===c.status)return;let note=null;if(to==='Resolved'){note=prompt('Add a short note on how this was resolved (optional). It is kept on file.',c.resolution||'');if(note===null)return}
+      const r=await adm('admin_update_concern',{p_id:c.id,p_status:to,p_resolution:note});CONC[i]=r;adminBody();toast(c.ref+' marked '+to)}
     else if(a==='snd'){SET.snd=SET.snd?0:1;LS.set('snd',SET.snd);if(SET.snd){primeAudio();chime()}adminBody()}
     else if(a==='pause'){const r=await adm('admin_save_settings',{p_settings:{paused:SET.paused?0:1}});Object.assign(SET,r.settings);cacheAll();adminBody();shopBar();toast(SET.paused?'Online orders paused':'Taking orders again')}
     else if(a==='clr'){
@@ -3116,7 +3889,7 @@ function renderAccount(){
   const a=acct(), el=$('#acBody');
   if(!a){
     el.innerHTML=`${authNext?'<p class="sub2 acnote" style="text-align:center">Create an account to place your order. It takes a few seconds, and you can track your order live. Already have one? Tap Sign in.</p>':''}<div class="atabs" style="justify-content:center" role="group" aria-label="Account"><button class="chip" data-ac="up" aria-pressed="${acMode==='up'}">Create account</button><button class="chip" data-ac="in" aria-pressed="${acMode==='in'}">Sign in</button></div>
-    <form class="bill" id="acForm" novalidate>${acMode==='up'?'<label>Your name<input name="n" autocomplete="name" maxlength="40"></label>':''}<label>Mobile number<input name="p" type="tel" inputmode="tel" autocomplete="tel" placeholder="98765 43210"></label><label>4-digit PIN<input name="k" type="password" inputmode="numeric" maxlength="4" autocomplete="${acMode==='up'?'new-password':'current-password'}"></label><p class="err" id="acErr" role="alert"></p><button class="go" type="submit">${acMode==='up'?'Create account':'Sign in'}</button></form>
+    <form class="bill" id="acForm" novalidate>${acMode==='up'?'<label>Your name<input name="n" autocomplete="name" maxlength="40"></label>':''}<label>Mobile number<input name="p" type="tel" inputmode="tel" autocomplete="tel" placeholder="98765 43210"></label><label>4-digit PIN<input name="k" type="password" inputmode="numeric" maxlength="4" autocomplete="${acMode==='up'?'new-password':'current-password'}"></label>${acMode==='up'?lgChk():''}<p class="err" id="acErr" role="alert"></p><button class="go" type="submit">${acMode==='up'?'Create account':'Sign in'}</button></form>
     <p class="sub2 acnote">Track your order live, see past orders and keep your coupons in one place.</p>`;
   }else{
     const cur=current(), past=myOrders().filter(x=>x!==cur), k=cur?ST.indexOf(cur.status):0;
@@ -3125,12 +3898,14 @@ function renderAccount(){
     el.innerHTML=`<div class="atop"><div style="text-align:left"><h2 class="ah" style="margin:0">Hi, ${esc(a.name.split(' ')[0])}</h2><small class="sub2">+91 ${fmtPh(a.phone)}</small></div><span class="abtns">${count()?`<a class="mini pri" href="#takeaway">Cart (${count()})</a>`:''}<button class="mini" data-ac="out">Sign out</button></span></div>
     <section class="acard${cur?' cur':''}" style="margin-top:14px"><h2 class="ah">Current order</h2>${cur?`<div class="ainfo"><b>${codeChip(cur)}${cur.dn?'Table T'+cur.table:'Take away'}, ${inr(cur.total)}</b><small>${when(cur.at)}. ${lineText(cur)}</small></div><ol class="steps" aria-label="Order status: ${cur.status}">${ST.map((s,i)=>`<li class="${i<k?'done':i===k?'cur':''}"><i></i>${s}</li>`).join('')}</ol>${chefPic(cur)}<p class="sub2" role="status">${say}</p>`:'<p class="sub2">No order in progress. <a href="#menu" style="color:#C95A0C">Browse the menu</a></p>'}</section>
     ${rateCard()}
+    ${tblBillCard()}
     ${svcCard()}
     ${loyaltyCard()}
     <section class="acard"><h2 class="ah">Your coupons</h2>${cps.length?cps.map(c=>`<article class="arow"><div class="ainfo"><b>${esc(c.c)}</b><small>${c.t==='pct'?c.v+'% off your order':'₹'+c.v+' off your order'}</small></div><button class="mini" data-ac="copy" data-c="${esc(c.c)}">Copy</button><button class="mini" data-ac="use" data-c="${esc(c.c)}">Apply</button></article>`).join(''):'<p class="sub2">No coupons right now. Check back soon.</p>'}</section>
     <section class="acard"><h2 class="ah">Past orders</h2>${past.length?past.map(x=>{const i=myOrd.indexOf(x), ok=x.lines.some(canOrder);return `<article class="arow rord"><div class="ainfo"><b>${codeChip(x)}${x.dn?'Table T'+x.table:'Take away'}, ${inr(x.total)}</b><small>${when(x.at)}. ${lineText(x)}</small></div>${rateBtn(x,i)}<button class="mini pri" data-ac="again" data-i="${i}"${ok?'':' disabled'} aria-label="Reorder this whole order">${ok?'Reorder':'Unavailable'}</button>${x.lines.length>1?`<div class="rl" role="group" aria-label="Add a single item"><span>Just one item:</span>${x.lines.map((l,j)=>`<button type="button" class="rchip" data-ac="again1" data-i="${i}" data-j="${j}"${canOrder(l)?'':' disabled title="Not available right now"'}>+ ${esc(l.n)} ×${l.q}</button>`).join('')}</div>`:''}</article>`}).join(''):'<p class="sub2">Your finished orders will show up here.</p>'}</section>`;
   }
   acctBtn(); paintSvcBtns();
+  if(jumpBill&&$('#acBill')){jumpBill=false;setTimeout(()=>{const b=$('#acBill');if(b)b.scrollIntoView({block:'start'})},0)}
 }
 $('#acBody').addEventListener('click',e=>{
   const b=e.target.closest('[data-ac]'); if(!b)return; const a=b.dataset.ac;
@@ -3140,6 +3915,10 @@ $('#acBody').addEventListener('click',e=>{
   else if(a==='use'){coupon=b.dataset.c;if(count()){location.hash='takeaway'}else{toast(coupon+' will apply when you check out');location.hash='menu'}}
   else if(a==='rate'){const o=myOrd[+b.dataset.i]; if(o)openFeedback(o,+b.dataset.r||0)}
   else if(a==='ratex'){const o=myOrd[+b.dataset.i]; if(o){const m=fbOff();m[o.at]=1;LS.set('fbNo',m);renderAccount()}}
+  else if(a==='tadd'){const q=seated(), o=q&&tableRounds(q.table)[+b.dataset.o], l=o&&o.lines[+b.dataset.j]; if(!l||!q)return;
+    mode='dine'; table=q.table;   /* the cart then goes to this table as more items */
+    if(reorder([Object.assign({},l,{q:1,note:''})]))renderAccount()}
+  else if(a==='tcart'){const q=seated(); if(q){mode='dine';table=q.table} location.hash='takeaway'}
   else if(a==='again'){const o=myOrd[+b.dataset.i]; if(!o)return;
     if(!reorder(o.lines))return;
     if(o.dn&&seated()){mode='dine';table=seated().table}   /* still seated: it goes to their table as more items */
@@ -3153,6 +3932,7 @@ $('#acBody').addEventListener('submit',async e=>{
   if(acMode==='up'&&!nm)return er('Enter your name.');
   if(!ph)return er('Enter a valid 10-digit mobile number.');
   if(!/^\d{4}$/.test(pin))return er('Your PIN must be 4 digits.');
+  if(acMode==='up'){if(!f.agree||!f.agree.checked)return er(lgAgreeMsg)}
   const btn=e.target.querySelector('[type=submit]'); btn.disabled=true;
   try{
     const r=await rpc(acMode==='up'?'account_signup':'account_login',acMode==='up'?{p_phone:ph,p_name:nm,p_pin:pin}:{p_phone:ph,p_pin:pin});
@@ -3160,6 +3940,7 @@ $('#acBody').addEventListener('submit',async e=>{
       bad_name:'Enter your name.',bad_phone:'Enter a valid 10-digit mobile number.',bad_pin:'Your PIN must be 4 digits.'}[r.error]||'Something went wrong. Please try again.');return}
     ACCT={phone:r.phone,name:r.name,token:r.token};LS.set('acct',ACCT);LS.set('cust',{name:r.name,phone:ph});
     await loadMine(); renderAccount();
+    if(acMode==='up')lgSend({k:'signup',p:ph,n:nm});
     toast((acMode==='up'?'Welcome, ':'Welcome back, ')+r.name.split(' ')[0]);
     if(authNext){const n=authNext;authNext=null;location.hash=n};
   }catch(x){er(say(x))}
@@ -3233,7 +4014,141 @@ $('#fbDlg').addEventListener('click',e=>{
 });
 $('#fbDlg').addEventListener('change',e=>{if(e.target.name==='fbr'){FBK.rating=+e.target.value;fbPaint()}});
 $('#fbDlg').addEventListener('close',()=>{if(location.hash==='#account')renderAccount()});
-const acctRefresh=()=>{acctBtn();if(location.hash==='#account')renderAccount()};
+const acctRefresh=()=>{acctBtn();if(location.hash==='#account')renderAccount(); tbarPaint(); if(location.hash==='#dine')renderDine()};
+
+/* ============ TABLE BAR, MY TABLE BILL, THANKS SUGGESTIONS, TABLE CLOSED ============
+   Everything here reads the guest's own orders (myOrd) for the table they are seated at. Nothing changes the server:
+   "+" and the suggestions only fill the cart, and place_order adds the items to the same table session as before. */
+let jumpBill=false;
+/* the rounds of this visit at a table: dine-in orders there, newest visit only (same 6-hour rule as staff billing) */
+function tableRounds(tn){
+  const q=seated(); tn=tn||(q&&q.table); if(!tn)return [];
+  if(TR&&TR.table===+tn&&TR.data&&Array.isArray(TR.data.rounds))return TR.data.rounds.map(o=>Object.assign({},o,{dn:true,table:+tn})).sort((a,b)=>new Date(a.at)-new Date(b.at));
+  const l=myOrders().filter(o=>o.dn&&+o.table===+tn&&o.at).sort((a,b)=>new Date(a.at)-new Date(b.at));
+  let from=0; for(let i=1;i<l.length;i++)if(new Date(l[i].at)-new Date(l[i-1].at)>SESSION_GAP_H*36e5)from=i;
+  return l.slice(from);
+}
+const roundsTotal=rs=>rs.reduce((a,o)=>a+(+o.total||0),0);
+
+/* 1. table bar on the menu */
+function tbarPaint(){
+  const b=$('#tbar'); if(!b)return;
+  const q=seated(), show=!!q&&mode==='dine'&&+table===q.table; b.hidden=!show; if(!show)return;
+  const rs=tableRounds(q.table);
+  b.innerHTML=`<span class="tb-t"><b>Table T${q.table}</b>${rs.length?` · ${inr(Math.round(roundsTotal(rs)))} so far`:''}</span><span class="tb-a"><a class="tb-l" href="#account" data-tb="bill">My bill</a><button type="button" class="tb-b" data-tb="more">Add more</button></span>`;
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-tb]'); if(!b)return;
+  if(b.dataset.tb==='more'){const t=document.querySelector('#menu .mtools'); if(t)t.scrollIntoView({behavior:'smooth',block:'start'})}
+  else jumpBill=true;
+});
+
+/* 2. my table bill card (account page) */
+function tblBillCard(){
+  const q=seated(); if(!q)return '';
+  const rs=tableRounds(q.table), n=count();
+  if(!rs.length)return `<section class="acard tbill" id="acBill" aria-label="My table bill"><h2 class="ah">My table bill</h2><p class="sub2">Table T${q.table}. Your rounds will show up here as you order.</p></section>`;
+  const open=rs.filter(o=>o.status!=='Served').length;
+  return `<section class="acard tbill" id="acBill" aria-label="My table bill"><div class="tb-sum"><div><h2 class="ah">My table bill</h2><small class="sub2">Table T${q.table} · ${rs.length} ${rs.length===1?'round':'rounds'}${open?` · ${open} in progress`:' · all served'}</small></div><div class="tb-tot"><small>So far</small><strong>${inr(Math.round(roundsTotal(rs)))}</strong></div></div>${TR&&TR.table===q.table&&TR.data&&TR.data.code?`<p class="sub2 tb-join">Friends at your table can join from their own phones with code <b>${esc(TR.data.code)}</b>. Their orders go on this same bill.</p>`:''}`+
+    rs.map((o,ri)=>`<div class="tb-round"><div class="tb-rh"><b>Round ${ri+1}</b><time datetime="${esc(o.at)}">${clock(o.at)}</time><span class="bst ${esc(o.status)}">${esc(o.status)}</span></div>${o.lines.map((l,j)=>`<div class="tb-line"><span>${esc(l.n)} <em>×${l.q}</em></span><button type="button" class="tb-plus" data-ac="tadd" data-o="${ri}" data-j="${j}" aria-label="Add one ${esc(l.n)} again"${canOrder(l)?'':' disabled'}>+</button></div>`).join('')}</div>`).join('')+
+    `<p class="sub2 tb-note">Totals include taxes. Tap + to add an item again, then send it to the kitchen from your cart.</p>${n?`<button type="button" class="mini pri tb-cart" data-ac="tcart">Review &amp; add to my order (${n})</button>`:''}</section>`;
+}
+
+/* 3. thanks page: drinks and desserts after the first dine-in order */
+const SUG_DRINK=/\b(drinks?|beverages?|juices?|shakes?|lassi|mocktails?|soda|tea|coffee)\b/i, SUG_SWEET=/\b(desserts?|sweets?|ice[\s-]?creams?)\b/i;
+function sugList(o){
+  const had=new Set(o.lines.map(([i])=>String(i)));
+  const pick=re=>{
+    if(o.lines.some(([i])=>{const m=get(i);return m&&re.test(m.c)}))return [];   /* they already have one */
+    const seen=new Set(), out=[];
+    MENU.filter(m=>m.a&&!isAddon(m)&&re.test(m.c)&&!(m.stock!=null&&m.stock<=0)&&!had.has(String(m.id)))
+      .sort((a,b)=>(isBS(b)-isBS(a))||(isCP(b)-isCP(a))||a.p-b.p)
+      .forEach(m=>{const k=gKey(m)||('i'+m.id); if(!seen.has(k)){seen.add(k);out.push(m)}});
+    return out.slice(0,3);
+  };
+  return [['Something to drink?',pick(SUG_DRINK)],['Something sweet to finish?',pick(SUG_SWEET)]].filter(g=>g[1].length);
+}
+function renderSug(){
+  const el=$('#tSug'), o=lastOrder; if(!el)return;
+  const g=o&&o.dn&&(!o.more||o.joinFirst)&&shopState().open?sugList(o):[];
+  if(!g.length){el.hidden=true;el.innerHTML='';return}
+  el.hidden=false;
+  el.innerHTML=`<h2 class="ts-h">Guests usually add these next</h2><p class="sub2 ts-s">One tap puts it in your cart. Your table stays open.</p>`+
+    g.map(([t,l])=>`<div class="ts-g"><h3>${t}</h3>${l.map(m=>{const q=cart[m.id]||0;return `<div class="ts-i"><span class="vm ${m.v?'veg':'nv'}" role="img" aria-label="${m.v?'Vegetarian':'Non-vegetarian'}"></span><span class="ts-n">${esc(m.n)}<small>${inr(m.p)}</small></span><button type="button" class="ts-b${q?' on':''}" data-sg="${m.id}" aria-label="Add ${esc(m.n)}${q?', '+q+' in cart':''}">${q?'✓ '+q+' · +':'+ Add'}</button></div>`}).join('')}</div>`).join('')+
+    (count()?`<a class="mini pri ts-go" href="#takeaway">Review &amp; add to my order (${count()})</a>`:'');
+}
+$('#tSug').addEventListener('click',e=>{
+  const b=e.target.closest('[data-sg]'); if(!b)return; const m=get(b.dataset.sg); if(!m||!m.a)return;
+  if(m.stock!=null&&(cart[m.id]||0)>=m.stock){toast(`Only ${m.stock} left`);return}
+  const q=seated(); if(lastOrder&&lastOrder.dn&&q){mode='dine';table=q.table}
+  cart[m.id]=(cart[m.id]||0)+1; renderSug();
+  const f=document.querySelector('#tSug [data-sg="'+m.id+'"]'); if(f)f.focus();
+});
+
+/* 4. staff closed the table: thank the guest and ask for the rating (the same sheet as My account) */
+async function tableClosed(q){
+  if(Date.now()-q.at>12*36e5)return;
+  if(ACCT){try{await loadMine()}catch{}}
+  const rs=tableRounds(q.table);
+  if(!rs.length){toast(`Table T${q.table} was closed by our team. Pick a table to order again.`);return}
+  const near=(a,b)=>Math.abs(new Date(a)-new Date(b))<2500;
+  const mine=[...rs].reverse().map(r=>myOrders().find(x=>x.at&&near(x.at,r.at))).find(Boolean)||null;   /* only a round of mine can be rated */
+  byeDlg(q.table,rs,mine);
+  TR=null; acctRefresh(); renderMenuIfOpen();
+}
+const renderMenuIfOpen=()=>{if(location.hash==='#menu')renderMenu()};
+function byeDlg(tn,rs,mine){
+  const last=mine||null, can=!!ACCT&&!!last&&!!last.at&&!fbDone_(last), nm=ACCT?esc(ACCT.name.split(' ')[0]):'', d=$('#fbDlg');
+  d.innerHTML=`<div class="os-h"><div class="os-t"><h2 id="fbT">Thank you${nm?', '+nm:''}!</h2><p>Table T${tn} is now closed. ${inr(Math.round(roundsTotal(rs)))} across ${rs.length} ${rs.length===1?'round':'rounds'}. We hope you enjoyed your meal.</p></div><button class="os-x" type="button" data-fbx aria-label="Close">${OSX}</button></div>`+
+    (can?`<div class="os-b"><p class="sub2" style="margin:0">How was your meal today? Tap a star.</p><div class="fb-quick" role="group" aria-label="Tap a star to rate">${[1,2,3,4,5].map(n=>`<button class="fb-q" type="button" data-bye="${n}" aria-label="${n} star${n>1?'s':''}, ${FB_LBL[n-1]}">${FB_STAR}</button>`).join('')}</div></div>`:'')+
+    `<div class="os-f"><button class="ghost os-go" type="button" data-bye="0" id="fbDone">${can?'Not now':'Done'}</button></div>`;
+  d._bye=last;
+  if(!d.open)d.showModal(); (d.querySelector('.fb-q')||$('#fbDone')).focus();
+}
+$('#fbDlg').addEventListener('click',e=>{
+  const j=e.target.closest('[data-join]'); if(j){doJoin(+j.dataset.join);return}
+  const b=e.target.closest('[data-bye]'), d=e.currentTarget; if(!b)return;
+  const o=d._bye, n=+b.dataset.bye; d._bye=null;
+  if(n&&o)openFeedback(o,n);                               /* stars carry over into the normal rating sheet */
+  else{if(o&&o.at){const m=fbOff(); m[o.at]=1;LS.set('fbNo',m)} d.close()}
+});
+
+
+/* ============ JOIN A TABLE: friends ordering from their own phones ============
+   The first guest's table has a 4-digit join code (shown on My table bill). A friend taps the occupied table, enters the code
+   and gets the same table key, so their orders go on the same bill. table_rounds() returns every round at the table. */
+let TR=null, JOINED=0;   /* TR = {table,data}; null until the server function is installed */
+async function loadTable(){
+  const q=seated(); if(!q){TR=null;return false}
+  try{
+    const r=await rpc('table_rounds',{p_table:q.table,p_session:q.key});
+    if(r&&Array.isArray(r.rounds)){const ch=sigOf(r)!==sigOf(TR&&TR.data); TR={table:q.table,data:r}; return ch}
+  }catch{}
+  return false;
+}
+function openJoin(n){
+  const d=$('#fbDlg'); d._bye=null;
+  d.innerHTML=`<div class="os-h"><div class="os-t"><h2 id="fbT">Join Table T${n}</h2><p>Ask the person who opened the table for the 4-digit join code. Your orders will go on the same bill.</p></div><button class="os-x" type="button" data-fbx aria-label="Close">${OSX}</button></div><div class="os-b"><label class="fb-c">Join code<input id="joinCode" class="jc" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" placeholder="0000"></label><p class="os-err" id="joinErr" role="alert"></p></div><div class="os-f"><button class="atc os-go" id="joinGo" type="button" data-join="${n}">Join table</button></div>`;
+  if(!d.open)d.showModal(); $('#joinCode').focus();
+}
+async function doJoin(n){
+  const inp=$('#joinCode'), er=$('#joinErr'), go=$('#joinGo'), code=(inp.value||'').replace(/\D/g,'');
+  if(code.length!==4){er.textContent='Enter the 4-digit code.';inp.focus();return}
+  er.textContent=''; go.disabled=true; go.textContent='Joining…';
+  try{
+    const r=await rpc('join_table',{p_table:n,p_code:code});
+    if(!r||!r.key)throw new Error((r&&r.error)||'bad_code');
+    saveSeat({table:+r.table||n,key:r.key,at:Date.now()}); if(!occ.includes(n))occ.push(n);
+    mode='dine'; table=n; JOINED=n; $('#fbDlg').close(); toast(`You’ve joined Table T${n}`);
+    loadTable().then(acctRefresh); location.hash='menu';
+  }catch(x){
+    const m=String((x&&x.message)||'');
+    er.textContent=/^bad_code/.test(m)?'That code isn’t right. Please check it with your friend.':/^locked/.test(m)?'Too many tries. Please ask our team.':/^no_session/.test(m)?'That table has no open order right now.':(x&&x.status===404)?'Joining isn’t switched on yet. Please ask our team.':say(x);
+    go.disabled=false; go.textContent='Join table';
+  }
+}
+$('#fbDlg').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='joinCode'){e.preventDefault();doJoin(+$('#joinGo').dataset.join)}});
+
 /* after any change on the server: re-draw whatever page is open (but never while someone is typing in it) */
 function refreshViews(){
   NAME=(String(SET.name||'').trim()||BRAND_DEFAULT); pruneCart();
@@ -3464,10 +4379,10 @@ function renderSite(){
   $('#viList').innerHTML=cards.map(([ic,h,body,cls,vw,vh])=>`<li class="vs-card"><span class="vs-ic${cls}" aria-hidden="true"><svg viewBox="0 0 ${vw} ${vh}"><use href="#${ic}"/></svg></span><div class="vs-tx"><h3 class="vs-ct">${h}</h3><p>${body}</p></div></li>`).join('');
   $('#ftContact').innerHTML=`<p><b>Hours</b>${hrs}</p>`+rows.map(([k,v])=>`<p><b>${k}</b>${v}</p>`).join('');
   $('#viDir').href=$('#viMap').href=$('#ftDir').href=$('#rvMore').href=mapsUrl();
-  /* signature dishes: chef's picks and bestsellers first, then any other available dish, up to four */
-  const sgPool=MENU.filter(m=>m.a&&!isAddon(m)),sgPick=[...sgPool.filter(m=>isCP(m)||isBS(m)),...sgPool.filter(m=>!isCP(m)&&!isBS(m))].slice(0,4);
+  /* signature dishes: the ones chosen in Admin > Signature (up to six, in order); nothing chosen = popular dishes automatically */
+  const sgPick=sigDishes().list;
   const SG_CROWN='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.5 10h-15L3 8zm2.2 12h13.6v1.8H5.2z"/></svg>',SG_STAR='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg>';
-  $('#sgList').innerHTML=sgPick.map(m=>{const cp=isCP(m),bs=!cp&&isBS(m);return `<li class="sg-card"><div class="sg-box"><div class="sg-img${m.img?'':' art'}">${cp||bs?`<span class="sg-tag">${cp?SG_CROWN:SG_STAR}<span>${cp?'Chef&rsquo;s Special':'Bestseller'}</span></span>`:''}${pic(m)}</div><div class="sg-body"><h3 class="sg-n">${esc(m.n)}</h3><p class="sg-d">${esc(m.d)}</p><span class="sg-p">${inr(m.p)}</span></div></div></li>`}).join('');
+  $('#sgList').innerHTML=sgPick.map(m=>{const cp=isCP(m),bs=!cp&&isBS(m);return `<li class="sg-card"><div class="sg-box"><div class="sg-img${m.img?'':' art'}">${cp||bs?`<span class="sg-tag">${cp?SG_CROWN:SG_STAR}<span>${cp?'Chef&rsquo;s Special':'Bestseller'}</span></span>`:''}${pic(m)}</div><div class="sg-body"><h3 class="sg-n">${esc(groupOf(m)?sizeOf(m).base:m.n)}</h3><p class="sg-d">${esc(m.d)}</p><span class="sg-p">${groupOf(m)?'From '+inr(groupOf(m)[0].p):inr(m.p)}</span></div></div></li>`}).join('');
   $('#signature').hidden=!sgPick.length;
   $('#rvList').innerHTML=REVIEWS.map(r=>{const nm=String(r.name||'').trim(),st=Math.max(0,Math.min(5,+r.stars||0)),av=r.img?`<img src="${esc(r.img)}" alt="" loading="lazy">`:`<span class="rv-mono" aria-hidden="true">${esc((nm[0]||'?').toUpperCase())}</span>`;
     return `<li class="rv-card"><div class="rv-box"><div class="rv-av"><div class="rv-ph">${av}</div></div><div class="rv-main"><div class="rv-top"><h3 class="rv-n">${esc(nm)}</h3><span class="rv-d">${esc(r.when)}</span></div><div class="rv-rate"><div class="rv-stars" role="img" aria-label="${st} out of 5 stars">${[1,2,3,4,5].map(i=>`<svg viewBox="0 0 24 24" aria-hidden="true"${i>st?' class="off"':''}><path d="m12 2.5 2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg>`).join('')}</div><span class="rv-num" aria-hidden="true">${st.toFixed(1)}</span></div><p class="rv-q">&ldquo;${esc(r.text)}&rdquo;</p></div></div></li>`}).join('');
@@ -3491,10 +4406,204 @@ route();
 /* ---- go live: fetch the shared data, then keep it fresh ---- */
 loadRemote();
 if(ACCT)loadMine().then(acctRefresh);
+loadTable().then(acctRefresh);
 setInterval(()=>{if(!document.hidden)loadRemote()},45000);
-setInterval(async()=>{if(!document.hidden&&ACCT&&await loadMine())acctRefresh()},15000);
+setInterval(async()=>{if(document.hidden)return; const a=ACCT?await loadMine():false, b=seated()?await loadTable():false; if(a||b)acctRefresh()},15000);
 setInterval(adminPoll,6000);
+setInterval(()=>{if(!document.hidden&&seated()&&document.body.dataset.v!=='admin')loadOcc()},20000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){loadRemote();if(seated()||(mode==='dine'&&table))loadOcc();if(ACCT)loadMine().then(acctRefresh);adminPoll()}});
+</script>
+<script>
+/* =====================================================================
+   MOTION LAYER (additive). Reads the DOM, never changes app state or data.
+   Everything is skipped for people who prefer reduced motion.
+   ===================================================================== */
+(function(){
+'use strict';
+try{
+const doc=document, html=doc.documentElement;
+const RM=matchMedia('(prefers-reduced-motion:reduce)');
+const FINE=matchMedia('(hover:hover) and (pointer:fine)');
+if(RM.matches)return;
+const raf=window.requestAnimationFrame.bind(window);
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+
+/* ---------- 1. scroll rail under the home nav ---------- */
+const rail=doc.createElement('div');rail.id='nmRail';rail.className='on';rail.setAttribute('aria-hidden','true');doc.body.appendChild(rail);
+
+/* ---------- 2. scroll reveals ---------- */
+const CARD='.sg-card,.rv-card,.vs-card,.vs-go,.sg-more,.rv-more,.gl-more,.rv-sub,.gl-sub';
+const HEAD='.sg-t,.rv-t,.vs-t,.gl-t';
+const TILE='.gl-tile';
+let ready=false, io=null;
+if('IntersectionObserver' in window){
+  io=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const el=e.target; io.unobserve(el);
+      el.classList.add('nm-in');
+      if(el.classList.contains('nm-h')||el.classList.contains('nm-g')){
+        setTimeout(()=>el.classList.add('nm-done'),1500); /* mask is dropped afterwards so swashes are never cropped */
+      }else setTimeout(()=>{el.style.removeProperty('--nd');el.classList.add('nm-done')},1700);
+    });
+  },{threshold:.14,rootMargin:'0px 0px -6% 0px'});
+}
+function tag(el,kind,idx){
+  if(!io||el.dataset.nm)return;
+  el.dataset.nm='1';
+  el.classList.add('nm-r'); if(kind==='h')el.classList.add('nm-h'); if(kind==='g')el.classList.add('nm-g');
+  el.style.setProperty('--nd',String(Math.min(idx,6)));
+  const r=el.getBoundingClientRect();
+  if(ready&&r.top<innerHeight&&r.bottom>0&&r.height>0){ /* re-rendered while on screen: show at once, no flicker */
+    el.classList.add('nm-in','nm-done');return;
+  }
+  io.observe(el);
+}
+function scan(root){
+  if(!io)return;
+  const scope=root&&root.querySelectorAll?root:doc;
+  const all=[];
+  if(root&&root.matches){ if(root.matches(CARD))all.push([root,'c']); if(root.matches(HEAD))all.push([root,'h']); if(root.matches(TILE))all.push([root,'g']); }
+  scope.querySelectorAll(CARD).forEach(e=>all.push([e,'c']));
+  scope.querySelectorAll(HEAD).forEach(e=>all.push([e,'h']));
+  scope.querySelectorAll(TILE).forEach(e=>all.push([e,'g']));
+  all.forEach(([e,k])=>{
+    if(!e.closest('#home'))return;
+    const sib=e.parentElement?[...e.parentElement.children].filter(x=>x.matches(CARD)||x.matches(TILE)):[];
+    tag(e,k,Math.max(0,sib.indexOf(e)));
+  });
+}
+if(io){
+  scan(doc);
+  html.classList.add('nm-js');
+  setTimeout(()=>{ready=true},1800);
+  const home=doc.getElementById('home');
+  if(home)new MutationObserver(ms=>{
+    ms.forEach(m=>m.addedNodes.forEach(n=>{ if(n.nodeType===1)scan(n) }));
+  }).observe(home,{childList:true,subtree:true});
+  /* safety net: if anything is still hidden after the page has settled and is on screen, reveal it */
+  setTimeout(()=>{doc.querySelectorAll('.nm-r:not(.nm-in)').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)el.classList.add('nm-in')})},3500);
+}
+
+/* ---------- 3. hero parallax (scroll + pointer) ---------- */
+const hero=doc.getElementById('hero');
+let sy=0,px=0,py=0,pend=false;
+function paint(){
+  pend=false;
+  const y=clamp(sy,0,900);
+  if(hero){
+    hero.style.setProperty('--hy',(y*.055+py*-7).toFixed(1)+'px');
+    hero.style.setProperty('--hx',(px*-8).toFixed(1)+'px');
+  }
+  const h=doc.documentElement,max=h.scrollHeight-innerHeight;
+  rail.style.transform='scaleX('+(max>0?clamp(sy/max,0,1):0).toFixed(4)+')';
+}
+const kick=()=>{if(!pend){pend=true;raf(paint)}};
+addEventListener('scroll',()=>{sy=scrollY;kick()},{passive:true});
+if(hero&&FINE.matches){
+  hero.addEventListener('pointermove',e=>{
+    const r=hero.getBoundingClientRect();
+    px=clamp((e.clientX-r.left)/r.width-.5,-.5,.5);py=clamp((e.clientY-r.top)/r.height-.5,-.5,.5);kick();
+  },{passive:true});
+  hero.addEventListener('pointerleave',()=>{px=0;py=0;kick()});
+}
+sy=scrollY;paint();
+
+/* ---------- 4. 3D tilt on cards (CSS `rotate`, so it never fights the app's own transforms) ---------- */
+const TILT='.sg-box,.rv-box,.vs-card,.icard,.qrcard';
+if(FINE.matches){
+  let cur=null;
+  const reset=el=>{if(el){el.style.removeProperty('rotate')}};
+  doc.addEventListener('pointermove',e=>{
+    if(e.pointerType&&e.pointerType!=='mouse')return;
+    const el=e.target.closest&&e.target.closest(TILT);
+    if(cur&&cur!==el){reset(cur);cur=null}
+    if(!el)return;
+    cur=el;
+    const r=el.getBoundingClientRect(),mx=clamp((e.clientX-r.left)/r.width-.5,-.5,.5),my=clamp((e.clientY-r.top)/r.height-.5,-.5,.5);
+    const max=el.matches('.icard')?3:4.2, rx=-my*max*2, ry=mx*max*2, a=Math.hypot(rx,ry);
+    el.style.rotate=a<.05?'none':rx.toFixed(2)+' '+ry.toFixed(2)+' 0 '+a.toFixed(2)+'deg';
+  },{passive:true});
+  doc.addEventListener('pointerleave',()=>{reset(cur);cur=null},true);
+  doc.addEventListener('scroll',()=>{reset(cur);cur=null},{passive:true});
+}
+
+/* ---------- 5. magnetic primary actions ---------- */
+const MAG='.hero .hbtn,.nav-cta,.op-pill,.vs-go,.gl-more,.rv-more,.sg-more';
+if(FINE.matches){
+  let m=null;
+  const off=el=>{if(el){el.style.removeProperty('translate')}};
+  doc.addEventListener('pointermove',e=>{
+    const el=e.target.closest&&e.target.closest(MAG);
+    if(m&&m!==el){off(m);m=null}
+    if(!el)return;
+    m=el;
+    const r=el.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);
+    el.style.translate=clamp(dx*.14,-7,7).toFixed(1)+'px '+clamp(dy*.24,-5,5).toFixed(1)+'px';
+  },{passive:true});
+  doc.addEventListener('pointerleave',()=>{off(m);m=null},true);
+}
+
+/* ---------- 6. press ripple ---------- */
+const RIP='.go,.atc,.hbtn,.nav-cta,.add,.chip,.rchip,.tp,.tbl,.dchip,.tslot,.mini,.ghost,.svcb,.tb-b,.vs-go,.gl-more,.rv-more,.sg-more,.op-pill';
+const DARK='.go,.atc,.hbtn.fill,.nav-cta,.tb-b,.vs-go,[aria-pressed=true]';
+let lastAdd=null;
+doc.addEventListener('pointerdown',e=>{
+  const el=e.target.closest&&e.target.closest(RIP);
+  if(!el||el.disabled||el.getAttribute('aria-disabled')==='true')return;
+  if(getComputedStyle(el).position==='static')el.style.position='relative';
+  const r=el.getBoundingClientRect(),d=Math.max(r.width,r.height)*2.3;
+  const s=doc.createElement('span');s.className='nm-rip'+(el.matches(DARK)?'':' nm-ripd');
+  s.style.cssText='width:'+d+'px;height:'+d+'px;left:'+(e.clientX-r.left-d/2)+'px;top:'+(e.clientY-r.top-d/2)+'px';
+  el.appendChild(s);
+  const a=s.animate([{transform:'scale(0)',opacity:.9},{transform:'scale(1)',opacity:0}],{duration:650,easing:'cubic-bezier(.22,.9,.28,1)'});
+  a.onfinish=()=>s.remove();
+},{passive:true});
+/* remember WHERE an add-to-cart press happened (the app re-renders the button right after, so the element itself is gone by then) */
+doc.addEventListener('pointerdown',e=>{
+  const el=e.target.closest&&e.target.closest('.atc,.add,.cb,.step button,.os-go');
+  if(!el||el.disabled)return;
+  const r=el.getBoundingClientRect();
+  if(r.width)lastAdd={x:r.left+r.width/2,y:r.top+r.height/2,t:performance.now()};
+},true);
+
+/* ---------- 7. cart feedback: badge pop + a dot that flies from the button to the cart ---------- */
+function pop(el){ if(!el)return; el.classList.remove('nm-pop'); void el.offsetWidth; el.classList.add('nm-pop') }
+function targetRect(){
+  const c=doc.getElementById('cartbar'), b=doc.querySelector('#menu .round.r');
+  for(const t of [c&&c.querySelector('.ci'),b]){ if(!t)continue; const r=t.getBoundingClientRect(); if(r.width>0&&r.bottom>0&&r.top<innerHeight)return r }
+  return null;
+}
+function fly(from){
+  const t=targetRect(); if(!t||!from)return;
+  const x0=from.x,y0=from.y,x1=t.left+t.width/2,y1=t.top+t.height/2;
+  const dot=doc.createElement('i');dot.className='nm-dot';doc.body.appendChild(dot);
+  const mx=(x0+x1)/2,my=Math.min(y0,y1)-90;
+  const k=[0,.25,.5,.75,1].map(u=>{const a=(1-u)*(1-u),b=2*(1-u)*u,c=u*u;return{transform:'translate('+(a*x0+b*mx+c*x1).toFixed(1)+'px,'+(a*y0+b*my+c*y1).toFixed(1)+'px) scale('+(1-u*.55).toFixed(2)+')',opacity:u>.9?0:1}});
+  const an=dot.animate(k,{duration:720,easing:'cubic-bezier(.45,.05,.4,1)'});
+  an.onfinish=()=>dot.remove();
+}
+let lastN=null;
+function watchCount(node){
+  if(!node)return;
+  const read=()=>parseInt((node.textContent||'').replace(/\D/g,''),10)||0;
+  lastN=read();
+  new MutationObserver(()=>{
+    const n=read();
+    pop(node.closest('.ci')||node);
+    if(n>lastN&&lastAdd&&performance.now()-lastAdd.t<1600){const from=lastAdd;lastAdd=null;setTimeout(()=>fly(from),30)}
+    lastN=n;
+  }).observe(node,{childList:true,characterData:true,subtree:true});
+}
+watchCount(doc.getElementById('cbn'));
+const mb=doc.getElementById('mbadge');
+if(mb)new MutationObserver(()=>pop(mb)).observe(mb,{childList:true,characterData:true,subtree:true});
+
+/* ---------- 8. total bill: new value rolls in ---------- */
+const bt=doc.getElementById('billTotal');
+if(bt){let last=bt.textContent;new MutationObserver(()=>{if(bt.textContent!==last){last=bt.textContent;bt.animate([{transform:'translateY(10px)',opacity:.15},{transform:'none',opacity:1}],{duration:460,easing:'cubic-bezier(.34,1.56,.64,1)'})}}).observe(bt,{childList:true,characterData:true,subtree:true})}
+}catch(err){ try{document.documentElement.classList.remove('nm-js')}catch(_){} ; if(window.console)console.warn('motion layer skipped:',err) }
+})();
 </script>
 </body>
 </html>
